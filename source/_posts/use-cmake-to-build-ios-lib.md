@@ -9,18 +9,22 @@ tags:
 
 去年（2016年）做深度学习项目的移动端移植用到了 cmake，现在把当时写的一篇使用流程贴出来，主要目的是备忘。废话不多说，直接进入正题。
 
-## 1. 下载 cmake 的 dmg 格式并安装
+## 1. 下载 X11 并安装
+
+关于 Mac 版 X11，Mac 不再随附 X11，但 XQuartz 项目会提供 X11 服务器和客户端库。XQuartz 项目提供适用于 MacOS 的 X11 服务器和客户端库，网址是 [https://www.xquartz.org](https://www.xquartz.org)。下载可用的最新版本并安装。具体说明见：[关于 Mac 版 X11](https://support.apple.com/zh-cn/HT201341)
+
+## 2. 下载 cmake 的 dmg 格式并安装
 
 下载地址: [https://cmake.org/download/](https://cmake.org/download/)，本文使用的是 Mac OSX 10.6 or later，cmake-3.7.1-Darwin-x86_64.dmg 版本。
 
-## 2. 终端安装 cmake
+## 3. 终端安装 cmake
 在终端执行命令：
 
 	sudo "/Applications/CMake.app/Contents/bin/cmake-gui" --install
 	
 <!-- more -->
 
-## 3. 进入包含 CMakeLists.txt 文件的源码文件夹 xxx 并执行命令得到 Mac 工程（注意：命令的空格）
+## 4. 进入包含 CMakeLists.txt 文件的源码文件夹 xxx 并执行命令得到 Mac 工程（注意：命令的空格）
 
 在终端依次执行下面的命令：***（备注：xxx 为工程的名称）***
 
@@ -32,8 +36,8 @@ tags:
     
 	cmake -G Xcode ..
 
-## 4. 将 Mac 工程改为 iOS 工程
-(1) 进入 build 文件夹，打开 Project.xcodeproj 工程，Duplicate TARGET "xxx"，生成了1个新的 TARGET "xxx copy" ***（备注：xxx 为 TARGET 的名称，跟 章节 3 中的 xxx 是同名的，也就是说章节 3 中的 xxx 决定了此处 Xcode 项目的 TARGET 名称）***
+## 5. 将 Mac 工程改为 iOS 工程
+(1) 进入 build 文件夹，打开 Project.xcodeproj 工程，Duplicate TARGET "xxx"，生成了1个新的 TARGET "xxx copy" ***（备注：xxx 为 TARGET 的名称，跟 章节 4 中的 xxx 是同名的，也就是说章节 3 中的 xxx 决定了此处 Xcode 项目的 TARGET 名称）***
     
 (2) 将 TARGET "xxx copy" 改名为 "xxx-iOS"
     
@@ -43,9 +47,9 @@ tags:
     
 (5) 在 Xcode 的左上角选择工程 xxx copy，接着进入 Manage Schemes，将 xxx copy 更名为 xxx-iOS
 
-## 5. 编译 xxx-iOS 即可得到 iOS 静态库 libxxx-iOS.a
+## 6. 编译 xxx-iOS 即可得到 iOS 静态库 libxxx-iOS.a
 
-## 6. 终端执行命令 lipo -info libxxx-iOS.a 查看 iOS 静态库支持的 Architectures （如：armv7，arm64，x86_64，i386）
+## 7. 终端执行命令 lipo -info libxxx-iOS.a 查看 iOS 静态库支持的 Architectures （如：armv7，arm64，x86_64，i386）
 
 在终端执行命令：
 
