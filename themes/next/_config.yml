@@ -171,8 +171,8 @@ social_icons:
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.jpg
 # in site  directory(source/uploads): /uploads/avatar.jpg
-#avatar: /images/myHeader.png
-avatar: /images/blog-QR-Code.png
+avatar: /images/myHeader.png
+# avatar: /images/blog-QR-Code.png
 
 
 # Table Of Contents in the Sidebar
