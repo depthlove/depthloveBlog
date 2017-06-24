@@ -3,7 +3,8 @@
 # ---------------------------------------------------------------
 
 # Put your favicon.ico into `hexo-site/source/` directory.
-favicon: /favicon.ico
+# favicon: /favicon.ico
+favicon: images/myFavicon.ico
 
 # Set default keywords (Use a comma to separate)
 keywords: "Hexo, NexT"
@@ -152,6 +153,7 @@ social:
   # 微博: http://weibo.com/your-user-name
   # 豆瓣: http://douban.com/people/your-user-name
   # 知乎: http://www.zhihu.com/people/your-user-name
+  简书: http://www.jianshu.com/users/86315de37fb0
 
 
 # Social Links Icons
@@ -166,6 +168,7 @@ social_icons:
   GitHub: github
   Twitter: twitter
   Weibo: weibo
+  简书: jianshu
 
 
 # Sidebar Avatar
