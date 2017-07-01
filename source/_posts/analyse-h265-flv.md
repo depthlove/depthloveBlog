@@ -19,4 +19,10 @@ tags:
 
 ![H.265+AAC的FLV](http://images2015.cnblogs.com/blog/719115/201707/719115-20170701195845180-726618432.jpg)
 
-关于 H.265 的 VPS、SPS、PPS 解释可参看文章：[VPS SPS PPS](http://blog.csdn.net/u012868357/article/details/48974967)
+关于 H.265 的 VPS、SPS、PPS 等知识点的解释，可参看文章：  
+[VPS SPS PPS](http://blog.csdn.net/u012868357/article/details/48974967)  
+[HEVC编码结构：序列参数集SPS、图像参数集PPS、视频参数集VPS](http://blog.csdn.net/lin453701006/article/details/52797104)  
+[FFmpeg的HEVC解码器源代码简单分析：解析器（Parser）部分](http://blog.csdn.net/leixiaohua1020/article/details/46412607)  
+[homerHEVC代码阅读（21）——基本流程](http://blog.csdn.net/nb_vol_1/article/details/50210487)  
+[HEVC概念缩写对照表](http://blog.csdn.net/lin453701006/article/details/52797415)
+
