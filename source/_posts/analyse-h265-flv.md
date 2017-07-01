@@ -19,3 +19,4 @@ tags:
 
 ![H.265+AAC的FLV](http://images2015.cnblogs.com/blog/719115/201707/719115-20170701195845180-726618432.jpg)
 
+关于 H.265 的 VPS、SPS、PPS 解释可参看文章：[VPS SPS PPS](http://blog.csdn.net/u012868357/article/details/48974967)
