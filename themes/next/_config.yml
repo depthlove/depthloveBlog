@@ -327,7 +327,7 @@ baidu_analytics: bb3cb1d5838b79bdd0bccc4f449418c6
 
 # Disqus
 disqus:
-  enable: true
+  enable: false
   shortname: depthlove
   count: true
 
