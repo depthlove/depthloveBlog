@@ -124,12 +124,13 @@ social_icons:
 
 # Blog rolls
 links_title: Links
-#links_layout: block
+# links_layout: block
 links_layout: inline
 links:
   #Title: http://example.com/
   LeiXiaohua: http://blog.csdn.net/leixiaohua1020
   Roxlu: http://roxlu.com
+  BlogComment: https://github.com/depthlove/depthlove.github.io/issues
 
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.jpg
@@ -223,9 +224,10 @@ post_wordcount:
   #description: ex. subscribe to my blog by scanning my public wechat account
 
 # Reward
-#reward_comment: Donate comment here
-#wechatpay: /images/wechatpay.jpg
-#alipay: /images/alipay.jpg
+## 开启打赏功能
+reward_comment: 坚持原创思维分享，您的支持将鼓励我继续创作！
+wechatpay: /images/wechat-get-money.png
+alipay: /images/alipay-get-money.png
 #bitcoin: /images/bitcoin.png
 
 # Declare license on posts
@@ -311,11 +313,6 @@ font:
 # ---------------------------------------------------------------
 # Third Party Services Settings
 # ---------------------------------------------------------------
-
-## 开启打赏功能
-reward_comment: 坚持原创思维分享，您的支持将鼓励我继续创作！
-wechatpay: /images/wechat-get-money.png
-alipay: /images/alipay-get-money.png
 
 # MathJax Support
 mathjax:
