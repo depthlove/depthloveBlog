@@ -331,6 +331,17 @@ disqus:
   shortname: depthlove
   count: true
 
+# Gitment 评论系统加入 GitHub 的操作说明 https://zonghongyan.github.io/2017/06/29/201706292034/
+# Gitment
+gitment:
+  enable: true
+  # owner is the GitHub username
+  owner: depthlove
+  repo: depthlove.github.io
+  client_id: 023374e22942af4046f9
+  client_secret: 5cedecd7c2b07700433ee7c72cac9ae1057a9092
+  lazy: false
+
 # Hypercomments
 #hypercomments_id:
 

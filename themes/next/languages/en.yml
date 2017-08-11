@@ -88,3 +88,5 @@ symbol:
   comma: ', '
   period: '. '
   colon: ':'
+
+gitment_button: Show gitment comments
