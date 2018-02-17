@@ -536,17 +536,17 @@ needmoreshare2:
   postbottom:
     enable: true
     options:
-      iconStyle: box
+      iconStyle: default
       boxForm: horizontal
       position: bottomCenter
-      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
+      networks: Weibo,Wechat,QQZone,Twitter,Facebook,Evernote
   float:
     enable: true
     options:
-      iconStyle: box
+      iconStyle: default
       boxForm: horizontal
       position: middleRight
-      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
+      networks: Weibo,Wechat,QQZone,Twitter,Facebook,Evernote
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
@@ -601,9 +601,10 @@ vkontakte_api:
 
 # Star rating support to each article.
 # To get your ID visit https://widgetpack.com
+# 打分系统
 rating:
-  enable: false
-  id:     #<app_id>
+  enable: true
+  id:     9731
   color:  fc6423
 # ---------------------------------------------------------------
 
