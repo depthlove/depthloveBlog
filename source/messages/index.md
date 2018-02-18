@@ -1,7 +1,7 @@
 ---
 title: 留言板
 date: 2018-02-14 17:55:36
-type: "about"
+type: "messages"
 comments: true
 ---
 
