@@ -5,7 +5,7 @@ tags:
 - 音视频处理
 ---
 
-　　以下内容摘自我博客的[编译iOS平台上使用的X264库](http://depthlove.github.io/2015/09/16/build-X264-library-for-iOS-platform/)一文。
+　　以下内容摘自我博客的[编译iOS平台上使用的X264库](https://depthlove.github.io/2015/09/16/build-X264-library-for-iOS-platform/)一文。
 
 　　从iOS8开始，苹果开放了硬解码和硬编码API，框架为VideoToolbox.framework， 此框架需要在iOS8及以上的系统上才能使用。
 

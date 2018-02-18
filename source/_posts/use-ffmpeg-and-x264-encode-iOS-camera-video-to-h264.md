@@ -5,7 +5,7 @@ tags:
 - iOS中高级开发
 ---
 ### 一、编译x264库
-如何编译x264源码获取支持iOS平台的静态库，可参考我的文章[《编译iOS平台上使用的X264库》](http://depthlove.github.io/2015/09/16/build-X264-library-for-iOS-platform/)
+如何编译x264源码获取支持iOS平台的静态库，可参考我的文章[《编译iOS平台上使用的X264库》](https://depthlove.github.io/2015/09/16/build-X264-library-for-iOS-platform/)
 
 ### 二、编译FFmpeg库
 如何编译FFmpeg源码获取支持iOS平台的静态库，可参考我的博客园上的文章[《实战FFmpeg－－编译iOS平台使用的FFmpeg库（支持arm64的FFmpeg2.6.2）》](http://www.cnblogs.com/sunminmin/p/4463741.html#3195954)

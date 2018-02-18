@@ -3,9 +3,9 @@ date: 2015-09-23 15:04:21
 tags:
 - 音视频处理
 ---
-　　通过文章[利用x264将iOS摄像头实时视频流编码为h264文件](http://depthlove.github.io/2015/09/17/use-x264-encode-iOS-camera-video-to-h264/) 和 [利用FFmpeg+x264将iOS摄像头实时视频流编码为h264文件](http://depthlove.github.io/2015/09/18/use-ffmpeg-and-x264-encode-iOS-camera-video-to-h264/)，实现了如何采集实时视频流并压缩为h264编码格式的文件。对于采集到h264文件，里面究竟有些什么，下面就通过工具软件来一探究竟。
+　　通过文章[利用x264将iOS摄像头实时视频流编码为h264文件](https://depthlove.github.io/2015/09/17/use-x264-encode-iOS-camera-video-to-h264/) 和 [利用FFmpeg+x264将iOS摄像头实时视频流编码为h264文件](https://depthlove.github.io/2015/09/18/use-ffmpeg-and-x264-encode-iOS-camera-video-to-h264/)，实现了如何采集实时视频流并压缩为h264编码格式的文件。对于采集到h264文件，里面究竟有些什么，下面就通过工具软件来一探究竟。
 
-* 采用文章[利用x264将iOS摄像头实时视频流编码为h264文件](http://depthlove.github.io/2015/09/17/use-x264-encode-iOS-camera-video-to-h264/)配套工程[X264-Encode-for-iOS](https://github.com/depthlove/X264-Encode-for-iOS)中的h264文件，该文件地址为[2015-09-17 18:05:20.h264](https://github.com/depthlove/X264-Encode-for-iOS/blob/master/myRecordH264Vieo/2015-09-17%2018:05:20.h264)
+* 采用文章[利用x264将iOS摄像头实时视频流编码为h264文件](https://depthlove.github.io/2015/09/17/use-x264-encode-iOS-camera-video-to-h264/)配套工程[X264-Encode-for-iOS](https://github.com/depthlove/X264-Encode-for-iOS)中的h264文件，该文件地址为[2015-09-17 18:05:20.h264](https://github.com/depthlove/X264-Encode-for-iOS/blob/master/myRecordH264Vieo/2015-09-17%2018:05:20.h264)
 
 * 工具软件 UITraEdit
 

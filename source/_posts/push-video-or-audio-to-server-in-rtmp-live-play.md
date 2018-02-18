@@ -6,7 +6,7 @@ tags:
 - iOS中高级开发
 ---
 
-参考我之前写的一篇文章[利用FFmpeg+x264将iOS摄像头实时视频流编码为h264文件](http://depthlove.github.io/2015/09/18/use-ffmpeg-and-x264-encode-iOS-camera-video-to-h264/)
+参考我之前写的一篇文章[利用FFmpeg+x264将iOS摄像头实时视频流编码为h264文件](https://depthlove.github.io/2015/09/18/use-ffmpeg-and-x264-encode-iOS-camera-video-to-h264/)
 
 参看文章[ffmpeg综合应用示例（一）——摄像头直播 ](http://blog.csdn.net/nonmarking/article/details/48022387)，       [ffmpeg综合应用示例（四）——摄像头直播的视音频同步](http://blog.csdn.net/nonmarking/article/details/50522413)
 
