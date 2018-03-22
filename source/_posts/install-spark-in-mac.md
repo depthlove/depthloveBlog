@@ -17,6 +17,8 @@ Spark 是使用 scala 语言开发的，如果要使用 Scala，就需要安装�
 
 <!-- more -->
 
+![java -version 的结果](http://p5z9wpood.bkt.clouddn.com/install-spark-in-mac-00.png)
+
 ![Scala 要求的 JDK 版本](http://p5z9wpood.bkt.clouddn.com/install-spark-in-mac-01.png)
 
 ### 1.2 安装 JDK
