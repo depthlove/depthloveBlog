@@ -17,3 +17,13 @@ flv文件封装，可参看[将h.264视频流封装成flv格式文件（一.flv�
 <!-- more -->
 
 通过以上几篇好文，对flv文件格式，封装flv文件以及通过rtmp协议与流媒体服务器交互就有清晰的认识。
+
+附上两张图
+
+图一为 FLV Format with AVC Video Tag （H.264）
+
+![flv video](http://p5z9wpood.bkt.clouddn.com/flv-analysis-in-rtmp-live-play-00.png)
+
+图二为 FLV Format with AAC Audio Tag (AAC)
+
+![flv audio](http://p5z9wpood.bkt.clouddn.com/flv-analysis-in-rtmp-live-play-01.png)
