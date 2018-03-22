@@ -44,7 +44,7 @@ Spark 压缩包的下载地址为：[http://spark.apache.org/downloads.html](htt
 
 进入 Spark 所在的目录下，执行 Scala 脚本启动 Spark
 
-![Scala 脚本启动 Spark](http://p5z9wpood.bkt.clouddn.com/install-spark-in-mac-04.png)
+![Scala 脚本启动 Spark](http://p5z9wpood.bkt.clouddn.com/install-spark-in-mac-10.png)
 
 根据终端的显示结果，在 Chrome 浏览器上访问 [http://172.20.10.4:4040](http://172.20.10.4:4040)，会出现 Spark 的 web 页面，可以点击 Jobs，Stages，Storage，Environment，Executors 等菜单项看看 Spark 都运行了哪些服务，更加直观地了解 Spark 是个什么样的东西。
 
