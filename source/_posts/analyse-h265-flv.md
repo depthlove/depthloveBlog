@@ -26,3 +26,4 @@ tags:
 [homerHEVC代码阅读（21）——基本流程](http://blog.csdn.net/nb_vol_1/article/details/50210487)  
 [HEVC概念缩写对照表](http://blog.csdn.net/lin453701006/article/details/52797415)
 
+想了解关于 FLV 的更多细节请看文章[rtmp直播推流（一）－－flv格式解析与封装](https://depthlove.github.io/2015/11/13/flv-analysis-in-rtmp-live-play)
