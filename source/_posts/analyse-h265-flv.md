@@ -17,7 +17,7 @@ tags:
 
 言归正传，分析下 H.265+AAC 的 FLV 文件。
 
-![H.265+AAC的FLV](http://images2015.cnblogs.com/blog/719115/201707/719115-20170701195845180-726618432.jpg)
+![H.265+AAC的FLV](http://p5z9wpood.bkt.clouddn.com/analyse-h265-flv-00.jpg)
 
 关于 H.265 的 VPS、SPS、PPS 等知识点的解释，可参看文章：  
 [VPS SPS PPS](http://blog.csdn.net/u012868357/article/details/48974967)  
