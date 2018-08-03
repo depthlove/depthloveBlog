@@ -68,7 +68,7 @@ helloSpark 文件和 spark-shell 脚本所在的目录如下图
 
 注意：可能有些朋友不清楚 `val lines = sc.textFile("../../testfile/helloSpark")` 中 `../` 的意思，`../` 表示上一层目录，`../../` 表示上上层目录。
 
-到此，Spark 的简单试用结束了。想了解 `sc.textFile`，大家自行 goole 或 baidu。
+到此，Spark 的简单试用结束了。想了解 `sc.textFile`，大家自行 google 或 baidu。
 
 对于初学者来说，有相应的视频配合的话，会对 Spark 的安装有更新直观的视觉体验。给大家推荐下视频：[Spark 从零开始-Spark 安装](https://www.imooc.com/video/14394)
 
