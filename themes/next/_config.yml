@@ -518,19 +518,30 @@ valine:
 
 # Gitment
 # Introduction: https://imsun.net/posts/gitment-introduction/
-gitment:
+# gitment:
+#   enable: true
+#   mint: true # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway
+#   count: true # Show comments count in post meta area
+#   lazy: false # Comments lazy loading with a button
+#   cleanly: false # Hide 'Powered by ...' on footer, and more
+#   language: # Force language, or auto switch by theme
+#   github_user: depthlove # MUST HAVE, Your Github Username
+#   github_repo: depthlove.github.io # MUST HAVE, The name of the repo you use to store Gitment comments
+#   client_id: 023374e22942af4046f9 # MUST HAVE, Github client id for the Gitment
+#   client_secret: 5cedecd7c2b07700433ee7c72cac9ae1057a9092 # EITHER this or proxy_gateway, Github access secret token for the Gitment
+#   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
+#   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
+
+# Gitalk
+# 参考文章：https://asdfv1929.github.io/2018/01/20/gitalk/
+gitalk:
   enable: true
-  mint: true # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway
-  count: true # Show comments count in post meta area
-  lazy: false # Comments lazy loading with a button
-  cleanly: false # Hide 'Powered by ...' on footer, and more
-  language: # Force language, or auto switch by theme
-  github_user: depthlove # MUST HAVE, Your Github Username
-  github_repo: depthlove.github.io # MUST HAVE, The name of the repo you use to store Gitment comments
-  client_id: 023374e22942af4046f9 # MUST HAVE, Github client id for the Gitment
-  client_secret: 5cedecd7c2b07700433ee7c72cac9ae1057a9092 # EITHER this or proxy_gateway, Github access secret token for the Gitment
-  proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
-  redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
+  githubID: depthlove  
+  repo: depthlove.github.io
+  ClientID: 023374e22942af4046f9
+  ClientSecret: 5cedecd7c2b07700433ee7c72cac9ae1057a9092
+  adminUser: depthlove
+  distractionFreeMode: true
 
 # Baidu Share
 # Available value:
