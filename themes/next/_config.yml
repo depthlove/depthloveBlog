@@ -304,7 +304,7 @@ post_meta:
   item_text: true
   created_at: true
   updated_at:
-    enable: true
+    enable: false
     # If true, show updated date label only if `updated date` is different from `created date` (post edited in another day than was created).
     # And if post was edited in same day as created, edited time will show in popup title under created time label.
     # If false show anyway, but if post edited in same day, show only edited time.
@@ -334,15 +334,15 @@ codeblock:
 
 # Wechat Subscriber
 wechat_subscriber:
-  enable: false
-  #qcode: /path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg
-  #description: e.g. subscribe to my blog by scanning my public wechat account
+  enable: true
+  qcode: /uploads/wechat-qcode.jpg # /path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg
+  description: 欢迎您扫一扫上面的微信公众号，订阅我的博客！ # e.g. subscribe to my blog by scanning my public wechat account
 
 # Reward
 # If true, reward would be displayed in every article by default.
 # You can show or hide reward in a specific article throuth `reward: true | false` in Front Matter.
 reward:
-  enable: true
+  enable: false
   comment: 坚持原创思维分享
   wechatpay: /images/wechatpay.jpg
   alipay: /images/alipay.jpg
@@ -745,7 +745,7 @@ firestore:
 # Show Views / Visitors of the website / page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi
 busuanzi_count:
-  enable: false
+  enable: true
   total_visitors: true
   total_visitors_icon: user
   total_views: true
