@@ -3,7 +3,7 @@ title: tensorflow 在 iOS 平台上的应用
 date: 2017-01-16 13:08:35
 tags:
 - iOS中高级开发
-- 深度学习DL
+- 深度学习
 ---
 
 Google 开源的深度学习框架 tensorflow 成为2016年最受欢迎的深度学习框架之一。tensorflow 除了支持 pc 端外，还较好的支持了 android，iOS 移动端平台。移动端作为现在互联网的终端主宰，tensorflow 毫无疑问地会引起移动互联网行业的广泛关注。深度学习在2016年的火爆，以及移动终端的主宰地位，作为程序员的我们，不玩玩 tensorflow  简直就 out 了。
