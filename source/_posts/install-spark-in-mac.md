@@ -33,12 +33,12 @@ java -version
 ### 2.1 下载 Spark
 Spark 压缩包的下载地址为：[http://spark.apache.org/downloads.html](http://spark.apache.org/downloads.html)，选择合适的版本安装。我选择的是 [spark-2.3.0-bin-hadoop2.7.tgz](http://mirrors.shu.edu.cn/apache/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz) 版本。
 
-![Spark 下载页面]((https://raw.githubusercontent.com/depthlove/depthloveBlog/7d233c70c1014d94ebedbcdbc6cafa488b479023/source/images/install-spark-in-mac/install-spark-in-mac-02.png)
+![Spark 下载页面](https://raw.githubusercontent.com/depthlove/depthloveBlog/7d233c70c1014d94ebedbcdbc6cafa488b479023/source/images/install-spark-in-mac/install-spark-in-mac-02.png)
 
 ### 2.2 解压 Spark
 将 spark-2.3.0-bin-hadoop2.7.tgz 解压到你的某个文件目录下。我的文件目录结构是 
 
-![存放 spark-2.3.0-bin-hadoop2.7.tgz 的文件目录 ](https://github.com/depthlove/depthloveBlog/blob/7d233c70c1014d94ebedbcdbc6cafa488b479023/source/images/install-spark-in-mac-03.png)
+![存放 spark-2.3.0-bin-hadoop2.7.tgz 的文件目录 ](https://raw.githubusercontent.com/depthlove/depthloveBlog/7d233c70c1014d94ebedbcdbc6cafa488b479023/source/images/install-spark-in-mac/install-spark-in-mac-03.png)
 
 ### 2.3 运行 Spark
 
