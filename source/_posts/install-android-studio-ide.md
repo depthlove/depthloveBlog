@@ -1,7 +1,7 @@
 title: Mac上安装Android Studio
 date: 2015-10-09 09:48:38
 tags:
-- Android开发
+- Android
 ---
 
 　　Google在国内被墙，有关android开发的一些工具在Google上下载都需要使用VPN服务。我使用过一些免费与付费的VPN，想使用较好的服务质量就需要花点小钱，付费VPN中 [uuu vpn](http://v.uuu.net/) 很好用，有windows，Mac客户端，使用比较方便，代理服务稳定，快速，比 [green vpn](http://www.greenvpncn.com/) 好用多了，green vpn很烂，买过几次包月的套餐，向其客服吐槽过其VPN简直烂的让人无语，总之，对green vpn 没有什么好印象了。
