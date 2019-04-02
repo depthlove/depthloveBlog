@@ -3,7 +3,7 @@ title: 对OpenGL开发实践的思考
 date: 2016-09-29 17:33:34
 tags:
 - OpenGL
-- iOS中高级开发
+- iOS
 ---
 
 　　在使用一个工具的时候，首先要搞清楚它的定义［见 wiki ：[OpenGL](https://en.wikipedia.org/wiki/OpenGL)］，其次才是用它来做实践开发。我个人对它的理解是，OpenGL 是一个用于做图形处理的工具库，基于 GPU 硬件资源用来绘制和渲染 2D，3D 图形。要做比较炫的图形渲染，图形变化，选择 OpenGL 来开发可以降低设备对 CPU 资源的消耗。现在流行的 VR 开发，无外乎也是基于 OpenGL 来做的。知道 OpenGL 能干什么了，随之而来的是写个小程序把我们对 OpenGL 的好奇心实践下。

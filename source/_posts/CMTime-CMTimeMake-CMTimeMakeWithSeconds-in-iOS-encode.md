@@ -2,7 +2,7 @@
 title: iOS平台上编码之CMTime，CMTimeMake，CMTimeMakeWithSeconds的作用
 date: 2016-03-15 16:39:35
 tags:
-- iOS中高级开发
+- iOS
 - 音视频处理
 ---
 

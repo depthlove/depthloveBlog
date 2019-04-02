@@ -3,7 +3,7 @@ title: rtmp直播推流（二）－－将音频／视频推送到流媒体服务
 date: 2015-11-16 18:27:30
 tags:
 - 音视频处理
-- iOS中高级开发
+- iOS
 ---
 
 参考我之前写的一篇文章[利用FFmpeg+x264将iOS摄像头实时视频流编码为h264文件](https://depthlove.github.io/2015/09/18/use-ffmpeg-and-x264-encode-iOS-camera-video-to-h264/)

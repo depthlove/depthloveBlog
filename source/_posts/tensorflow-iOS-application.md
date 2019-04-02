@@ -2,7 +2,7 @@
 title: tensorflow 在 iOS 平台上的应用
 date: 2017-01-16 13:08:35
 tags:
-- iOS中高级开发
+- iOS
 - 深度学习
 ---
 

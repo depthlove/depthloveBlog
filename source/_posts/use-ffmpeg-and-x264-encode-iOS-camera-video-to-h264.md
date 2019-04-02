@@ -2,7 +2,7 @@ title: 利用FFmpeg+x264将iOS摄像头实时视频流编码为h264文件
 date: 2015-09-18 09:43:27
 tags:
 - 音视频处理
-- iOS中高级开发
+- iOS
 ---
 ### 一、编译x264库
 如何编译x264源码获取支持iOS平台的静态库，可参考我的文章[《编译iOS平台上使用的X264库》](https://depthlove.github.io/2015/09/16/build-X264-library-for-iOS-platform/)

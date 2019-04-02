@@ -1,7 +1,7 @@
 title: 使用FFmpeg开发iOS播放器（第一部分）
 date: 2015-10-08 18:10:53
 tags:
-- iOS中高级开发
+- iOS
 - 音视频处理
 ---
 

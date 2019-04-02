@@ -1,7 +1,7 @@
 title: iOS上使用VideoToolBox硬解码h264
 date: 2015-10-24 15:55:12
 tags:
-- iOS中高级开发
+- iOS
 - 音视频处理
 ---
 
