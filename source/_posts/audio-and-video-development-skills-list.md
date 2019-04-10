@@ -60,6 +60,8 @@ tags:
 [基于iOS11的HEVC(H.265)硬编码/硬解码功能开发指南](https://www.jianshu.com/p/cb93e618e041)
 [Web端H.265播放器研发解密](http://taobaofed.org/blog/2019/03/18/web-player-h265)
 
+### AAC
+
 ### SEI
 
 [FFmpeg从入门到精通——进阶篇，SEI那些事儿](https://www.jianshu.com/p/fa018c403a0a)
@@ -68,8 +70,23 @@ tags:
 
 ### FFmpeg
 
+[FFmpeg](https://github.com/FFmpeg/FFmpeg)
+
+[FFmpeg-iOS-build-script](https://github.com/kewlbear/FFmpeg-iOS-build-script)
+
 [FFmpeg从入门到出家（FFmpeg简析）](https://www.jianshu.com/p/aae7af2d9bd1)
 
+### fdk-aac
+
+[fdk-aac](https://sourceforge.net/projects/opencore-amr/files/fdk-aac)
+
+[fdk-aac-iOS-build-script](https://github.com/kewlbear/fdk-aac-build-script-for-iOS)
+
+### x264
+
+[x264](https://www.videolan.org/developers/x264.html)
+
+[x264-iOS-build-script](https://github.com/kewlbear/x264-ios)
 
 ### WebRTC
 
