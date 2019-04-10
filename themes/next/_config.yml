@@ -112,8 +112,8 @@ creative_commons:
 
 # Follow me on GitHub banner in right-top corner.
 github_banner:
-  enable: false
-  permalink: https://github.com/yourname
+  enable: true
+  permalink: https://github.com/depthlove
   title: Follow me on GitHub
 
 
