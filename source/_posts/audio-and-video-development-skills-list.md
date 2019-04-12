@@ -18,7 +18,13 @@ tags:
 
 ### RTSP
 
+[Live555 源码解析 (2) - RTSP 协议概述](https://juejin.im/entry/59269396a0bb9f0057c5c65e)
+
 ### SDP
+
+[SDP 协议分析](https://www.cnblogs.com/qingquan/archive/2011/08/02/2125585.html)
+[SDP](https://zouhualong.oschina.io/pages/blog/voip/VoIP-SIP-SDP)
+[SDP协议解析](https://blog.csdn.net/machh/article/details/51873690)
 
 ### RTP、RTCP
 
@@ -30,6 +36,8 @@ tags:
 > ## 传输层协议
 
 ### TCP、UDP
+
+极客时间的专栏 [趣谈网络协议](https://time.geekbang.org/column/intro/100007101?utm_term=zeusAQ46L&utm_source=weibo&utm_medium=liaoxuefeng&utm_campaign=164-presell&utm_content=weibo)
 
 ### QUIC
 
@@ -155,6 +163,7 @@ tags:
 ### 特效
 
 [“抖音”式的酷炫短视频开发进阶](https://blog.csdn.net/vn9plgzvnps1522s82g/article/details/79124926)
+[在 iOS 中使用 GLSL 实现抖音特效](https://mp.weixin.qq.com/s/YWqejVy8q8qPzhDfljCHDw)
 
 ### 视频教程
 
@@ -184,10 +193,12 @@ tags:
 [iOS流媒体直播整个框架介绍(HLS、RTSP)](https://blog.csdn.net/u014773226/article/details/51736374)
 [短视频客户端SDK设计与实现](https://mp.weixin.qq.com/s?__biz=MzU1NTEzOTM5Mw==&mid=2247484951&amp;idx=1&amp;sn=d74802ff389a4d7e4cbf2cbfce53ed96&source=41#wechat_redirect)
 
+
 > ## 博客
 
 [简书](https://www.jianshu.com/users/86315de37fb0/following)
 [CSDN](https://i.csdn.net/#/uc/follow-list)
+
 
 > ## 公众号
 
