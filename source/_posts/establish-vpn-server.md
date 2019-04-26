@@ -75,11 +75,11 @@ Please enter a port for Shadowsocks-Python [1-65535]
 port = 11260
 ```
 
-第五步：特别注意，由于 iPhone 端的的wingy目前只支持到cfb，所以我们选择aes-256-cfb，即7 ，回车。
+第五步：特别注意，由于 iPhone 端的的 wingy 目前只支持到 cfb，所以我们选择 aes-256-cfb，即7，回车。
 
-第六步：当我们看到 Congratulations, Shadowsocks-Python server install completed! 时，则证明我们已经成功安装了ss。请立即将这些信息复制下来加以保存，我们就会用到这几个比较重要的信息：主机服务器IP地址、端口号、密码和加密方式。上面的命令全部回车执行后，如果没有报错，即为执行成功，出现确认提示的时候，输入 y 后，回车即可。
+第六步：当我们看到 Congratulations, Shadowsocks-Python server install completed! 时，则证明我们已经成功安装了 SS。请立即将这些信息复制下来加以保存，我们就会用到这几个比较重要的信息：主机服务器IP地址、端口号、密码和加密方式。上面的命令全部回车执行后，如果没有报错，即为执行成功，出现确认提示的时候，输入 y 后，回车即可。
 
-这样的话我们就在搬瓦工vps上主机上完成了ss的手动安装，记录保存好你的上述信息：Server IP、Server Port、Password、Encryption Method，我们就可以在不同的设备终端找到相应的 ss 进行安装设置使用了。
+这样的话我们就在搬瓦工 VPS 主机上完成了 SS 的手动安装，记录保存好你的上述信息：Server IP、Server Port、Password、Encryption Method，我们就可以在不同的设备终端找到相应的 SS 进行安装设置使用了。
 
 ```
 INFO: loading config from /etc/shadowsocks-python/config.json
@@ -115,7 +115,7 @@ iPhone：Kite Ass Proxy：[APP Store链接地址](https://itunes.apple.com/cn/ap
 FirstWingy：[APP Store链接地址](https://itunes.apple.com/cn/app/firstwingy/id1316416848?mt=8)、
 SuperWingy：[APP Store链接地址](https://itunes.apple.com/cn/app/superwingy/id1290093815?mt=8)
 
-我要在 Mac 和 iPhone 上使用，我下载了上面的 Mac 版本，但是没有下载上面的 iPhone 版本， iPhone 版本我用的是 [Sockswitch](https://itunes.apple.com/us/app/sockswitch-shadowsocks-client/id1453207024?mt=8)
+我要在 Mac 和 iPhone 上使用，我下载了上面的 Mac 版本，但是没有下载上面的 iPhone 版本，iPhone 版本我用的是 [Sockswitch](https://itunes.apple.com/us/app/sockswitch-shadowsocks-client/id1453207024?mt=8)
 
 
 
