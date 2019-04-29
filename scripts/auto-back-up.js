@@ -12,7 +12,7 @@ function run() {
 		exit(1);
 	} else {
 		echo("======================Auto Backup Begin===========================");
-		cd('/Users/suntongmian/Documents/QLwork/github/depthloveBlog');    //此处修改为博客的根目录路径
+		cd('/Users/suntongmian/Documents/github/depthloveBlog'); //此处修改为博客的根目录路径
 		if (exec('git add --all').code !== 0) {
 			echo('Error: Git add failed');
 			exit(1);
