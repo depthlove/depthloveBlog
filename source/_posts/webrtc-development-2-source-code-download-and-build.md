@@ -126,7 +126,7 @@ zsh-goodies
 
 ## step 1
 
-获取 depot_tools 源码，在终端执行命令
+depot_tools 源码属于 Google 的服务，即墙外资源，在获取 depot_tools 源码前，先需要开启 VPN 服务，然后在终端执行命令
 
 ```
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
@@ -141,23 +141,104 @@ fatal: unable to access 'https://chromium.googlesource.com/chromium/tools/depot_
 suntongmiandeMacBook-Pro:webrtc suntongmian$ 
 ```
 
-出现 “Failed to connect to chromium.googlesource.com port 443: Operation timed out” 问题，检查是否开了 VPN 服务，网络状况是否良好。
+**出现 “Failed to connect to chromium.googlesource.com port 443: Operation timed out” 问题后，需要检查 VPN 服务是否开启，网络状况是否良好。如果在 VPN 服务开启和网络状况良好的情况下，仍然不能 clone 代码成功，那就需要检查终端能否成功访问墙外的资源。**
 
-我在 clone 代码的时候，开了 VPN 服务，网络状况也很好，但是就是不能 clone 成功。无奈之下，我就在 GitHub 上 fork 了一份别人上传的最新代码作为替代使用。
+我开了 VPN 服务，网络状况也很好，也能通过 Google 浏览器访问资源，但就是不能 clone depot_tools 源码成功。这个时候，我通过命令 **curl** 来检查终端是否具备翻墙功能。
 
-在终端执行命令，**git clone https://github.com/depthlove/depot_tools.git**，如果前面的步骤没出错，那么可以忽略下面的这一步。
+首先，在终端执行命令 
 
 ```
-suntongmiandeMacBook-Pro:webrtc suntongmian$ git clone https://github.com/depthlove/depot_tools.git
-正克隆到 'depot_tools'...
-remote: Enumerating objects: 30936, done.
-remote: Counting objects: 100% (30936/30936), done.
-remote: Compressing objects: 100% (7615/7615), done.
-remote: Total 30936 (delta 23107), reused 30936 (delta 23107), pack-reused 0
-接收对象中: 100% (30936/30936), 16.85 MiB | 1.03 MiB/s, 完成.
-处理 delta 中: 100% (23107/23107), 完成.
+curl www.baidu.com
+```
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ curl www.baidu.com
+<!DOCTYPE html>
+<!--STATUS OK--><html> <head><meta http-equiv=content-type content=text/html;charset=utf-8><meta http-equiv=X-UA-Compatible content=IE=Edge><meta content=always name=referrer><link rel=stylesheet type=text/css href=http://s1.bdstatic.com/r/www/cache/bdorz/baidu.min.css><title>百度一下，你就知道</title></head> <body link=#0000cc> <div id=wrapper> <div id=head> <div class=head_wrapper> <div class=s_form> <div class=s_form_wrapper> <div id=lg> <img hidefocus=true src=//www.baidu.com/img/bd_logo1.png width=270 height=129> </div> <form id=form name=f action=//www.baidu.com/s class=fm> <input type=hidden name=bdorz_come value=1> <input type=hidden name=ie value=utf-8> <input type=hidden name=f value=8> <input type=hidden name=rsv_bp value=1> <input type=hidden name=rsv_idx value=1> <input type=hidden name=tn value=baidu><span class="bg s_ipt_wr"><input id=kw name=wd class=s_ipt value maxlength=255 autocomplete=off autofocus></span><span class="bg s_btn_wr"><input type=submit id=su value=百度一下 class="bg s_btn"></span> </form> </div> </div> <div id=u1> <a href=http://news.baidu.com name=tj_trnews class=mnav>新闻</a> <a href=http://www.hao123.com name=tj_trhao123 class=mnav>hao123</a> <a href=http://map.baidu.com name=tj_trmap class=mnav>地图</a> <a href=http://v.baidu.com name=tj_trvideo class=mnav>视频</a> <a href=http://tieba.baidu.com name=tj_trtieba class=mnav>贴吧</a> <noscript> <a href=http://www.baidu.com/bdorz/login.gif?login&amp;tpl=mn&amp;u=http%3A%2F%2Fwww.baidu.com%2f%3fbdorz_come%3d1 name=tj_login class=lb>登录</a> </noscript> <script>document.write('<a href="http://www.baidu.com/bdorz/login.gif?login&tpl=mn&u='+ encodeURIComponent(window.location.href+ (window.location.search === "" ? "?" : "&")+ "bdorz_come=1")+ '" name="tj_login" class="lb">登录</a>');</script> <a href=//www.baidu.com/more/ name=tj_briicon class=bri style="display: block;">更多产品</a> </div> </div> </div> <div id=ftCon> <div id=ftConw> <p id=lh> <a href=http://home.baidu.com>关于百度</a> <a href=http://ir.baidu.com>About Baidu</a> </p> <p id=cp>&copy;2017&nbsp;Baidu&nbsp;<a href=http://www.baidu.com/duty/>使用百度前必读</a>&nbsp; <a href=http://jianyi.baidu.com/ class=cp-feedback>意见反馈</a>&nbsp;京ICP证030173号&nbsp; <img src=//www.baidu.com/img/gs.gif> </p> </div> </div> </div> </body> </html>
 suntongmiandeMacBook-Pro:webrtc suntongmian$ 
 ```
+
+可以看到，能很快获取到 www.baidu.com 的资源。说明网络是正常的。
+
+其次，在终端执行命令
+
+```
+curl www.google.com
+```
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ curl www.google.com
+curl: (7) Failed to connect to www.google.com port 80: Operation timed out
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+```
+
+可以看到，出现了请求超时的问题。说明通过终端不能访问 Google 服务。那该怎么解决呢？
+
+我的 MacBook 电脑上使用了 ShadowsocksX 客户端来启动 VPN 服务，但只支持浏览器能使用 VPN 服务。我参考了 [MAC 终端走代理服务器](https://blog.csdn.net/jiajiayouba/article/details/81453398) 一文中提到的方法来解决这个问题。
+
+我的 ShadowsocksX 客户端中 Socks5 配置信息如下
+
+```
+本地Socks5监听地址：127.0.0.1
+本地Socks5监听端口：10808
+连接超时：60
+```
+
+通过 Socks5 的配置信息，在终端中执行命令
+
+```
+export http_proxy=socks5://127.0.0.1:10808
+export https_proxy=socks5://127.0.0.1:10808
+```
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ export http_proxy=socks5://127.0.0.1:10808
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:webrtc suntongmian$ export https_proxy=socks5://127.0.0.1:10808
+```
+
+**提示：执行后，只对当前终端起作用。重启终端后，默认失效。**
+
+启动了终端代理，然后再次执行命令
+
+```
+curl www.google.com
+```
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ curl www.google.com
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en"><head><meta content="Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for." name="description"><meta content="noodp" name="robots"><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/logos/doodles/2019/us-teacher-appreciation-week-2019-begins-4994791740801024-l.png" itemprop="image"><meta content="Happy US Teacher Appreciation Week 2019!" property="twitter:title"><meta content="Happy US Teacher Appreciation Week 2019! #GoogleDoodle" property="twitter:description"><meta content="Happy US Teacher Appreciation Week 2019! #GoogleDoodle" property="og:description"><meta content="summary_large_image" property="twitter:card"><meta content="@GoogleDoodles" property="twitter:site"><meta content="https://www.google.com/logos/doodles/2019/us-teacher-appreciation-week-2019-begins-4994791740801024-2x.jpg" property="twitter:image"><meta content="https://www.google.com/logos/doodles/2019/us-teacher-appreciation-week-2019-begins-4994791740801024-2x.jpg" property="og:image"><meta content="782" property="og:image:width"><meta content="400" property="og:image:height"><title>Google</title><script nonce="1cF5wiybAk0ZW7RYxuJPNw==">(function(){window.google={kEI:'NETQXJuTBIqw0wLW9pvwDA',kEXPI:'0,1353747,57,1958,2422,697,528,591,139,224,756,819,1258,1893,57,528,144,206,441,226,138,17,482,2332972,322,329193,1294,12383,4855,32691,15248,867,12163,6381,854,2481,2,2,6801,364,3319,1263,4242,224,2209,269,4203,904,575,835,284,2,578,728,2432,58,2,1,3,1297,4323,3700,1267,774,2248,1409,3337,1146,5,2,2,1745,218,2595,3601,669,1050,1808,1397,81,7,1,2,488,620,29,1395,978,2632,5299,1288,2,622,3385,796,1221,37,622,298,753,120,1217,1364,1611,2736,1558,1503,2,631,2562,2,4,2,461,209,46,1764,1979,403,510,125,1594,1013,12,620,2228,655,19,91,228,1593,389,866,326,197,777,1,2,151,215,1017,300,608,97,756,98,392,29,400,992,1107,10,168,9,84,24,187,831,235,78,365,367,450,174,563,167,237,48,553,11,14,10,573,1089,856,37,5,394,141,5,371,10,25,177,130,193,5,55,1110,87,67,89,385,155,144,324,165,28,532,277,93,86,84,103,24,160,68,39,18,21,18,326,276,1226,84,143,291,39,11,59,15,10,112,226,415,183,23,713,213,152,123,105,433,526,1,3,7,7,1,2,185,565,394,11,4,236,97,23,490,646,639,57,45,55,23,22,293,370,327,39,19,163,359,35,82,62,6,452,886,74,337,5937571,2920,5997516,40,2799864,4,1572,549,333,444,1,2,80,1,900,583,1,312,1,8,1,2,2132,1,1,1,1,1,414,1,748,141,59,726,3,7,563,1,1907,6,3,11,84,4,8,8,2,4,4,22,22305075',authuser:0,kscs:'c9c918f0_NETQXJuTBIqw0wLW9pvwDA',kGL:'US'};google.sn='webhp';google.kHL='en';})();(function(){google.lc=[];google.li=0;google.getEI=function(a){for(var b;a&&(!a.getAttribute||!(b=a.getAttribute("eid")));)a=a.parentNode;return b||google.kEI};google.getLEI=function(a){for(var b=null;a&&(!a.getAttribute||!(b=a.getAttribute("leid")));)a=a.parentNode;return b};google.https=function(){return"https:"==window.location.protocol};google.ml=function(){return null};google.time=function(){return(new Date).getTime()};google.log=function(a,b,e,c,g){if(a=google.logUrl(a,b,e,c,g)){b=new Image;var d=google.lc,f=google.li;d[f]=b;b.onerror=b.onload=b.onabort=function(){delete d[f]};google.vel&&google.vel.lu&&google.vel.lu(a);b.src=a;google.li=f+1}};google.logUrl=function(a,b,e,c,g){var d="",f=google.ls||"";e||-1!=b.search("&ei=")||(d="&ei="+google.getEI(c),-1==b.search("&lei=")&&(c=google.getLEI(c))&&(d+="&lei="+c));c="";!e&&google.cshid&&-1==b.search("&cshid=")&&"slh"!=a&&(c="&cshid="+google.cshid);a=e||"/"+(g||"gen_204")+"?atyp=i&ct="+a+"&cad="+b+d+f+"&zx="+google.time()+c;/^http:/i.test(a)&&google.https()&&(google.ml(Error("a"),!1,{src:a,glmm:1}),a="");return a};}).call(this);(function(){google.y={};google.x=function(a,b){if(a)var c=a.id;else{do c=Math.random();while(google.y[c])}google.y[c]=[a,b];return!1};google.lm=[];google.plm=function(a){google.lm.push.apply(google.lm,a)};google.lq=[];google.load=function(a,b,c){google.lq.push([[a],b,c])};google.loadAll=function(a,b){google.lq.push([a,b])};}).call(this);google.f={};var a=window.location,b=a.href.indexOf("#");if(0<=b){var c=a.href.substring(b+1);/(^|&)q=/.test(c)&&-1==c.indexOf("#")&&a.replace("/search?"+c.replace(/(^|&)fp=[^&]*/g,"")+"&cad=h")};</script><style>#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}
+</style><style>body,td,a,p,.h{font-family:arial,sans-serif}body{margin:0;overflow-y:scroll}#gog{padding:3px 8px 0}td{line-height:.8em}.gac_m td{line-height:17px}form{margin-bottom:20px}.h{color:#36c}.q{color:#00c}.ts td{padding:0}.ts{border-collapse:collapse}em{font-weight:bold;font-style:normal}.lst{height:25px;width:496px}.gsfi,.lst{font:18px arial,sans-serif}.gsfs{font:17px arial,sans-serif}.ds{display:inline-box;display:inline-block;margin:3px 0 4px;margin-left:4px}input{font-family:inherit}a.gb1,a.gb2,a.gb3,a.gb4{color:#11c !important}body{background:#fff;color:black}a{color:#11c;text-decoration:none}a:hover,a:active{text-decoration:underline}.fl a{color:#36c}a:visited{color:#551a8b}a.gb1,a.gb4{text-decoration:underline}a.gb3:hover{text-decoration:none}#ghead a.gb2:hover{color:#fff !important}.sblc{padding-top:5px}.sblc a{display:block;margin:2px 0;margin-left:13px;font-size:11px}.lsbb{background:#eee;border:solid 1px;border-color:#ccc #999 #999 #ccc;height:30px}.lsbb{display:block}.ftl,#fll a{display:inline-block;margin:0 12px}.lsb{background:url(/images/nav_logo229.png) 0 -261px repeat-x;border:none;color:#000;cursor:pointer;height:30px;margin:0;outline:0;font:15px arial,sans-serif;vertical-align:top}.lsb:active{background:#ccc}.lst:focus{outline:none}</style><script nonce="1cF5wiybAk0ZW7RYxuJPNw=="></script></head><body bgcolor="#fff"><script nonce="1cF5wiybAk0ZW7RYxuJPNw==">(function(){var src='/images/nav_logo229.png';var iesg=false;document.body.onload = function(){window.n && window.n();if (document.images){new Image().src=src;}
+if (!iesg){document.f&&document.f.q.focus();document.gbqf&&document.gbqf.q.focus();}
+}
+})();</script><div id="mngb"> <div id=gbar><nobr><b class=gb1>Search</b> <a class=gb1 href="http://www.google.com/imghp?hl=en&tab=wi">Images</a> <a class=gb1 href="http://maps.google.com/maps?hl=en&tab=wl">Maps</a> <a class=gb1 href="https://play.google.com/?hl=en&tab=w8">Play</a> <a class=gb1 href="http://www.youtube.com/?gl=US&tab=w1">YouTube</a> <a class=gb1 href="http://news.google.com/nwshp?hl=en&tab=wn">News</a> <a class=gb1 href="https://mail.google.com/mail/?tab=wm">Gmail</a> <a class=gb1 href="https://drive.google.com/?tab=wo">Drive</a> <a class=gb1 style="text-decoration:none" href="https://www.google.com/intl/en/about/products?tab=wh"><u>More</u> &raquo;</a></nobr></div><div id=guser width=100%><nobr><span id=gbn class=gbi></span><span id=gbf class=gbf></span><span id=gbe></span><a href="http://www.google.com/history/optout?hl=en" class=gb4>Web History</a> | <a  href="/preferences?hl=en" class=gb4>Settings</a> | <a target=_top id=gb_70 href="https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=http://www.google.com/" class=gb4>Sign in</a></nobr></div><div class=gbh style=left:0></div><div class=gbh style=right:0></div> </div><center><br clear="all" id="lgpd"><div id="lga"><a href="/search?ie=UTF-8&amp;q=teacher+appreciation+week&amp;oi=ddle&amp;ct=120236436&amp;hl=en&amp;kgmid=/m/0_m0g58&amp;sa=X&amp;ved=0ahUKEwib_c2ljofiAhUK2FQKHVb7Bs4QPQgD"><img alt="Happy US Teacher Appreciation Week 2019!" border="0" height="220" src="/logos/doodles/2019/us-teacher-appreciation-week-2019-begins-4994791740801024-l.png" title="Happy US Teacher Appreciation Week 2019!" width="430" id="hplogo" onload="window.lol&&lol()"><br></a><br></div><form action="/search" name="f"><table cellpadding="0" cellspacing="0"><tr valign="top"><td width="25%">&nbsp;</td><td align="center" nowrap=""><input name="ie" value="ISO-8859-1" type="hidden"><input value="en" name="hl" type="hidden"><input name="source" type="hidden" value="hp"><input name="biw" type="hidden"><input name="bih" type="hidden"><div class="ds" style="height:32px;margin:4px 0"><input style="color:#000;margin:0;padding:5px 8px 0 6px;vertical-align:top" autocomplete="off" class="lst" value="" title="Google Search" maxlength="2048" name="q" size="57"></div><br style="line-height:0"><span class="ds"><span class="lsbb"><input class="lsb" value="Google Search" name="btnG" type="submit"></span></span><span class="ds"><span class="lsbb"><input class="lsb" value="I'm Feeling Lucky" name="btnI" onclick="if(this.form.q.value)this.checked=1; else top.location='/doodles/'" type="submit"></span></span></td><td class="fl sblc" align="left" nowrap="" width="25%"><a href="/advanced_search?hl=en&amp;authuser=0">Advanced search</a><a href="/language_tools?hl=en&amp;authuser=0">Language tools</a></td></tr></table><input id="gbv" name="gbv" type="hidden" value="1"><script nonce="1cF5wiybAk0ZW7RYxuJPNw==">(function(){var a,b="1";if(document&&document.getElementById)if("undefined"!=typeof XMLHttpRequest)b="2";else if("undefined"!=typeof ActiveXObject){var c,d,e=["MSXML2.XMLHTTP.6.0","MSXML2.XMLHTTP.3.0","MSXML2.XMLHTTP","Microsoft.XMLHTTP"];for(c=0;d=e[c++];)try{new ActiveXObject(d),b="2"}catch(h){}}a=b;if("2"==a&&-1==location.search.indexOf("&gbv=2")){var f=google.gbvu,g=document.getElementById("gbv");g&&(g.value=a);f&&window.setTimeout(function(){location.href=f},0)};}).call(this);</script></form><div id="gac_scont"></div><div style="font-size:83%;min-height:3.5em"><br><div id="prm"><style>.szppmdbYutt__middle-slot-promo{font-size:small;margin-bottom:32px}.szppmdbYutt__middle-slot-promo a.ZIeIlb{display:inline-block;text-decoration:none}.szppmdbYutt__middle-slot-promo img{border:none;margin-right:5px;vertical-align:middle}</style><div class="szppmdbYutt__middle-slot-promo" data-ved="0ahUKEwib_c2ljofiAhUK2FQKHVb7Bs4QnIcBCAQ"><a class="NKcBbd" href="https://www.google.com/url?q=https://www.blog.google/outreach-initiatives/education/teacher-appreciation-week-2019/%3Futm_source%3Dgoogle%26utm_medium%3Dhpp%26utm_campaign%3Dtaw_2019&amp;source=hpp&amp;id=19012032&amp;ct=3&amp;usg=AFQjCNEqnJb2uHoMjg2Wud6MtvKcn2ILpg&amp;sa=X&amp;ved=0ahUKEwib_c2ljofiAhUK2FQKHVb7Bs4Q8IcBCAU" rel="nofollow">We&#8217;re supporting teachers inspiring the next generation</a></div></div></div><span id="footer"><div style="font-size:10pt"><div style="margin:19px auto;text-align:center" id="fll"><a href="/intl/en/ads/">Advertising?Programs</a><a href="/services/">Business Solutions</a><a href="/intl/en/about.html">About Google</a></div></div><p style="color:#767676;font-size:8pt">&copy; 2019 - <a href="/intl/en/policies/privacy/">Privacy</a> - <a href="/intl/en/policies/terms/">Terms</a></p></span></center><script nonce="1cF5wiybAk0ZW7RYxuJPNw==">(function(){window.google.cdo={height:0,width:0};(function(){var a=window.innerWidth,b=window.innerHeight;if(!a||!b){var c=window.document,d="CSS1Compat"==c.compatMode?c.documentElement:c.body;a=d.clientWidth;b=d.clientHeight}a&&b&&(a!=google.cdo.width||b!=google.cdo.height)&&google.log("","","/client_204?&atyp=i&biw="+a+"&bih="+b+"&ei="+google.kEI);}).call(this);})();(function(){var u='/xjs/_/js/k\x3dxjs.hp.en_US.Yv_bmieVcKQ.O/m\x3dsb_he,d/am\x3dwKAW/rt\x3dj/d\x3d1/rs\x3dACT90oG3DzwVTl5n4Q_0THsxrUHGQsAO3g';setTimeout(function(){var a=document.createElement("script");a.src=u;google.timers&&google.timers.load&&google.tick&&google.tick("load","xjsls");document.body.appendChild(a)},0);})();(function(){window.google.xjsu='/xjs/_/js/k\x3dxjs.hp.en_US.Yv_bmieVcKQ.O/m\x3dsb_he,d/am\x3dwKAW/rt\x3dj/d\x3d1/rs\x3dACT90oG3DzwVTl5n4Q_0THsxrUHGQsAO3g';})();function _DumpException(e){throw e;}
+function _F_installCss(c){}
+(function(){google.spjs=false;})();google.sm=1;(function(){var pmc='{\x22Qnk92g\x22:{},\x22RWGcrA\x22:{},\x22U5B21g\x22:{},\x22YFCs/g\x22:{},\x22ZI/YVQ\x22:{},\x22d\x22:{},\x22sb_he\x22:{\x22agen\x22:true,\x22cgen\x22:true,\x22client\x22:\x22heirloom-hp\x22,\x22dh\x22:true,\x22dhqt\x22:true,\x22ds\x22:\x22\x22,\x22ffql\x22:\x22en\x22,\x22fl\x22:true,\x22host\x22:\x22google.com\x22,\x22isbh\x22:28,\x22jsonp\x22:true,\x22msgs\x22:{\x22cibl\x22:\x22Clear Search\x22,\x22dym\x22:\x22Did you mean:\x22,\x22lcky\x22:\x22I\\u0026#39;m Feeling Lucky\x22,\x22lml\x22:\x22Learn more\x22,\x22oskt\x22:\x22Input tools\x22,\x22psrc\x22:\x22This search was removed from your \\u003Ca href\x3d\\\x22/history\\\x22\\u003EWeb History\\u003C/a\\u003E\x22,\x22psrl\x22:\x22Remove\x22,\x22sbit\x22:\x22Search by image\x22,\x22srch\x22:\x22Google Search\x22},\x22ovr\x22:{},\x22pq\x22:\x22\x22,\x22refpd\x22:true,\x22rfs\x22:[],\x22sbpl\x22:24,\x22sbpr\x22:24,\x22scd\x22:10,\x22sce\x22:5,\x22stok\x22:\x22s4ND7ehgr2lcHpcv5T93UySs4ho\x22,\x22uhde\x22:false}}';google.pmc=JSON.parse(pmc);})();</script>        </body></html>suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+```
+
+发现可以正常访问 www.google.com 的资源了。
+
+解决了终端的代理问题后，再次执行命令
+
+```
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+```
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+正克隆到 'depot_tools'...
+remote: Sending approximately 24.21 MiB ...
+remote: Total 31833 (delta 22312), reused 31833 (delta 22312)
+接收对象中: 100% (31833/31833), 24.21 MiB | 1.25 MiB/s, 完成.
+处理 delta 中: 100% (22312/22312), 完成.
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:webrtc suntongmian$ ls
+depot_tools
+suntongmiandeMacBook-Pro:webrtc suntongmian$
+```
+
+到此，可以看到 depot_tools 源码已经下载成功了。
 
 ## step 2
 
@@ -184,7 +265,7 @@ suntongmiandeMacBook-Pro:webrtc suntongmian$
 export PATH=$PATH:/path/depot_tools
 ```
 
-其中，path 为上一步通过 pwd 命令获取的 depot_tools 文件夹所在目录
+该命令会生成一个**临时路径**。其中，path 为上一步通过 pwd 命令获取的 depot_tools 文件夹所在目录
 
 在终端执行如下命令
 
@@ -246,29 +327,9 @@ Valid fetch configs:
 suntongmiandeMacBook-Pro:webrtc suntongmian$ 
 ```
 
-打印上面的信息，说明 depot_tools 工具包已经成功安装。
+打印上面的信息，说明 depot_tools 工具包已经成功安装。接下来就可以通过 depot_tools 工具下载 WebRTC 源码了。
 
-## step 5
-
-想查看 depot_tools 源码的来源信息，可以执行命令
-
-```
-gclient --help
-```
-
-```
-suntongmiandeMacBook-Pro:webrtc suntongmian$ gclient --help
-Your copy of depot_tools is configured to fetch from an obsolete URL:
-
-  https://github.com/depthlove/depot_tools.git
-
-OK to update it to https://chromium.googlesource.com/chromium/tools/depot_tools.git ? [Y/n]
-```
-
-[https://github.com/depthlove/depot_tools.git](https://github.com/depthlove/depot_tools.git) 就是前面的步骤中从 GitHub 上获取的 depot_tools。我并不想更新 depot_tools，此处直接输入 n，如果命令结束不了，直接用 ctrl + c 强行终止。
-
-
-> # 下载源码
+> # 下载 WebRTC 源码
 
 WebRTC 文件量较大，在下载之前，磁盘的剩余可用容量要满足：
 
@@ -304,6 +365,7 @@ gclient sync -r 741f9a0679bc70682b056004f8421879352d1a8d
 
 741f9a0679bc70682b056004f8421879352d1a8d 是 “选择 Release 版本” 步骤中获取的 M74 Release 版本的 commit 编号信息。
 
+这2条命令执行时，要下载的文件比较多，需要耐心等待命令的执行结果。
 
 > # 执行编译
 
@@ -328,4 +390,6 @@ gclient sync -r 741f9a0679bc70682b056004f8421879352d1a8d
 [8] [Using depot_tools](https://www.chromium.org/developers/how-tos/depottools)
 
 [9] [depot_tools_tutorial(7) Manual Page](https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html)
+
+[10] [MAC 终端走代理服务器](https://blog.csdn.net/jiajiayouba/article/details/81453398)
 
