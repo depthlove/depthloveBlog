@@ -143,7 +143,7 @@ suntongmiandeMacBook-Pro:webrtc suntongmian$
 
 **出现 “Failed to connect to chromium.googlesource.com port 443: Operation timed out” 问题后，需要检查 VPN 服务是否开启，网络状况是否良好。如果在 VPN 服务开启和网络状况良好的情况下，仍然不能 clone 代码成功，那就需要检查终端能否成功访问墙外的资源。**
 
-我开了 VPN 服务，网络状况也很好，也能通过 Google 浏览器访问资源，但就是不能 clone depot_tools 源码成功。这个时候，我通过命令 **curl** 来检查终端是否具备翻墙功能。
+我开启了 VPN 服务，网络状况也很好，也能通过 Google 浏览器访问资源，但就是不能 clone depot_tools 源码成功。这个时候，我通过命令 **curl** 来检查终端是否具备翻墙功能。
 
 首先，在终端执行命令 
 
@@ -195,6 +195,7 @@ export https_proxy=socks5://127.0.0.1:10808
 suntongmiandeMacBook-Pro:webrtc suntongmian$ export http_proxy=socks5://127.0.0.1:10808
 suntongmiandeMacBook-Pro:webrtc suntongmian$ 
 suntongmiandeMacBook-Pro:webrtc suntongmian$ export https_proxy=socks5://127.0.0.1:10808
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
 ```
 
 **提示：执行后，只对当前终端起作用。重启终端后，默认失效。**
@@ -265,7 +266,7 @@ suntongmiandeMacBook-Pro:webrtc suntongmian$
 export PATH=$PATH:/path/depot_tools
 ```
 
-该命令会生成一个**临时路径**。其中，path 为上一步通过 pwd 命令获取的 depot_tools 文件夹所在目录
+其中，path 为上一步通过 pwd 命令获取的 depot_tools 文件夹所在目录。
 
 在终端执行如下命令
 
@@ -273,6 +274,8 @@ export PATH=$PATH:/path/depot_tools
 suntongmiandeMacBook-Pro:webrtc suntongmian$ export PATH=$PATH:/Users/suntongmian/Documents/develop/webrtc/depot_tools
 suntongmiandeMacBook-Pro:webrtc suntongmian$ 
 ```
+
+**提示：执行后，只对当前终端起作用。重启终端后，默认失效。**
 
 ## step 4
 
@@ -366,6 +369,134 @@ gclient sync -r 741f9a0679bc70682b056004f8421879352d1a8d
 741f9a0679bc70682b056004f8421879352d1a8d 是 “选择 Release 版本” 步骤中获取的 M74 Release 版本的 commit 编号信息。
 
 这2条命令执行时，要下载的文件比较多，需要耐心等待命令的执行结果。
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ fetch --nohooks webrtc_ios
+Running: gclient root
+WARNING: Your metrics.cfg file was invalid or nonexistent. A new one will be created.
+Running: gclient config --spec 'solutions = [
+  {
+    "url": "https://webrtc.googlesource.com/src.git",
+    "managed": False,
+    "name": "src",
+    "deps_file": "DEPS",
+    "custom_deps": {},
+  },
+]
+target_os = ["ios", "mac"]
+'
+Running: gclient sync --nohooks --with_branch_heads
+
+________ running 'git -c core.deltaBaseCacheLimit=2g clone --no-checkout --progress https://webrtc.googlesource.com/src.git /Users/suntongmian/Documents/develop/webrtc/_gclient_src_twA2Fg' in '/Users/suntongmian/Documents/develop/webrtc'
+Cloning into '/Users/suntongmian/Documents/develop/webrtc/_gclient_src_twA2Fg'...
+remote: Sending approximately 253.71 MiB ...        
+remote: Counting objects: 22, done        
+remote: Finding sources: 100% (22/22)           
+Receiving objects:  57% (183907/320504), 74.04 MiB | 1.88 MiB/s    
+[0:01:00] Still working on:
+[0:01:00]   src
+Receiving objects:  60% (192303/320504), 88.48 MiB | 1.35 MiB/s   
+[0:01:10] Still working on:
+[0:01:10]   src
+Receiving objects:  62% (198983/320504), 99.53 MiB | 1.15 MiB/s   
+[0:01:20] Still working on:
+[0:01:20]   src
+Receiving objects:  64% (205195/320504), 112.59 MiB | 1.25 MiB/s     
+[0:01:30] Still working on:
+[0:01:30]   src
+Receiving objects:  64% (206287/320504), 127.59 MiB | 1.64 MiB/s   
+[0:01:40] Still working on:
+[0:01:40]   src
+Receiving objects:  66% (211727/320504), 138.71 MiB | 1.17 MiB/s     
+[0:01:50] Still working on:
+[0:01:50]   src
+Receiving objects:  66% (212334/320504), 144.40 MiB | 573.00 KiB/s   
+[0:02:00] Still working on:
+[0:02:00]   src
+Receiving objects:  67% (214856/320504), 151.96 MiB | 815.00 KiB/s   
+[0:02:10] Still working on:
+[0:02:10]   src
+Receiving objects:  69% (221994/320504), 163.95 MiB | 1.41 MiB/s   
+[0:02:20] Still working on:
+[0:02:20]   src
+Receiving objects:  71% (230570/320504), 174.51 MiB | 997.00 KiB/s    
+[0:02:30] Still working on:
+[0:02:30]   src
+Receiving objects:  80% (256404/320504), 184.07 MiB | 1.43 MiB/s     
+[0:02:40] Still working on:
+[0:02:40]   src
+Receiving objects:  86% (276405/320504), 197.69 MiB | 1.40 MiB/s   
+[0:02:50] Still working on:
+[0:02:50]   src
+Receiving objects:  95% (304479/320504), 210.75 MiB | 1.38 MiB/s   
+[0:03:00] Still working on:
+[0:03:00]   src
+Receiving objects:  98% (315231/320504), 224.59 MiB | 1.18 MiB/s   
+[0:03:10] Still working on:
+[0:03:10]   src
+Receiving objects:  98% (315246/320504), 234.05 MiB | 929.00 KiB/s   
+[0:03:20] Still working on:
+[0:03:20]   src
+Receiving objects:  99% (320126/320504), 244.74 MiB | 1.02 MiB/s     
+[0:03:30] Still working on:
+[0:03:30]   src
+remote: Total 320504 (delta 243613), reused 320495 (delta 243613)        
+Receiving objects: 100% (320504/320504), 253.18 MiB | 1.20 MiB/s, done.
+Resolving deltas:  75% (184825/243613)   
+[0:03:40] Still working on:
+[0:03:40]   src
+Resolving deltas: 100% (243613/243613), done.
+
+[0:03:50] Still working on:
+[0:03:50]   src
+Syncing projects:   0% ( 0/ 2) 
+[0:03:59] Still working on:
+[0:03:59]   src
+Syncing projects:  15% ( 6/38) src/buildtools/third_party/libunwind/trunk
+[0:05:50] Still working on:
+[0:05:50]   src/base
+[0:05:50]   src/build
+[0:05:50]   src/ios
+[0:05:50]   src/testing
+[0:05:50]   src/third_party
+[0:05:50]   src/tools
+[0:05:50]   src/buildtools/third_party/libc++/trunk
+
+[0:05:52] Still working on:
+[0:05:52]   src/base
+[0:05:52]   src/build
+[0:05:52]   src/ios
+[0:05:52]   src/testing
+[0:05:52]   src/third_party
+[0:05:52]   src/tools
+[0:05:52]   src/buildtools/third_party/libc++/trunk
+Syncing projects:  18% ( 7/38) src/buildtools/third_party/libc++/trunk   
+[0:06:52] Still working on:
+[0:06:52]   src/base
+[0:06:52]   src/build
+[0:06:52]   src/ios
+[0:06:52]   src/testing
+[0:06:52]   src/third_party
+[0:06:52]   src/tools
+
+[0:07:02] Still working on:
+[0:07:02]   src/base
+[0:07:02]   src/build
+[0:07:02]   src/ios
+[0:07:02]   src/testing
+[0:07:02]   src/third_party
+[0:07:02]   src/tools
+
+[0:07:12] Still working on:
+[0:07:12]   src/base
+[0:07:12]   src/build
+[0:07:12]   src/ios
+[0:07:12]   src/testing
+[0:07:12]   src/third_party
+[0:07:12]   src/tools
+
+
+```
 
 > # 执行编译
 
