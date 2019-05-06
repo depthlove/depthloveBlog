@@ -359,7 +359,7 @@ MacBook Pro (Retina, 13-inch, Early 2015)
 
 ## step 1
 
-在终端执行命令
+下载所需要的工程，在终端执行命令
 
 ```
 fetch --nohooks webrtc_ios
