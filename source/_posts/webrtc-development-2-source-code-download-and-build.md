@@ -145,7 +145,7 @@ suntongmiandeMacBook-Pro:webrtc suntongmian$
 
 我在 clone 代码的时候，开了 VPN 服务，网络状况也很好，但是就是不能 clone 成功。无奈之下，我就在 GitHub 上 fork 了一份别人上传的最新代码作为替代使用。
 
-在终端执行命令，git clone https://github.com/depthlove/depot_tools.git，如果前面的步骤没出错，那么可以忽略下面的这一步。
+在终端执行命令，**git clone https://github.com/depthlove/depot_tools.git**，如果前面的步骤没出错，那么可以忽略下面的这一步。
 
 ```
 suntongmiandeMacBook-Pro:webrtc suntongmian$ git clone https://github.com/depthlove/depot_tools.git
@@ -292,6 +292,15 @@ MacBook Pro (Retina, 13-inch, Early 2015)
 ```
 
 我的 Mac 电脑可用磁盘空间 17.11 GB，是足以装的下 5.6 GB 文件的，好了，接下来就可以放心下载源码了。
+
+在终端执行命令
+
+```
+fetch --nohooks webrtc_ios
+gclient sync
+```
+
+在前面的步骤中，通过 **fetch --help**，可以看到代码目录 webrtc，webrtc_android，webrtc_ios 等。我要在 iOS 平台上使用，就选择了 webrtc_ios。选择依据见 [WebRTC Native Code, iOS](https://webrtc.org/native-code/ios/) 中提到的 “This will fetch a regular WebRTC checkout with the iOS-specific parts added.”
 
 
 
