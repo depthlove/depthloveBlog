@@ -297,17 +297,17 @@ MacBook Pro (Retina, 13-inch, Early 2015)
 
 ```
 fetch --nohooks webrtc_ios
-gclient sync
+gclient sync -r 741f9a0679bc70682b056004f8421879352d1a8d
 ```
 
-在前面的步骤中，通过 **fetch --help**，可以看到代码目录 webrtc，webrtc_android，webrtc_ios 等。我要在 iOS 平台上使用，就选择了 webrtc_ios。选择依据见 [WebRTC Native Code, iOS](https://webrtc.org/native-code/ios/) 中提到的 “This will fetch a regular WebRTC checkout with the iOS-specific parts added.”
+在 “安装 depot_tools 工具包” 的步骤中，通过 **fetch --help**，可以看到代码目录 webrtc，webrtc_android，webrtc_ios 等。我要在 iOS 平台上使用，就选择了 webrtc_ios。选择依据见 [WebRTC Native Code, iOS](https://webrtc.org/native-code/ios/) 中提到的 “This will fetch a regular WebRTC checkout with the iOS-specific parts added.”
 
+741f9a0679bc70682b056004f8421879352d1a8d 是 “选择 Release 版本” 步骤中获取的 M74 Release 版本的 commit 编号信息。
 
 
 > # 执行编译
 
-
-
+编译的方式有2种选择，即使用 ninja 和 Xcode，详见 [WebRTC Native Code, iOS](https://webrtc.org/native-code/ios/)。
 
 > # 参考文献
 
@@ -321,13 +321,11 @@ gclient sync
 
 [5] [WebRTC Release Notes](https://webrtc.org/release-notes/) 
 
-[6] [gclient](https://www.chromium.org/developers/how-tos/depottools)
+[6] [WebRTC Native Code, Development](https://webrtc.org/native-code/development/)
 
-[7] [WebRTC Native Code, Development](https://webrtc.org/native-code/development/)
+[7] [WebRTC Native Code, iOS](https://webrtc.org/native-code/ios/)
 
-[8] [WebRTC Native Code, iOS](https://webrtc.org/native-code/ios/)
+[8] [Using depot_tools](https://www.chromium.org/developers/how-tos/depottools)
 
-[9] [Using depot_tools](https://www.chromium.org/developers/how-tos/depottools)
-
-[10] [depot_tools_tutorial(7) Manual Page](https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html)
+[9] [depot_tools_tutorial(7) Manual Page](https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html)
 
