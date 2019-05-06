@@ -26,7 +26,9 @@ WebRTC 是一组协议和 API。WebRTC 的起源可追溯到 2011年，经过六
 
 WebRTC 支持 Windows, Mac OS X, Linux, Android 和 iOS 平台，这里以 iOS 平台为例来描述 WebRTC 的源码下载和编译过程。
 
-> # 选择版本
+> # 选择 Release 版本
+
+## step 1
 
 从 WebRTC 的 [Release Notes](https://webrtc.org/release-notes/) 的 release 版本中选择最新的版本，当前最新版为 [M74 Release Noted](https://groups.google.com/forum/#!msg/discuss-webrtc/cXEtXIIYrQs/R7y0yIK2AQAJ) 
 
@@ -41,6 +43,8 @@ WebRTC M74, currently available in Chrome's beta channel and as native libraries
 
 The Chrome release schedule can be found here. Native libraries for Android and iOS are built on a weekly basis and are available on JCenter and CocoaPods; the Changelog is available here.
 ```
+
+## step 2
 
 进入分支 [WebRTC M74 branch](https://chromium.googlesource.com/external/webrtc/+log/branch-heads/m74) (cut at r26981)
 
@@ -58,6 +62,8 @@ e6d5f62 Merge to M74: Allow setting ALR values for screen content again by Erik 
 ...
 
 ```
+
+## step 3
 
 选择第一条提交记录 [741f9a0 Ignore duplicate sent packets in TransportFeedbackAdapter by Erik Språng · 2 weeks ago] 进入详情页 [chromium / external / webrtc / 741f9a0679bc70682b056004f8421879352d1a8d](https://chromium.googlesource.com/external/webrtc/+/741f9a0679bc70682b056004f8421879352d1a8d)
 
@@ -98,9 +104,177 @@ tree: 36ee311fa41a5d60ab98d87273f210ac90ed3fdf
 
 获取到该分支的最新提交记录：**commit	741f9a0679bc70682b056004f8421879352d1a8d**。后面下载源码的时候要用到这个 commit 编号。
 
+> # 安装 depot_tools 工具包
+
+下载源码的时候，要用到 depot_tools 工具包，这是 Chromium 官方推荐的工具包，具备下载、同步、编译、上传代码等功能。depot_tools 的详细介绍见 [Using depot_tools](https://www.chromium.org/developers/how-tos/depottools)。depot_tools 包含如下工具包：
+
+```
+gclient
+gcl
+git-cl
+svn [只在 Windows 上使用]
+drover
+cpplint.py
+pylint
+presubmit_support.py
+repo
+wtf
+weekly
+git-gs
+zsh-goodies
+```
+
+## step 1
+
+获取 depot_tools 源码，在终端执行命令
+
+```
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+```
+
+```
+suntongmiandeMacBook-Pro:~ suntongmian$ cd /Users/suntongmian/Documents/develop/webrtc 
+suntongmiandeMacBook-Pro:webrtc suntongmian$
+suntongmiandeMacBook-Pro:webrtc suntongmian$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+正克隆到 'depot_tools'...
+fatal: unable to access 'https://chromium.googlesource.com/chromium/tools/depot_tools.git/': Failed to connect to chromium.googlesource.com port 443: Operation timed out
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+```
+
+出现 “Failed to connect to chromium.googlesource.com port 443: Operation timed out” 问题，检查是否开了 VPN 服务，网络状况是否良好。
+
+我在 clone 代码的时候，开了 VPN 服务，网络状况也很好，但是就是不能 clone 成功。无奈之下，我就在 GitHub 上 fork 了一份别人上传的最新代码作为替代使用。
+
+在终端执行命令，git clone https://github.com/depthlove/depot_tools.git，如果前面的步骤没出错，那么可以忽略下面的这一步。
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ git clone https://github.com/depthlove/depot_tools.git
+正克隆到 'depot_tools'...
+remote: Enumerating objects: 30936, done.
+remote: Counting objects: 100% (30936/30936), done.
+remote: Compressing objects: 100% (7615/7615), done.
+remote: Total 30936 (delta 23107), reused 30936 (delta 23107), pack-reused 0
+接收对象中: 100% (30936/30936), 16.85 MiB | 1.03 MiB/s, 完成.
+处理 delta 中: 100% (23107/23107), 完成.
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+```
+
+## step 2
+
+获取 depot_tools 文件夹所在的目录，在终端执行命令 
+
+```
+pwd
+```
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ ls
+depot_tools
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:webrtc suntongmian$ pwd
+/Users/suntongmian/Documents/develop/webrtc
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+```
+
+## step 3
+
+添加环境变量，命令格式为
+
+```
+export PATH=$PATH:/path/depot_tools
+```
+
+其中，path 为上一步通过 pwd 命令获取的 depot_tools 文件夹所在目录
+
+在终端执行如下命令
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ export PATH=$PATH:/Users/suntongmian/Documents/develop/webrtc/depot_tools
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+```
+
+## step 4
+
+到此，depot_tools 的配置已经完成。想知道 depot_tools 是否成功安装，在终端执行命令
+
+```
+fetch --help
+```
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ fetch --help
+usage: fetch.py [options] <config> [--property=value [--property2=value2 ...]]
+
+This script can be used to download the Chromium sources. See
+http://www.chromium.org/developers/how-tos/get-the-code
+for full usage instructions.
+
+Valid options:
+   -h, --help, help   Print this message.
+   --nohooks          Don't run hooks after checkout.
+   --force            (dangerous) Don't look for existing .gclient file.
+   -n, --dry-run      Don't run commands, only print them.
+   --no-history       Perform shallow clones, don't fetch the full git history.
+
+Valid fetch configs:
+  android
+  android_internal
+  breakpad
+  chromium
+  config_util
+  crashpad
+  dart
+  depot_tools
+  goma_client
+  gyp
+  infra
+  infra_internal
+  inspector_protocol
+  ios
+  ios_internal
+  nacl
+  naclports
+  node-ci
+  pdfium
+  skia
+  skia_buildbot
+  syzygy
+  v8
+  webrtc
+  webrtc_android
+  webrtc_ios
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+```
+
+打印上面的信息，说明 depot_tools 工具包已经成功安装。
+
+## step 5
+
+想查看 depot_tools 源码的来源信息，可以执行命令
+
+```
+gclient --help
+```
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ gclient --help
+Your copy of depot_tools is configured to fetch from an obsolete URL:
+
+  https://github.com/depthlove/depot_tools.git
+
+OK to update it to https://chromium.googlesource.com/chromium/tools/depot_tools.git ? [Y/n]
+```
+
+[https://github.com/depthlove/depot_tools.git](https://github.com/depthlove/depot_tools.git) 就是前面的步骤中从 GitHub 上获取的 depot_tools。我并不想更新 depot_tools，此处直接输入 n，如果命令结束不了，直接用 ctrl + c 强行终止。
+
+
 > # 下载源码
 
-下载源码的时候，要用到 gclient 工具，该工具具备类似于 git clone 的作用，可以将远程分支的代码克隆到本地。为什么不直接用 git 工具的 git clone 呢？原因在于 Google 的代码管理工具用的就是 gclient，用来管理源码的 checkout, update 等。此处，我们知道 gclient 是个什么东西就行了，要想详细了解可以自行 Google。
+WebRTC 文件量较大，在下载之前，磁盘的剩余可用容量要满足：
+
+Linux: 6.4 GB.
+Linux (with Android): 16 GB (of which ~8 GB is Android SDK+NDK images).
+Mac (with iOS support): 5.6GB
 
 我使用的是 MacBook Pro 2015款机器：
 
@@ -113,9 +287,11 @@ MacBook Pro (Retina, 13-inch, Early 2015)
 内存 8 GB 1867 MHz DDR3
 启动磁盘 Macintosh HD
 图形卡 Intel Iris Graphics 6100 1536 MB
+磁盘空间 128 GB
+可用磁盘空间 17.11 GB
 ```
 
-
+我的 Mac 电脑可用磁盘空间 17.11 GB，是足以装的下 5.6 GB 文件的，好了，接下来就可以放心下载源码了。
 
 
 
@@ -136,7 +312,13 @@ MacBook Pro (Retina, 13-inch, Early 2015)
 
 [5] [WebRTC Release Notes](https://webrtc.org/release-notes/) 
 
-[6] [WebRTC Native Code, iOS](https://webrtc.org/native-code/ios/)
+[6] [gclient](https://www.chromium.org/developers/how-tos/depottools)
 
-[7] [gclient](https://www.chromium.org/developers/how-tos/depottools)
+[7] [WebRTC Native Code, Development](https://webrtc.org/native-code/development/)
+
+[8] [WebRTC Native Code, iOS](https://webrtc.org/native-code/ios/)
+
+[9] [Using depot_tools](https://www.chromium.org/developers/how-tos/depottools)
+
+[10] [depot_tools_tutorial(7) Manual Page](https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html)
 
