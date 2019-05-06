@@ -357,18 +357,17 @@ MacBook Pro (Retina, 13-inch, Early 2015)
 
 我的 Mac 电脑可用磁盘空间 17.11 GB，是足以装的下 5.6 GB 文件的，好了，接下来就可以放心下载源码了。
 
+## step 1
+
 在终端执行命令
 
 ```
 fetch --nohooks webrtc_ios
-gclient sync -r 741f9a0679bc70682b056004f8421879352d1a8d
 ```
 
 在 “安装 depot_tools 工具包” 的步骤中，通过 **fetch --help**，可以看到代码目录 webrtc，webrtc_android，webrtc_ios 等。我要在 iOS 平台上使用，就选择了 webrtc_ios。选择依据见 [WebRTC Native Code, iOS](https://webrtc.org/native-code/ios/) 中提到的 “This will fetch a regular WebRTC checkout with the iOS-specific parts added.”
 
-741f9a0679bc70682b056004f8421879352d1a8d 是 “选择 Release 版本” 步骤中获取的 M74 Release 版本的 commit 编号信息。
-
-这2条命令执行时，要下载的文件比较多，需要耐心等待命令的执行结果。
+这条命令执行时，要下载的文件比较多，需要耐心等待命令的执行结果。
 
 ```
 suntongmiandeMacBook-Pro:webrtc suntongmian$ fetch --nohooks webrtc_ios
@@ -495,7 +494,190 @@ Syncing projects:  18% ( 7/38) src/buildtools/third_party/libc++/trunk
 [0:07:12]   src/third_party
 [0:07:12]   src/tools
 
+...
 
+[2:03:16] Still working on:
+[2:03:16]   src/third_party/icu
+
+[2:03:26] Still working on:
+[2:03:26]   src/third_party/icu
+
+[2:03:36] Still working on:
+[2:03:36]   src/third_party/icu
+
+[2:03:46] Still working on:
+[2:03:46]   src/third_party/icu
+
+[2:03:52] Still working on:
+[2:03:52]   src/third_party/icu
+Syncing projects: 100% (38/38), done.                              
+Running: git submodule foreach 'git config -f $toplevel/.git/config submodule.$name.ignore all'
+Running: git config --add remote.origin.fetch '+refs/tags/*:refs/tags/*'
+Running: git config diff.ignoreSubmodules all
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+```
+
+## step 2
+
+与远端 repo 进行代码同步，在终端执行命令
+
+```
+gclient sync
+```
+
+这条命令执行时，要下载的文件比较多，需要耐心等待命令的执行结果。
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ gclient sync
+Syncing projects: 100% (38/38), done.                                                     
+
+________ running '/usr/bin/python src/build/mac_toolchain.py' in '/Users/suntongmian/Documents/develop/webrtc'
+Skipping Mac toolchain installation for mac
+
+________ running '/usr/bin/python src/tools/clang/scripts/update.py' in '/Users/suntongmian/Documents/develop/webrtc'
+Downloading https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-357692-1.tgz 
+<urlopen error [Errno 54] Connection reset by peer>
+Retrying in 5 s ...
+Downloading https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-357692-1.tgz 
+<urlopen error [Errno 54] Connection reset by peer>
+Retrying in 10 s ...
+Downloading https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-357692-1.tgz 
+<urlopen error [Errno 54] Connection reset by peer>
+Retrying in 20 s ...
+Downloading https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-357692-1.tgz Traceback (most recent call last):
+  File "src/tools/clang/scripts/update.py", line 322, in <module>
+    sys.exit(main())
+  File "src/tools/clang/scripts/update.py", line 318, in main
+    return UpdateClang()
+  File "src/tools/clang/scripts/update.py", line 252, in UpdateClang
+    DownloadAndUnpackClangPackage(sys.platform, LLVM_BUILD_DIR)
+  File "src/tools/clang/scripts/update.py", line 171, in DownloadAndUnpackClangPackage
+    DownloadAndUnpack(cds_full_url, output_dir, path_prefix)
+  File "src/tools/clang/scripts/update.py", line 141, in DownloadAndUnpack
+    DownloadUrl(url, f)
+  File "src/tools/clang/scripts/update.py", line 100, in DownloadUrl
+    response = urllib.urlopen(url)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 449, in _open
+    '_open', req)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 1240, in https_open
+    context=self._context)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 1194, in do_open
+    h.request(req.get_method(), req.get_selector(), req.data, headers)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 1053, in request
+    self._send_request(method, url, body, headers)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 1093, in _send_request
+    self.endheaders(body)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 1049, in endheaders
+    self._send_output(message_body)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 893, in _send_output
+    self.send(msg)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 855, in send
+    self.connect()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 1266, in connect
+    HTTPConnection.connect(self)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 835, in connect
+    self._tunnel()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 812, in _tunnel
+    (version, code, message) = response._read_status()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 417, in _read_status
+    raise BadStatusLine(line)
+httplib.BadStatusLine: ''
+Error: Command '/usr/bin/python src/tools/clang/scripts/update.py' returned non-zero exit status 1 in /Users/suntongmian/Documents/develop/webrtc
+Hook '/usr/bin/python src/tools/clang/scripts/update.py' took 35.18 secs
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+```
+
+## step 3
+
+进入 src 目录，依据 741f9a0679bc70682b056004f8421879352d1a8d 检出一个新分支。741f9a0679bc70682b056004f8421879352d1a8d 是 “选择 Release 版本” 步骤中获取的 M74 Release 版本的 commit 编号信息。在终端执行命令
+
+```
+cd src
+git branch M74-Release 741f9a0679bc70682b056004f8421879352d1a8d
+git checkout M74-Release
+git log
+```
+
+```
+suntongmiandeMacBook-Pro:webrtc suntongmian$ ls
+depot_tools	src
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:webrtc suntongmian$ cd src
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ ls
+AUTHORS			call			pylintrc
+BUILD.gn		codereview.settings	resources
+CODE_OF_CONDUCT.md	common_audio		rtc_base
+DEPS			common_types.h		rtc_tools
+ENG_REVIEW_OWNERS	common_video		sdk
+LICENSE			crypto			stats
+OWNERS			data			style-guide
+PATENTS			examples		style-guide.md
+PRESUBMIT.py		ios			system_wrappers
+README.chromium		license_template.txt	test
+README.md		logging			testing
+WATCHLISTS		media			third_party
+abseil-in-webrtc.md	modules			tools
+api			native-api.md		tools_webrtc
+audio			out			video
+base			p2p			webrtc.gni
+build			pc			whitespace.txt
+build_overrides		presubmit_test.py
+buildtools		presubmit_test_mocks.py
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ git branch M74-Release 741f9a0679bc70682b056004f8421879352d1a8d
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ git status
+位于分支 master
+您的分支与上游分支 'origin/master' 一致。
+
+无文件要提交，干净的工作区
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ git branch
+  M74-Release
+* master
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ git checkout M74-Release
+切换到分支 'M74-Release'
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ git status
+位于分支 M74-Release
+无文件要提交，干净的工作区
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ git branch
+* M74-Release
+  master
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ git log
+commit 741f9a0679bc70682b056004f8421879352d1a8d (HEAD -> M74-Release, branch-heads/m74)
+Author: Erik Språng <sprang@webrtc.org>
+Date:   Thu Apr 18 14:28:02 2019 +0200
+
+    Ignore duplicate sent packets in TransportFeedbackAdapter
+    
+    Bug: webrtc:10564, chromium:954139, webrtc:10509
+    Change-Id: I617b58ef8cf5858d7a81aaa39884c5cc1ac2af6e
+    Reviewed-on: https://webrtc-review.googlesource.com/c/src/+/133564
+    Commit-Queue: Erik Språng <sprang@webrtc.org>
+    Reviewed-by: Sebastian Jansson <srte@webrtc.org>
+    Cr-Original-Commit-Position: refs/heads/master@{#27689}(cherry picked from commit d50947ab516ec404b100752617fb828d05cf0e3d)
+    Reviewed-on: https://webrtc-review.googlesource.com/c/src/+/133579
+    Cr-Commit-Position: refs/branch-heads/m74@{#20}
+    Cr-Branched-From: be7af9399ceb88171bf60b50419ff2dec8184fb9-refs/heads/master@{#26981}
+
+commit e6d5f62d010d7f6284504af1c7898894851b238c
+Author: Erik Språng <sprang@webrtc.org>
+Date:   Wed Apr 3 20:20:42 2019 +0200
+
+    Merge to M74: Allow setting ALR values for screen content again
+    
+suntongmiandeMacBook-Pro:src suntongmian$ 
 ```
 
 > # 执行编译
