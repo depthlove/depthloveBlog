@@ -189,6 +189,7 @@ suntongmiandeMacBook-Pro:webrtc suntongmian$
 ```
 export http_proxy=socks5://127.0.0.1:10808
 export https_proxy=socks5://127.0.0.1:10808
+export all_proxy=socks5://127.0.0.1:10808
 ```
 
 ```
@@ -196,6 +197,8 @@ suntongmiandeMacBook-Pro:webrtc suntongmian$ export http_proxy=socks5://127.0.0.
 suntongmiandeMacBook-Pro:webrtc suntongmian$ 
 suntongmiandeMacBook-Pro:webrtc suntongmian$ export https_proxy=socks5://127.0.0.1:10808
 suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:~ suntongmian$ export all_proxy=socks5://127.0.0.1:10808
+suntongmiandeMacBook-Pro:~ suntongmian$ 
 ```
 
 **提示：执行后，只对当前终端起作用。重启终端后，默认失效。**
@@ -682,7 +685,102 @@ suntongmiandeMacBook-Pro:src suntongmian$
 
 > # 执行编译
 
-编译的方式有2种选择，即使用 ninja 和 Xcode，详见 [WebRTC Native Code, iOS](https://webrtc.org/native-code/ios/)。
+在执行编译前，我们需要配置好编译的参数和环境，生产出构建文件。这里就需要用到 [GN](https://gn.googlesource.com/gn/+/master/README.md) 这个工具了。GN 是一个为 Ninja 生成构建文件的元构建系统。[Ninja](https://ninja-build.org/) 是一个小型构建系统，特点是构建速度快。
+
+## step 1
+
+使用 GN 来生产 Ninja 工程文件，在终端执行命令
+
+```
+gn gen out/ios --args='target_os="ios" target_cpu="arm64" is_debug=true'
+```
+
+```
+suntongmiandeMacBook-Pro:src suntongmian$ gn gen out/ios --args='target_os="ios" target_cpu="arm64" is_debug=true'
+Warning: Multiple codesigning identities match "iPhone Developer"
+Warning: - D78B0B7AF39CEFA4D0F673B4D3AA517D312C97CC (selected)
+Warning: - 5634EAED50D1AD95ED76F6AC8298E06590FE476B
+Warning: - 2843CD233EB6A93C79C2332E4F4FC601BEDA13BC
+Warning: Please use either ios_code_signing_identity or 
+Warning: ios_code_signing_identity_description variable to 
+Warning: control which identity is selected.
+
+Done. Made 1378 targets from 189 files in 2200ms
+suntongmiandeMacBook-Pro:src suntongmian$  
+```
+
+产生的工程文件在目录 **/src/out/ios** 下。通过命令查看下改目录下有哪些文件，在终端执行命令
+
+```
+ls out/ios
+```
+
+```
+suntongmiandeMacBook-Pro:src suntongmian$ ls out/ios
+args.gn
+build.ninja
+build.ninja.d
+clang_x64
+low_bandwidth_audio_perf_test.runtime_deps
+obj
+toolchain.ninja
+suntongmiandeMacBook-Pro:src suntongmian$ 
+```
+
+## step 2
+
+编译 APP 工程，在终端执行命令
+
+```
+ninja -C out/ios AppRTCMobile
+```
+
+```
+suntongmiandeMacBook-Pro:src suntongmian$ ninja -C out/ios AppRTCMobile
+ninja: Entering directory `out/ios'
+[1/2732] CXX obj/api/audio_codecs/audio_codecs_api/audio_codec_pair_id.o
+FAILED: obj/api/audio_codecs/audio_codecs_api/audio_codec_pair_id.o 
+../../third_party/llvm-build/Release+Asserts/bin/clang++ -MMD -MF obj/api/audio_codecs/audio_codecs_api/audio_codec_pair_id.o.d -DNO_TCMALLOC -DCHROMIUM_BUILD -DCR_XCODE_VERSION=1020 -DCR_CLANG_REVISION=\"357692-1\" -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D_LIBCPP_ABI_UNSTABLE -D_LIBCPP_DISABLE_VISIBILITY_ANNOTATIONS -D_LIBCXXABI_DISABLE_VISIBILITY_ANNOTATIONS -D_LIBCPP_ENABLE_NODISCARD -DCR_LIBCXX_REVISION=358423 -D_DEBUG -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -DWEBRTC_ENABLE_PROTOBUF=1 -DWEBRTC_INCLUDE_INTERNAL_AUDIO_DEVICE -DRTC_ENABLE_VP9 -DHAVE_SCTP -DWEBRTC_ARCH_ARM64 -DWEBRTC_HAS_NEON -DWEBRTC_LIBRARY_IMPL -DWEBRTC_NON_STATIC_TRACE_EVENT_HANDLERS=1 -DWEBRTC_POSIX -DWEBRTC_MAC -DWEBRTC_IOS -DABSL_ALLOCATOR_NOTHROW=1 -I../.. -Igen -I../../third_party/abseil-cpp -fno-strict-aliasing --param=ssp-buffer-size=4 -fstack-protector -fcolor-diagnostics -fmerge-all-constants -fcrash-diagnostics-dir=../../tools/clang/crashreports -Xclang -mllvm -Xclang -instcombine-lower-dbg-declare=0 -fcomplete-member-pointers -arch arm64 -fno-experimental-isel -Wno-builtin-macro-redefined -D__DATE__= -D__TIME__= -D__TIMESTAMP__= -no-canonical-prefixes -Wall -Werror -Wextra -Wimplicit-fallthrough -Wthread-safety -Wextra-semi -Wunguarded-availability -Wundeclared-selector -Wno-missing-field-initializers -Wno-unused-parameter -Wno-c++11-narrowing -Wno-unneeded-internal-declaration -Wno-undefined-var-template -Wno-ignored-pragma-optimize -O0 -fno-omit-frame-pointer -g2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk -stdlib=libc++ -miphoneos-version-min=10.0 -fvisibility=hidden -Wheader-hygiene -Wstring-conversion -Wtautological-overlap-compare -Wexit-time-destructors -Wglobal-constructors -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wc++11-narrowing -Wimplicit-fallthrough -Wthread-safety -Winconsistent-missing-override -Wundef -Wunused-lambda-capture -Wno-shorten-64-to-32 -Wno-undefined-bool-conversion -Wno-tautological-undefined-compare -std=c++11 -fno-exceptions -fno-rtti -nostdinc++ -isystem../../buildtools/third_party/libc++/trunk/include -isystem../../buildtools/third_party/libc++abi/trunk/include -fvisibility-inlines-hidden -Wnon-virtual-dtor -Woverloaded-virtual -c ../../api/audio_codecs/audio_codec_pair_id.cc -o obj/api/audio_codecs/audio_codecs_api/audio_codec_pair_id.o
+/bin/sh: ../../third_party/llvm-build/Release+Asserts/bin/clang++: No such file or directory
+[2/2732] CXX obj/api/audio_codecs/audio_codecs_api/audio_decoder.o
+FAILED: obj/api/audio_codecs/audio_codecs_api/audio_decoder.o 
+../../third_party/llvm-build/Release+Asserts/bin/clang++ -MMD -MF obj/api/audio_codecs/audio_codecs_api/audio_decoder.o.d -DNO_TCMALLOC -DCHROMIUM_BUILD -DCR_XCODE_VERSION=1020 -DCR_CLANG_REVISION=\"357692-1\" -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D_LIBCPP_ABI_UNSTABLE -D_LIBCPP_DISABLE_VISIBILITY_ANNOTATIONS -D_LIBCXXABI_DISABLE_VISIBILITY_ANNOTATIONS -D_LIBCPP_ENABLE_NODISCARD -DCR_LIBCXX_REVISION=358423 -D_DEBUG -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -DWEBRTC_ENABLE_PROTOBUF=1 -DWEBRTC_INCLUDE_INTERNAL_AUDIO_DEVICE -DRTC_ENABLE_VP9 -DHAVE_SCTP -DWEBRTC_ARCH_ARM64 -DWEBRTC_HAS_NEON -DWEBRTC_LIBRARY_IMPL -DWEBRTC_NON_STATIC_TRACE_EVENT_HANDLERS=1 -DWEBRTC_POSIX -DWEBRTC_MAC -DWEBRTC_IOS -DABSL_ALLOCATOR_NOTHROW=1 -I../.. -Igen -I../../third_party/abseil-cpp -fno-strict-aliasing --param=ssp-buffer-size=4 -fstack-protector -fcolor-diagnostics -fmerge-all-constants -fcrash-diagnostics-dir=../../tools/clang/crashreports -Xclang -mllvm -Xclang -instcombine-lower-dbg-declare=0 -fcomplete-member-pointers -arch arm64 -fno-experimental-isel -Wno-builtin-macro-redefined -D__DATE__= -D__TIME__= -D__TIMESTAMP__= -no-canonical-prefixes -Wall -Werror -Wextra -Wimplicit-fallthrough -Wthread-safety -Wextra-semi -Wunguarded-availability -Wundeclared-selector -Wno-missing-field-initializers -Wno-unused-parameter -Wno-c++11-narrowing -Wno-unneeded-internal-declaration -Wno-undefined-var-template -Wno-ignored-pragma-optimize -O0 -fno-omit-frame-pointer -g2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk -stdlib=libc++ -miphoneos-version-min=10.0 -fvisibility=hidden -Wheader-hygiene -Wstring-conversion -Wtautological-overlap-compare -Wexit-time-destructors -Wglobal-constructors -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wc++11-narrowing -Wimplicit-fallthrough -Wthread-safety -Winconsistent-missing-override -Wundef -Wunused-lambda-capture -Wno-shorten-64-to-32 -Wno-undefined-bool-conversion -Wno-tautological-undefined-compare -std=c++11 -fno-exceptions -fno-rtti -nostdinc++ -isystem../../buildtools/third_party/libc++/trunk/include -isystem../../buildtools/third_party/libc++abi/trunk/include -fvisibility-inlines-hidden -Wnon-virtual-dtor -Woverloaded-virtual -c ../../api/audio_codecs/audio_decoder.cc -o obj/api/audio_codecs/audio_codecs_api/audio_decoder.o
+/bin/sh: ../../third_party/llvm-build/Release+Asserts/bin/clang++: No such file or directory
+[3/2732] CXX obj/api/audio_codecs/audio_codecs_api/audio_encoder.o
+FAILED: obj/api/audio_codecs/audio_codecs_api/audio_encoder.o 
+../../third_party/llvm-build/Release+Asserts/bin/clang++ -MMD -MF obj/api/audio_codecs/audio_codecs_api/audio_encoder.o.d -DNO_TCMALLOC -DCHROMIUM_BUILD -DCR_XCODE_VERSION=1020 -DCR_CLANG_REVISION=\"357692-1\" -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D_LIBCPP_ABI_UNSTABLE -D_LIBCPP_DISABLE_VISIBILITY_ANNOTATIONS -D_LIBCXXABI_DISABLE_VISIBILITY_ANNOTATIONS -D_LIBCPP_ENABLE_NODISCARD -DCR_LIBCXX_REVISION=358423 -D_DEBUG -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -DWEBRTC_ENABLE_PROTOBUF=1 -DWEBRTC_INCLUDE_INTERNAL_AUDIO_DEVICE -DRTC_ENABLE_VP9 -DHAVE_SCTP -DWEBRTC_ARCH_ARM64 -DWEBRTC_HAS_NEON -DWEBRTC_LIBRARY_IMPL -DWEBRTC_NON_STATIC_TRACE_EVENT_HANDLERS=1 -DWEBRTC_POSIX -DWEBRTC_MAC -DWEBRTC_IOS -DABSL_ALLOCATOR_NOTHROW=1 -I../.. -Igen -I../../third_party/abseil-cpp -fno-strict-aliasing --param=ssp-buffer-size=4 -fstack-protector -fcolor-diagnostics -fmerge-all-constants -fcrash-diagnostics-dir=../../tools/clang/crashreports -Xclang -mllvm -Xclang -instcombine-lower-dbg-declare=0 -fcomplete-member-pointers -arch arm64 -fno-experimental-isel -Wno-builtin-macro-redefined -D__DATE__= -D__TIME__= -D__TIMESTAMP__= -no-canonical-prefixes -Wall -Werror -Wextra -Wimplicit-fallthrough -Wthread-safety -Wextra-semi -Wunguarded-availability -Wundeclared-selector -Wno-missing-field-initializers -Wno-unused-parameter -Wno-c++11-narrowing -Wno-unneeded-internal-declaration -Wno-undefined-var-template -Wno-ignored-pragma-optimize -O0 -fno-omit-frame-pointer -g2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk -stdlib=libc++ -miphoneos-version-min=10.0 -fvisibility=hidden -Wheader-hygiene -Wstring-conversion -Wtautological-overlap-compare -Wexit-time-destructors -Wglobal-constructors -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wc++11-narrowing -Wimplicit-fallthrough -Wthread-safety -Winconsistent-missing-override -Wundef -Wunused-lambda-capture -Wno-shorten-64-to-32 -Wno-undefined-bool-conversion -Wno-tautological-undefined-compare -std=c++11 -fno-exceptions -fno-rtti -nostdinc++ -isystem../../buildtools/third_party/libc++/trunk/include -isystem../../buildtools/third_party/libc++abi/trunk/include -fvisibility-inlines-hidden -Wnon-virtual-dtor -Woverloaded-virtual -c ../../api/audio_codecs/audio_encoder.cc -o obj/api/audio_codecs/audio_codecs_api/audio_encoder.o
+/bin/sh: ../../third_party/llvm-build/Release+Asserts/bin/clang++: No such file or directory
+[6/2732] CXX obj/api/audio_codecs/ilbc...udio_encoder_ilbc/audio_encoder_ilbc.o
+FAILED: obj/api/audio_codecs/ilbc/audio_encoder_ilbc/audio_encoder_ilbc.o 
+../../third_party/llvm-build/Release+Asserts/bin/clang++ -MMD -MF obj/api/audio_codecs/ilbc/audio_encoder_ilbc/audio_encoder_ilbc.o.d -DNO_TCMALLOC -DCHROMIUM_BUILD -DCR_XCODE_VERSION=1020 -DCR_CLANG_REVISION=\"357692-1\" -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D_LIBCPP_ABI_UNSTABLE -D_LIBCPP_DISABLE_VISIBILITY_ANNOTATIONS -D_LIBCXXABI_DISABLE_VISIBILITY_ANNOTATIONS -D_LIBCPP_ENABLE_NODISCARD -DCR_LIBCXX_REVISION=358423 -D_DEBUG -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -DWEBRTC_ENABLE_PROTOBUF=1 -DWEBRTC_INCLUDE_INTERNAL_AUDIO_DEVICE -DRTC_ENABLE_VP9 -DHAVE_SCTP -DWEBRTC_ARCH_ARM64 -DWEBRTC_HAS_NEON -DWEBRTC_LIBRARY_IMPL -DWEBRTC_NON_STATIC_TRACE_EVENT_HANDLERS=1 -DWEBRTC_POSIX -DWEBRTC_MAC -DWEBRTC_IOS -DABSL_ALLOCATOR_NOTHROW=1 -I../.. -Igen -I../../third_party/abseil-cpp -fno-strict-aliasing --param=ssp-buffer-size=4 -fstack-protector -fcolor-diagnostics -fmerge-all-constants -fcrash-diagnostics-dir=../../tools/clang/crashreports -Xclang -mllvm -Xclang -instcombine-lower-dbg-declare=0 -fcomplete-member-pointers -arch arm64 -fno-experimental-isel -Wno-builtin-macro-redefined -D__DATE__= -D__TIME__= -D__TIMESTAMP__= -no-canonical-prefixes -Wall -Werror -Wextra -Wimplicit-fallthrough -Wthread-safety -Wextra-semi -Wunguarded-availability -Wundeclared-selector -Wno-missing-field-initializers -Wno-unused-parameter -Wno-c++11-narrowing -Wno-unneeded-internal-declaration -Wno-undefined-var-template -Wno-ignored-pragma-optimize -O0 -fno-omit-frame-pointer -g2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk -stdlib=libc++ -miphoneos-version-min=10.0 -fvisibility=hidden -Wheader-hygiene -Wstring-conversion -Wtautological-overlap-compare -Wexit-time-destructors -Wglobal-constructors -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wc++11-narrowing -Wimplicit-fallthrough -Wthread-safety -Winconsistent-missing-override -Wundef -Wunused-lambda-capture -Wno-shorten-64-to-32 -Wno-undefined-bool-conversion -Wno-tautological-undefined-compare -std=c++11 -fno-exceptions -fno-rtti -nostdinc++ -isystem../../buildtools/third_party/libc++/trunk/include -isystem../../buildtools/third_party/libc++abi/trunk/include -fvisibility-inlines-hidden -Wnon-virtual-dtor -Woverloaded-virtual -c ../../api/audio_codecs/ilbc/audio_encoder_ilbc.cc -o obj/api/audio_codecs/ilbc/audio_encoder_ilbc/audio_encoder_ilbc.o
+/bin/sh: ../../third_party/llvm-build/Release+Asserts/bin/clang++: No such file or directory
+ninja: build stopped: subcommand failed.
+suntongmiandeMacBook-Pro:src suntongmian$ 
+```
+
+## step 3
+
+编译 WebRTC 库文件的方法有2种，分别为 ninja 命令行，python 脚本。
+
+### 方法 1
+
+使用 `ninja` 命令行编译，在终端执行命令
+
+```
+ninja -C out/ios framework_objc
+```
+
+生成的库文件在 `out/ios` 目录下。
+
+### 方法 2
+
+使用 python 脚本 `/src/tools_webrtc/ios/build_ios_libs.py` 编译，在终端执行命令
+
+```
+python tools_webrtc/ios/build_ios_libs.py --bitcode
+```
+
+生成的库文件在 `out_ios_lib` 目录下。
 
 > # 参考文献
 
@@ -694,15 +792,27 @@ suntongmiandeMacBook-Pro:src suntongmian$
 
 [4] [WebRTC 1.0: Real-time Communication Between Browsers](https://www.w3.org/TR/webrtc/), W3C Candidate Recommendation 27 September 2018
 
-[5] [WebRTC Release Notes](https://webrtc.org/release-notes/) 
+[5] [WebRTC SRC](https://webrtc.googlesource.com/src)
 
-[6] [WebRTC Native Code, Development](https://webrtc.org/native-code/development/)
+[6] [WebRTC Release Notes](https://webrtc.org/release-notes/) 
 
-[7] [WebRTC Native Code, iOS](https://webrtc.org/native-code/ios/)
+[7] [WebRTC Native Code, Development](https://webrtc.org/native-code/development/)
 
-[8] [Using depot_tools](https://www.chromium.org/developers/how-tos/depottools)
+[8] [WebRTC Native Code, iOS](https://webrtc.org/native-code/ios/)
 
-[9] [depot_tools_tutorial(7) Manual Page](https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html)
+[9] [Using depot_tools](https://www.chromium.org/developers/how-tos/depottools)
 
-[10] [MAC 终端走代理服务器](https://blog.csdn.net/jiajiayouba/article/details/81453398)
+[10] [depot_tools_tutorial(7) Manual Page](https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html)
+
+[11] [MAC 终端走代理服务器](https://blog.csdn.net/jiajiayouba/article/details/81453398)
+
+[12] [GN](https://gn.googlesource.com/gn/+/master/README.md)
+
+[13] [Ninja](https://ninja-build.org/)
+
+[14] [chromium中的GN构建系统](https://blog.csdn.net/mogoweb/article/details/73650218)
+
+[15] [Chromium GN构建工具的使用](https://www.wolfcstech.com/2016/11/16/ChromiumGN%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/)
+
+[16] [【Git学习笔记】Git冲突：commit your changes or stash them before you can merge.](https://blog.csdn.net/liuchunming033/article/details/45368237)
 
