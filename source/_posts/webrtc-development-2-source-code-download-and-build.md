@@ -26,7 +26,7 @@ WebRTC 是一组协议和 API。WebRTC 的起源可追溯到 2011年，经过六
 
 WebRTC 支持 Windows, Mac OS X, Linux, Android 和 iOS 平台，这里以 iOS 平台为例来描述 WebRTC 的源码下载和编译过程。
 
-> # 选择 Release 版本
+> # 一、选择 Release 版本
 
 ## step 1
 
@@ -104,7 +104,7 @@ tree: 36ee311fa41a5d60ab98d87273f210ac90ed3fdf
 
 获取到该分支的最新提交记录：**commit	741f9a0679bc70682b056004f8421879352d1a8d**。后面下载源码的时候要用到这个 commit 编号。
 
-> # 安装 depot_tools 工具包
+> # 二、安装 depot_tools 工具包
 
 下载源码的时候，要用到 depot_tools 工具包，这是 Chromium 官方推荐的工具包，具备下载、同步、编译、上传代码等功能。depot_tools 的详细介绍见 [Using depot_tools](https://www.chromium.org/developers/how-tos/depottools)。depot_tools 包含如下工具包：
 
@@ -271,7 +271,11 @@ export PATH=$PATH:/path/depot_tools
 
 其中，path 为上一步通过 pwd 命令获取的 depot_tools 文件夹所在目录。
 
-在终端执行如下命令
+在终端执行命令
+
+```
+export PATH=$PATH:/Users/suntongmian/Documents/develop/webrtc/depot_tools
+```
 
 ```
 suntongmiandeMacBook-Pro:webrtc suntongmian$ export PATH=$PATH:/Users/suntongmian/Documents/develop/webrtc/depot_tools
@@ -335,7 +339,7 @@ suntongmiandeMacBook-Pro:webrtc suntongmian$
 
 打印上面的信息，说明 depot_tools 工具包已经成功安装。接下来就可以通过 depot_tools 工具下载 WebRTC 源码了。
 
-> # 下载 WebRTC 源码
+> # 三、下载 WebRTC 源码
 
 WebRTC 文件量较大，在下载之前，磁盘的剩余可用容量要满足：
 
@@ -683,7 +687,7 @@ Date:   Wed Apr 3 20:20:42 2019 +0200
 suntongmiandeMacBook-Pro:src suntongmian$ 
 ```
 
-> # 执行编译
+> # 四、执行编译
 
 在执行编译前，我们需要配置好编译的参数和环境，生产出构建文件。这里就需要用到 [GN](https://gn.googlesource.com/gn/+/master/README.md) 这个工具了。GN 是一个为 Ninja 生成构建文件的元构建系统。[Ninja](https://ninja-build.org/) 是一个小型构建系统，特点是构建速度快。
 
