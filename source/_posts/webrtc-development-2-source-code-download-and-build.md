@@ -762,9 +762,138 @@ ninja: build stopped: subcommand failed.
 suntongmiandeMacBook-Pro:src suntongmian$ 
 ```
 
+出现错误 “/bin/sh: ../../third_party/llvm-build/Release+Asserts/bin/clang++: No such file or directory”。原因是 `/src/third_party/llvm-build` 目录下找不到可执行文件 clang++。
+
+先查看 `/src/third_party/llvm-build` 目录下的文件，在终端执行命令
+
+```
+ls third_party/llvm-build
+```
+
+```
+suntongmiandeMacBook-Pro:src suntongmian$ ls third_party/llvm-build
+cr_build_revision
+suntongmiandeMacBook-Pro:src suntongmian$
+```
+
+发现确实没有可执行文件 `clang++`。 那就手动下载文件包，放置到对应的目录下。下载地址为 [https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz](https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz)，在终端执行命令
+
+```
+curl https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz -o third_party/llvm-build/clang-359912-2.tgz
+```
+
+```
+suntongmiandeMacBook-Pro:src suntongmian$ curl https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz -o third_party/llvm-build/clang-359912-2.tgz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 27.9M  100 27.9M    0     0   956k      0  0:00:29  0:00:29 --:--:--  915k
+suntongmiandeMacBook-Pro:src suntongmian$ 
+```
+
+将下载的 clang-359912-2.tgz 压缩包解压并根据报错信息重命名为 `Release+Asserts`，在终端执行命令
+
+```
+ls third_party/llvm-build
+mkdir third_party/llvm-build/Release+Asserts
+tar zxvf third_party/llvm-build/clang-359912-2.tgz -C third_party/llvm-build/Release+Asserts
+```
+
+```
+suntongmiandeMacBook-Pro:src suntongmian$ ls third_party/llvm-build
+clang-359912-2.tgz	cr_build_revision
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ mkdir third_party/llvm-build/Release+Asserts
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ tar zxvf third_party/llvm-build/clang-359912-2.tgz -C third_party/llvm-build/Release+Asserts
+x bin/
+x bin/clang
+x bin/clang++
+x bin/clang-cl
+x bin/llvm-pdbutil
+x bin/llvm-symbolizer
+x bin/llvm-undname
+x lib/
+x lib/clang/
+x lib/clang/9.0.0/
+x lib/clang/9.0.0/aarch64-fuchsia/
+
+...
+
+x include/c++/v1/ios
+x include/c++/v1/iosfwd
+x include/c++/v1/iostream
+
+...
+
+x include/c++/v1/support/android/
+x include/c++/v1/support/android/locale_bionic.h
+
+...
+
+x include/c++/v1/support/win32/
+x include/c++/v1/support/win32/limits_msvc_win32.h
+
+...
+
+x include/c++/v1/version
+x include/c++/v1/wchar.h
+x include/c++/v1/wctype.h
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ ls third_party/llvm-build/Release+Asserts/
+bin		buildlog.txt	include		lib
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ ls third_party/llvm-build/Release+Asserts/bin
+clang		clang-cl	llvm-symbolizer
+clang++		llvm-pdbutil	llvm-undname
+suntongmiandeMacBook-Pro:src suntongmian$ 
+```
+
+再次重新在终端执行命令 
+
+```
+ninja -C out/ios AppRTCMobile
+```
+
+```
+suntongmiandeMacBook-Pro:src suntongmian$ ninja -C out/ios AppRTCMobile
+ninja: Entering directory `out/ios'
+[2735/2736] CODE SIGNING //examples:Ap...//build/toolchain/mac:ios_clang_arm64)
+FAILED: AppRTCMobile.app/AppRTCMobile AppRTCMobile.app/_CodeSignature/CodeResources AppRTCMobile.app/embedded.mobileprovision AppRTCMobile.app/Info.plist 
+python ../../build/config/ios/codesign.py code-sign-bundle -t=iphoneos -i=D78B0B7AF39CEFA4D0F673B4D3AA517D312C97CC -b=obj/examples/AppRTCMobile -e=../../build/config/ios/entitlements.plist AppRTCMobile.app -P=../../build/config/mac/plist_util.py -p=gen/examples/AppRTCMobile_generate_info_plist.plist -p=gen/examples/AppRTCMobile_partial_info.plist
+Error: no mobile provisioning profile found for "com.google.AppRTCMobile".
+ninja: build stopped: subcommand failed.
+suntongmiandeMacBook-Pro:src suntongmian$ 
+```
+
+至此，编译 APP 的过程结束了。虽然出现了 “Error: no mobile provisioning profile found for "com.google.AppRTCMobile".” 的报错，但这并不是太重要，我只关心编译过程的其它环节正确无误。这个 Error 信息表示 APP 的包名 "com.google.AppRTCMobile" 没有与之对应的苹果开发者证书的配置文件，将该 APP 安装到手机上后，会因证书配置文件的问题无法使用。这个问题很好解决，就是改 APP 的包名，在编译的时候选择对应的苹果开发者证书的配置文件后，重新编译就行了。
+
+进入目录 `/src/out/ios` 可以看下编译后产生了哪些文件。在终端执行命令
+
+```
+ls out/ios
+```
+
+```
+suntongmiandeMacBook-Pro:src suntongmian$ ls out/ios
+AppRTCMobile.app
+WebRTC.framework
+args.gn
+build.ninja
+build.ninja.d
+clang_x64
+gen
+low_bandwidth_audio_perf_test.runtime_deps
+obj
+pyproto
+toolchain.ninja
+suntongmiandeMacBook-Pro:src suntongmian$ 
+```
+
+在这一步，其实可以得到我想要的 WebRTC 库文件了，即 `WebRTC.framework`。
+
 ## step 3
 
-编译 WebRTC 库文件的方法有2种，分别为 ninja 命令行，python 脚本。
+虽然上一步，在编译 WebRTC 的演示 APP 时，可以得到 `WebRTC.framework` 库文件，但这不是正常获取库文件的路子。编译 WebRTC 库文件的方法有2种，分别为 ninja 命令行，python 脚本。
 
 ### 方法 1
 
@@ -774,7 +903,63 @@ suntongmiandeMacBook-Pro:src suntongmian$
 ninja -C out/ios framework_objc
 ```
 
-生成的库文件在 `out/ios` 目录下。
+```
+suntongmiandeMacBook-Pro:src suntongmian$ ninja -C out/ios framework_objc
+ninja: Entering directory `out/ios'
+ninja: no work to do.
+suntongmiandeMacBook-Pro:src suntongmian$
+```
+
+可以看到 “ninja: no work to do.”，为什么会提示这条信息呢？原因在于上一步骤中已经编译产生了 `WebRTC.framework` 库文件。如果想看看只编译库文件的过程，那可以不执行上一步骤中编译 APP 的环节，即不执行命令 `ninja -C out/ios AppRTCMobile`，现在的情况是我们已经执行了该条命令，那直接删掉已经存在的 `WebRTC.framework` 库文件就行了。在终端执行命令
+
+```
+rm -rf out/ios/WebRTC.framework
+```
+
+```
+suntongmiandeMacBook-Pro:src suntongmian$ rm -rf out/ios/WebRTC.framework
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ ls out/ios
+AppRTCMobile.app
+args.gn
+build.ninja
+build.ninja.d
+clang_x64
+gen
+low_bandwidth_audio_perf_test.runtime_deps
+obj
+pyproto
+toolchain.ninja
+suntongmiandeMacBook-Pro:src suntongmian$ 
+```
+
+再次在终端执行命令
+
+```
+ninja -C out/ios framework_objc
+```
+
+```
+suntongmiandeMacBook-Pro:src suntongmian$ ninja -C out/ios framework_objc
+ninja: Entering directory `out/ios'
+[97/97] STAMP obj/sdk/framework_objc.stamp
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ ls out/ios
+AppRTCMobile.app
+WebRTC.framework
+args.gn
+build.ninja
+build.ninja.d
+clang_x64
+gen
+low_bandwidth_audio_perf_test.runtime_deps
+obj
+pyproto
+toolchain.ninja
+suntongmiandeMacBook-Pro:src suntongmian$ 
+```
+
+生成的 `WebRTC.framework` 库文件在 `out/ios` 目录下。
 
 ### 方法 2
 
@@ -785,6 +970,36 @@ python tools_webrtc/ios/build_ios_libs.py --bitcode
 ```
 
 生成的库文件在 `out_ios_lib` 目录下。
+
+> # 五、总结
+
+编译 WebRTC 库的步骤就那么几步，但实际我们在编译的过程中会遇到各种各样的问题，看似简单的事情变得很是折磨人。出现问题并不可怕，根据报错的信息，耐心仔细检查、搜集资料、寻求帮助、反复尝试，是可以解决问题的。解决问题的过程中，切忌浮躁，没有一个平稳的心态，事情会变得一波多折。
+
+本文篇幅很长，详细记录了每一步操作，可以方便自己以后回顾，也能给看该文的同行一些启发。为方便浏览，总结编译步骤如下：
+
+第一步：从 WebRTC 的 [Release Notes](https://webrtc.org/release-notes/) 的 release 版本中选择版本，获取版本的 commit 编号
+
+第二步：安装 depot_tools，配置环境变量
+
+```
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+export PATH=$PATH:/Users/suntongmian/Documents/develop/webrtc/depot_tools
+```
+
+第三步：下载 WebRTC 源码
+
+```
+fetch --nohooks webrtc_ios
+gclient sync
+```
+
+第四步：编译 WebRTC
+
+```
+gn gen out/ios --args='target_os="ios" target_cpu="arm64" is_debug=true'
+ninja -C out/ios framework_objc
+```
+
 
 > # 参考文献
 
@@ -819,4 +1034,6 @@ python tools_webrtc/ios/build_ios_libs.py --bitcode
 [15] [Chromium GN构建工具的使用](https://www.wolfcstech.com/2016/11/16/ChromiumGN%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/)
 
 [16] [【Git学习笔记】Git冲突：commit your changes or stash them before you can merge.](https://blog.csdn.net/liuchunming033/article/details/45368237)
+
+[17] [Download a file with curl on Linux / Unix command line](https://www.cyberciti.biz/faq/download-a-file-with-curl-on-linux-unix-command-line/)
 
