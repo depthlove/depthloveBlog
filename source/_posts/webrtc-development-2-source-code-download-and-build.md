@@ -411,7 +411,7 @@ suntongmiandeMacBook-Pro:src suntongmian$
 
 **出现了错误 “Error: Command '/usr/bin/python src/tools/clang/scripts/update.py'”，暂时不用管，继续后续的步骤。**
 
-执行结果中的 `src/tools/clang/scripts/update.p`, [https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz](https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz) 后面的步骤会用到。
+执行结果中的 `src/tools/clang/scripts/update.py`, [https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz](https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz) 后面的步骤会用到。
 
 > # 三、执行编译
 
