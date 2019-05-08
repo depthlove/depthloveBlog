@@ -351,39 +351,67 @@ gclient sync
 这条命令执行时，要下载的文件比较多，需要耐心等待命令的执行结果。
 
 ```
-suntongmiandeMacBook-Pro:webrtc suntongmian$ gclient sync
-Syncing projects: 100% (38/38), done.                                                     
+suntongmiandeMacBook-Pro:src suntongmian$ gclient sync
+Syncing projects: 100% (38/38), done.                                           
 
 ________ running '/usr/bin/python src/build/mac_toolchain.py' in '/Users/suntongmian/Documents/develop/webrtc'
 Skipping Mac toolchain installation for mac
 
 ________ running '/usr/bin/python src/tools/clang/scripts/update.py' in '/Users/suntongmian/Documents/develop/webrtc'
-Downloading https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-357692-1.tgz 
+Downloading https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz 
 <urlopen error [Errno 54] Connection reset by peer>
 Retrying in 5 s ...
-Downloading https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-357692-1.tgz 
-<urlopen error [Errno 54] Connection reset by peer>
-Retrying in 10 s ...
-Downloading https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-357692-1.tgz 
-<urlopen error [Errno 54] Connection reset by peer>
-Retrying in 20 s ...
-Downloading https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-357692-1.tgz Traceback (most recent call last):
+Downloading https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz Traceback (most recent call last):
   File "src/tools/clang/scripts/update.py", line 322, in <module>
     sys.exit(main())
   File "src/tools/clang/scripts/update.py", line 318, in main
     return UpdateClang()
- 
- ...
-   
+  File "src/tools/clang/scripts/update.py", line 252, in UpdateClang
+    DownloadAndUnpackClangPackage(sys.platform, LLVM_BUILD_DIR)
+  File "src/tools/clang/scripts/update.py", line 171, in DownloadAndUnpackClangPackage
+    DownloadAndUnpack(cds_full_url, output_dir, path_prefix)
+  File "src/tools/clang/scripts/update.py", line 141, in DownloadAndUnpack
+    DownloadUrl(url, f)
+  File "src/tools/clang/scripts/update.py", line 100, in DownloadUrl
+    response = urllib.urlopen(url)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 449, in _open
+    '_open', req)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 1240, in https_open
+    context=self._context)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/urllib2.py", line 1194, in do_open
+    h.request(req.get_method(), req.get_selector(), req.data, headers)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 1053, in request
+    self._send_request(method, url, body, headers)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 1093, in _send_request
+    self.endheaders(body)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 1049, in endheaders
+    self._send_output(message_body)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 893, in _send_output
+    self.send(msg)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 855, in send
+    self.connect()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 1266, in connect
+    HTTPConnection.connect(self)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 835, in connect
+    self._tunnel()
   File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 812, in _tunnel
     (version, code, message) = response._read_status()
   File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 417, in _read_status
     raise BadStatusLine(line)
 httplib.BadStatusLine: ''
 Error: Command '/usr/bin/python src/tools/clang/scripts/update.py' returned non-zero exit status 1 in /Users/suntongmian/Documents/develop/webrtc
-Hook '/usr/bin/python src/tools/clang/scripts/update.py' took 35.18 secs
-suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ 
 ```
+
+**出现了错误 “Error: Command '/usr/bin/python src/tools/clang/scripts/update.py'”，暂时不用管，继续后续的步骤。**
+
+执行结果中的 `src/tools/clang/scripts/update.p`, [https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz](https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz) 后面的步骤会用到。
 
 > # 三、执行编译
 
@@ -471,18 +499,18 @@ cr_build_revision
 suntongmiandeMacBook-Pro:src suntongmian$
 ```
 
-发现确实没有可执行文件 `clang++`。 那就手动下载文件包，放置到对应的目录下。下载地址为 [https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-357692-1.tgz](https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-357692-1.tgz)，在终端执行命令
+发现确实没有可执行文件 `clang++`。 那就手动下载文件包，放置到对应的目录下。根据 **“二、下载 WebRTC 源码”** 的 **step 2** 命令执行结果中提到的的下载地址 [https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz](https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz)，在终端执行命令
 
 ```
-curl https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-357692-1.tgz -o third_party/llvm-build/clang.tgz
+curl https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz -o third_party/llvm-build/clang.tgz
 ```
 
 ```
-suntongmiandeMacBook-Pro:src suntongmian$ curl https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-357692-1.tgz -o third_party/llvm-build/clang.tgz
+suntongmiandeMacBook-Pro:src suntongmian$ curl https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-359912-2.tgz -o third_party/llvm-build/clang.tgz
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100 27.9M  100 27.9M    0     0   956k      0  0:00:29  0:00:29 --:--:--  915k
-suntongmiandeMacBook-Pro:src suntongmian$ 
+100 27.9M  100 27.9M    0     0  1167k      0  0:00:24  0:00:24 --:--:-- 1469k
+suntongmiandeMacBook-Pro:src suntongmian$
 ```
 
 将下载的 clang.tgz 压缩包解压并根据报错信息重命名为 `Release+Asserts`，在终端执行命令
@@ -531,7 +559,133 @@ clang++		llvm-pdbutil	llvm-undname
 suntongmiandeMacBook-Pro:src suntongmian$ 
 ```
 
-再次重新在终端执行命令 
+**为什么要将下载的 clang.tgz 压缩包解压并根据报错信息重命名为 `Release+Asserts`？** 这是依据 **“二、下载 WebRTC 源码”** 的 **step 2** 命令执行结果中提到的信息 `src/tools/clang/scripts/update.py`，在终端执行命令查看该脚本的信息
+
+```
+cat tools/clang/scripts/update.py
+```
+
+```
+suntongmiandeMacBook-Pro:src suntongmian$ cat tools/clang/scripts/update.py
+#!/usr/bin/env python
+# Copyright (c) 2012 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+"""This script is used to download prebuilt clang binaries. It runs as a
+"gclient hook" in Chromium checkouts.
+
+It can also be run stand-alone as a convenient way of installing a well-tested
+near-tip-of-tree clang version:
+
+  $ curl -s https://raw.githubusercontent.com/chromium/chromium/master/tools/clang/scripts/update.py | python - --clang-dir=.
+"""
+
+# TODO: Running stand-alone won't work on Windows due to the dia dll copying.
+
+from __future__ import print_function
+
+... 
+
+try:
+  import urllib2 as urllib
+except ImportError: # For Py3 compatibility
+  import urllib.request as urllib
+  import urllib.error as urllib
+
+import zipfile
+
+
+# Do NOT CHANGE this if you don't know what you're doing -- see
+# https://chromium.googlesource.com/chromium/src/+/master/docs/updating_clang.md
+# Reverting problematic clang rolls is safe, though.
+CLANG_REVISION = '359912'
+CLANG_SUB_REVISION = 2
+
+PACKAGE_VERSION = '%s-%s' % (CLANG_REVISION, CLANG_SUB_REVISION)
+RELEASE_VERSION = '9.0.0'
+
+CDS_URL = os.environ.get('CDS_CLANG_BUCKET_OVERRIDE',
+    'https://commondatastorage.googleapis.com/chromium-browser-clang')
+
+# Path constants. (All of these should be absolute paths.)
+THIS_DIR = os.path.abspath(os.path.dirname(__file__))
+CHROMIUM_DIR = os.path.abspath(os.path.join(THIS_DIR, '..', '..', '..'))
+LLVM_BUILD_DIR = os.path.join(CHROMIUM_DIR, 'third_party', 'llvm-build',
+                              'Release+Asserts')
+
+STAMP_FILE = os.path.normpath(
+    os.path.join(LLVM_BUILD_DIR, '..', 'cr_build_revision'))
+FORCE_HEAD_REVISION_FILE = os.path.normpath(os.path.join(LLVM_BUILD_DIR, '..',
+                                                   'force_head_revision'))
+
+
+
+def DownloadUrl(url, output_file):
+  """Download url into output_file."""
+  CHUNK_SIZE = 4096
+  TOTAL_DOTS = 10
+  num_retries = 3
+  retry_wait_s = 5  # Doubled at each retry.
+
+  while True:
+    try:
+      sys.stdout.write('Downloading %s ' % url)
+      sys.stdout.flush()
+      response = urllib.urlopen(url)
+      total_size = int(response.info().getheader('Content-Length').strip())
+      bytes_done = 0
+      dots_printed = 0     
+      
+...
+
+    except urllib.URLError as e:
+      sys.stdout.write('\n')
+      print(e)
+      if num_retries == 0 or isinstance(e, urllib.HTTPError) and e.code == 404:
+        raise e
+      num_retries -= 1
+      print('Retrying in %d s ...' % retry_wait_s)
+
+...
+
+def DownloadAndUnpack(url, output_dir, path_prefix=None):
+  """Download an archive from url and extract into output_dir. If path_prefix 
+
+def DownloadAndUnpackClangPackage(platform, output_dir, runtimes_only=False):
+  cds_file = "clang-%s.tgz" %  PACKAGE_VERSION
+
+...
+
+def UpdateClang():
+  GCLIENT_CONFIG = os.path.join(os.path.dirname(CHROMIUM_DIR), '.gclient')
+
+...
+
+  DownloadAndUnpackClangPackage(sys.platform, LLVM_BUILD_DIR)
+
+...
+
+  if args.llvm_force_head_revision:
+    print('--llvm-force-head-revision can only be used for --print-revision')
+    return 1
+
+  if args.clang_dir:
+    global LLVM_BUILD_DIR, STAMP_FILE
+    LLVM_BUILD_DIR = os.path.abspath(args.clang_dir)
+    STAMP_FILE = os.path.join(LLVM_BUILD_DIR, 'cr_build_revision')
+
+  return UpdateClang()
+
+
+if __name__ == '__main__':
+  sys.exit(main())
+suntongmiandeMacBook-Pro:src suntongmian$ 
+```
+
+从该脚本的注释信息 `This script is used to download prebuilt clang binaries` 可以得知该脚本作用就是下载 `clang` 可执行文件。其中 `clang` 的版本信息为 `CLANG_REVISION = '359912' CLANG_SUB_REVISION = 2 RELEASE_VERSION = '9.0.0'`，`llvm-build` 的目录信息为 `LLVM_BUILD_DIR = os.path.join(CHROMIUM_DIR, 'third_party', 'llvm-build', 'Release+Asserts')`。
+
+再次在终端执行命令 
 
 ```
 ninja -C out/ios AppRTCMobile
@@ -652,7 +806,60 @@ suntongmiandeMacBook-Pro:src suntongmian$
 python tools_webrtc/ios/build_ios_libs.py --bitcode
 ```
 
-生成的库文件在 `out_ios_lib` 目录下。
+```
+suntongmiandeMacBook-Pro:src suntongmian$ python tools_webrtc/ios/build_ios_libs.py --bitcode
+INFO:root:Building WebRTC with args: target_os="ios" ios_enable_code_signing=false use_xcode_clang=true is_component_build=false is_debug=false target_cpu="arm64" ios_deployment_target="10.0" rtc_libvpx_build_vp9=false enable_ios_bitcode=true use_goma=false enable_stripping=true
+Done. Made 1376 targets from 189 files in 1727ms
+INFO:root:Building target: framework_objc
+ninja: Entering directory `/Users/suntongmian/Documents/develop/webrtc/src/out_ios_libs/arm64_libs'
+[2614/2614] STAMP obj/sdk/framework_objc.stamp
+INFO:root:Building WebRTC with args: target_os="ios" ios_enable_code_signing=false use_xcode_clang=true is_component_build=false is_debug=false target_cpu="arm" ios_deployment_target="10.0" rtc_libvpx_build_vp9=false enable_ios_bitcode=true use_goma=false enable_stripping=true
+Done. Made 1377 targets from 189 files in 1953ms
+INFO:root:Building target: framework_objc
+ninja: Entering directory `/Users/suntongmian/Documents/develop/webrtc/src/out_ios_libs/arm_libs'
+[2656/2656] STAMP obj/sdk/framework_objc.stamp
+INFO:root:Building WebRTC with args: target_os="ios" ios_enable_code_signing=false use_xcode_clang=true is_component_build=false is_debug=false target_cpu="x64" ios_deployment_target="10.0" rtc_libvpx_build_vp9=false enable_ios_bitcode=true use_goma=false enable_stripping=true
+Done. Made 1402 targets from 192 files in 5101ms
+INFO:root:Building target: framework_objc
+ninja: Entering directory `/Users/suntongmian/Documents/develop/webrtc/src/out_ios_libs/x64_libs'
+[2777/2777] STAMP obj/sdk/framework_objc.stamp
+INFO:root:Building WebRTC with args: target_os="ios" ios_enable_code_signing=false use_xcode_clang=true is_component_build=false is_debug=false target_cpu="x86" ios_deployment_target="10.0" rtc_libvpx_build_vp9=false enable_ios_bitcode=true use_goma=false enable_stripping=true
+Done. Made 1402 targets from 192 files in 1754ms
+INFO:root:Building target: framework_objc
+ninja: Entering directory `/Users/suntongmian/Documents/develop/webrtc/src/out_ios_libs/x86_libs'
+[2771/2771] STAMP obj/sdk/framework_objc.stamp
+INFO:root:Merging framework slices.
+INFO:root:Done.
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ ls out_ios_libs
+WebRTC.framework	arm_libs		x86_libs
+arm64_libs		x64_libs
+suntongmiandeMacBook-Pro:src suntongmian$ 
+```
+
+生成的库文件在 `out_ios_lib` 目录下。脚本 `tools_webrtc/ios/build_ios_libs.py` 默认编译的架构是 `DEFAULT_ARCHS = ENABLED_ARCHS = ['arm64', 'arm', 'x64', 'x86']`，编译出来的库为动态库。查看库支持的架构，以及是静态库还是动态库，在终端执行命令
+
+```
+lipo -info out_ios_libs/WebRTC.framework/WebRTC
+file out_ios_libs/arm64_libs/WebRTC.framework/WebRTC
+```
+
+```
+suntongmiandeMacBook-Pro:src suntongmian$ lipo -info out_ios_libs/WebRTC.framework/WebRTC
+Architectures in the fat file: out_ios_libs/WebRTC.framework/WebRTC are: x86_64 i386 armv7 arm64 
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ file out_ios_libs/WebRTC.framework/WebRTC
+out_ios_libs/WebRTC.framework/WebRTC: Mach-O universal binary with 4 architectures: [x86_64:Mach-O 64-bit dynamically linked shared library x86_64] [arm64]
+out_ios_libs/WebRTC.framework/WebRTC (for architecture x86_64):	Mach-O 64-bit dynamically linked shared library x86_64
+out_ios_libs/WebRTC.framework/WebRTC (for architecture i386):	Mach-O dynamically linked shared library i386
+out_ios_libs/WebRTC.framework/WebRTC (for architecture armv7):	Mach-O dynamically linked shared library arm_v7
+out_ios_libs/WebRTC.framework/WebRTC (for architecture arm64):	Mach-O 64-bit dynamically linked shared library arm64
+suntongmiandeMacBook-Pro:src suntongmian$ 
+```
+
+**提示：使用了动态库的 APP 在上架 APP Store 时，会报错不支持模拟器架构 `['x64', 'x86']`，所以，需要剔除动态库中的模拟器架构，只使用真机架构 ['arm64', 'arm']。**
+
+可以修改脚本 `tools_webrtc/ios/build_ios_libs.py` 中的参数，将编译的架构改成 `DEFAULT_ARCHS = ENABLED_ARCHS = ['arm64']`。为什么去掉了 arm？因为现在人们使用的苹果设备几乎都是 arm64 架构了，arm 架构的苹果设备几乎绝迹，去掉 arm，也可以减轻 WebRTC 库的体积。
 
 > # 四、总结
 
@@ -676,11 +883,19 @@ gclient sync
 
 第三步：编译 WebRTC
 
+方法 1
+
 ```
 gn gen out/ios --args='target_os="ios" target_cpu="arm64" is_debug=true'
 ninja -C out/ios framework_objc
 ```
 
+方法 2
+
+```
+gn gen out/ios --args='target_os="ios" target_cpu="arm64" is_debug=true'
+python tools_webrtc/ios/build_ios_libs.py --bitcode
+```
 
 > # 参考文献
 
@@ -706,15 +921,17 @@ ninja -C out/ios framework_objc
 
 [11] [MAC 终端走代理服务器](https://blog.csdn.net/jiajiayouba/article/details/81453398)
 
-[12] [GN](https://gn.googlesource.com/gn/+/master/README.md)
+[12] [让终端走代理的几种方法](https://blog.fazero.me/2015/09/15/%E8%AE%A9%E7%BB%88%E7%AB%AF%E8%B5%B0%E4%BB%A3%E7%90%86%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/)
 
-[13] [Ninja](https://ninja-build.org/)
+[13] [GN](https://gn.googlesource.com/gn/+/master/README.md)
 
-[14] [chromium中的GN构建系统](https://blog.csdn.net/mogoweb/article/details/73650218)
+[14] [Ninja](https://ninja-build.org/)
 
-[15] [Chromium GN构建工具的使用](https://www.wolfcstech.com/2016/11/16/ChromiumGN%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/)
+[15] [chromium中的GN构建系统](https://blog.csdn.net/mogoweb/article/details/73650218)
 
-[16] [【Git学习笔记】Git冲突：commit your changes or stash them before you can merge.](https://blog.csdn.net/liuchunming033/article/details/45368237)
+[16] [Chromium GN构建工具的使用](https://www.wolfcstech.com/2016/11/16/ChromiumGN%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/)
 
-[17] [Download a file with curl on Linux / Unix command line](https://www.cyberciti.biz/faq/download-a-file-with-curl-on-linux-unix-command-line/)
+[17] [【Git学习笔记】Git冲突：commit your changes or stash them before you can merge.](https://blog.csdn.net/liuchunming033/article/details/45368237)
+
+[18] [Download a file with curl on Linux / Unix command line](https://www.cyberciti.biz/faq/download-a-file-with-curl-on-linux-unix-command-line/)
 
