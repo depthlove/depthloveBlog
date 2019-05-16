@@ -3,7 +3,8 @@ title: Mac 上安装 Spark
 date: 2018-03-18 14:35:25
 tags:
 - 大数据
-- 机器学习
+categories:
+- 大数据
 ---
 
 ## 1. 安装 JDK
