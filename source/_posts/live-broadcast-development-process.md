@@ -69,5 +69,3 @@ FFmpeg+fdk_aac 来编码音频数据 PCM 输出 AAC 数据。
 采用 OpenGL 渲染 YUV 数据，呈现视频画面。将PCM送入设备的硬件资源播放，产生声音。
 
 iOS 播放流式音频，使用 Audio Queue 的方式，即，利用 AudioToolbox.Framework 框架。
-
-

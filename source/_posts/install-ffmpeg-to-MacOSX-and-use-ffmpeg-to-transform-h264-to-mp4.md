@@ -1,8 +1,10 @@
+---
 title: 在Mac OSX上安装ffmpeg && ffmpeg命令行将h264封装为mp4
 date: 2015-09-24 13:09:39
 tags:
 - 音视频处理
 ---
+
 ffmpeg功能强大，可以通过命令行来对音视频进行处理。为了使用其功能，我在Mac上对其进行了安装。
 
 我的Mac OS X 系统版本：OS X Yosemite, 10.10.14

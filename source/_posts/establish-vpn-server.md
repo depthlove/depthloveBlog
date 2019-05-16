@@ -116,6 +116,3 @@ FirstWingy：[APP Store链接地址](https://itunes.apple.com/cn/app/firstwingy/
 SuperWingy：[APP Store链接地址](https://itunes.apple.com/cn/app/superwingy/id1290093815?mt=8)
 
 我要在 Mac 和 iPhone 上使用，我下载了上面的 Mac 版本，但是没有下载上面的 iPhone 版本，iPhone 版本我用的是 [Sockswitch](https://itunes.apple.com/us/app/sockswitch-shadowsocks-client/id1453207024?mt=8)
-
-
-

@@ -62,7 +62,3 @@ categories:
 Architectures in the fat file: libxxx-iOS.a are: armv7 arm64
 
 若要生成 x86_64，i386 模拟器架构，就需要在使用 Xcode 编译的时候编译相应的 x86_64，i386 库。
-	
-	
-
-

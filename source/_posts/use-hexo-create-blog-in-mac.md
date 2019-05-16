@@ -1,3 +1,4 @@
+---
 title: Mac搭建hexo博客
 date: 2015-06-12 16:16:31
 tags: hexo
@@ -229,7 +230,3 @@ hexo d == hexo deploy
 hexo s == hexo server
 
 hexo n == hexo new
-
-
-
-

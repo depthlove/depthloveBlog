@@ -16,4 +16,3 @@ tags:
 本人博客基于 [github托管平台](https://github.com/) + [hexo博客框架](https://hexo.io) + [next博客主题](https://github.com/iissnan/hexo-theme-next) + [gitment评论插件](https://github.com/imsun/gitment) 资源构建。  
 
 <p align="right">二〇一七年八月十二日，北京</p>
-

@@ -1,11 +1,13 @@
+---
 title: 笔谈FFmpeg（二）
 date: 2015-04-28 15:04:58
 tags: 
 - 音视频处理
 ---
-　　经过前面的学习对FFmpeg的基本流程已经很熟悉了，现在到了掌握其中细节的时候了，用FFmpeg做播放器解码操作中，涉及到了一些结构体，这些结构之间到底有什么关系，它们是怎样协同工作的呢。文章 FFMPEG中最关键的结构体之间的关系 对这些结构间的关系进行了分析，详细内容如下：
 
-　　FFMPEG中结构体很多。最关键的结构体可以分成以下几类：
+经过前面的学习对FFmpeg的基本流程已经很熟悉了，现在到了掌握其中细节的时候了，用FFmpeg做播放器解码操作中，涉及到了一些结构体，这些结构之间到底有什么关系，它们是怎样协同工作的呢。文章 FFMPEG中最关键的结构体之间的关系 对这些结构间的关系进行了分析，详细内容如下：
+
+FFMPEG中结构体很多。最关键的结构体可以分成以下几类：
 　　
 <!-- more -->
 
@@ -29,11 +31,11 @@ AVFormatContext主要存储视音频封装格式中包含的信息；AVInputForm
 
 解码后数据：AVFrame
 
-　　他们之间的对应关系如下所示：
+他们之间的对应关系如下所示：
 
 ![流程图](http://img.blog.csdn.net/20130914204051125?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGVpeGlhb2h1YTEwMjA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 
-　　上面提到的这些结构到底是干嘛用的，中国传媒大学的一个博士写了一系列的结构体的分析的文章，在这里列一个列表，需要好好看下：
+上面提到的这些结构到底是干嘛用的，中国传媒大学的一个博士写了一系列的结构体的分析的文章，在这里列一个列表，需要好好看下：
 
 ##### [FFMPEG结构体分析：AVFrame](http://blog.csdn.net/leixiaohua1020/article/details/14214577)
 

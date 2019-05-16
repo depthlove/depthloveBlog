@@ -17,4 +17,3 @@ tags:
 使用librtmp发布h.264可参看文章[最简单的基于librtmp的示例：发布H.264（H.264通过RTMP发布）](http://blog.csdn.net/leixiaohua1020/article/details/42105049)，     [最简单的基于librtmp的示例：发布（FLV通过RTMP发布）](http://blog.csdn.net/leixiaohua1020/article/details/42104945)
 
 通过以上文章，就可以将采集到的音频／视频数据推送到流媒体服务器，至于观看延迟方面，需要结合实际情况区处理了。
-

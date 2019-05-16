@@ -27,4 +27,3 @@ HEVC 的采用也受到其他几个因素的影响，如与 HEVC 编码相关的
 这项调查还测量了其他编解码器的兴趣，并提到了 V-NOVA PERSEUS，Divideon xvc 和 RealNetworks RealMedia HD，尽管53.8％的受访者当前没有计划添加任何编解码器。对高动态范围（HDR）视频的兴趣似乎在迅速增长；虽然只有9.8％的受访者在2017年底发布 HDR，但计划在2018年底之前发布 HDR 的比例为50.6％，49.4％的用户没有超出标准动态范围的计划。
 
 “苹果HEVC采用的影响：基于调查的报告”，现在可以[下载](http://www.streamingmedia.com/Research/7694-The-Impact-of-Apple's-HEVC-Adoption-A-Survey-Based-Report.htm)。
-

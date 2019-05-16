@@ -1,9 +1,11 @@
+---
 title: 采用工具软件分析h264文件
 date: 2015-09-23 15:04:21
 tags:
 - 音视频处理
 ---
-　　通过文章[利用x264将iOS摄像头实时视频流编码为h264文件](https://depthlove.github.io/2015/09/17/use-x264-encode-iOS-camera-video-to-h264/) 和 [利用FFmpeg+x264将iOS摄像头实时视频流编码为h264文件](https://depthlove.github.io/2015/09/18/use-ffmpeg-and-x264-encode-iOS-camera-video-to-h264/)，实现了如何采集实时视频流并压缩为h264编码格式的文件。对于采集到h264文件，里面究竟有些什么，下面就通过工具软件来一探究竟。
+
+通过文章[利用x264将iOS摄像头实时视频流编码为h264文件](https://depthlove.github.io/2015/09/17/use-x264-encode-iOS-camera-video-to-h264/) 和 [利用FFmpeg+x264将iOS摄像头实时视频流编码为h264文件](https://depthlove.github.io/2015/09/18/use-ffmpeg-and-x264-encode-iOS-camera-video-to-h264/)，实现了如何采集实时视频流并压缩为h264编码格式的文件。对于采集到h264文件，里面究竟有些什么，下面就通过工具软件来一探究竟。
 
 * 采用文章[利用x264将iOS摄像头实时视频流编码为h264文件](https://depthlove.github.io/2015/09/17/use-x264-encode-iOS-camera-video-to-h264/)配套工程[X264-Encode-for-iOS](https://github.com/depthlove/X264-Encode-for-iOS)中的h264文件，该文件地址为[2015-09-17 18:05:20.h264](https://github.com/depthlove/X264-Encode-for-iOS/blob/master/myRecordH264Vieo/2015-09-17%2018:05:20.h264)
 
@@ -11,13 +13,13 @@ tags:
 
 <!-- more -->
 
-　　H.264 的基本流（elementary stream,ES）的结构分为两层，包括视频编码层（VCL）和网络适配层（NAL）。视频编码层负责高效的视频内容表示，而网络适配层负责以网络所要求的恰当的方式对数据进行打包和传送。引入NAL并使之与VCL分离带来的好处包括两方面：其一、使信号处理和网络传输分离，VCL 和NAL 可以在不同的处理平台上实现；其二、VCL 和NAL 分离设计，使得在不同的网络环境内，网关不需要因为网络环境不同而对VCL比特流进行重构和重编码。
-       
-　　H.264 的基本流由一系列NALU （Network Abstraction Layer Unit ）组成，不同的NALU数据量各不相同。H.264 草案指出，当数据流是储存在介质上时，**在每个NALU 前添加起始码：0x000001 或 0x00000001，用来指示一个NALU 的起始和终止位置**。在这样的机制下，在码流中检测起始码，作为一个NALU得起始标识，当检测到下一个起始码时，当前NALU结束。
+H.264 的基本流（elementary stream,ES）的结构分为两层，包括视频编码层（VCL）和网络适配层（NAL）。视频编码层负责高效的视频内容表示，而网络适配层负责以网络所要求的恰当的方式对数据进行打包和传送。引入NAL并使之与VCL分离带来的好处包括两方面：其一、使信号处理和网络传输分离，VCL 和NAL 可以在不同的处理平台上实现；其二、VCL 和NAL 分离设计，使得在不同的网络环境内，网关不需要因为网络环境不同而对VCL比特流进行重构和重编码。
 
-　　**H.264 码流中每个帧的开头的3~4个字节是H.264 的start_code（起始码），0x00000001或者0x000001。3字节的0x000001只有一种场合下使用，就是一个完整的帧被编为多个slice（片）的时候，包含这些slice的NALU 使用3字节起始码。其余场合都是4字节0x00000001的。**
+H.264 的基本流由一系列NALU （Network Abstraction Layer Unit ）组成，不同的NALU数据量各不相同。H.264 草案指出，当数据流是储存在介质上时，**在每个NALU 前添加起始码：0x000001 或 0x00000001，用来指示一个NALU 的起始和终止位置**。在这样的机制下，在码流中检测起始码，作为一个NALU得起始标识，当检测到下一个起始码时，当前NALU结束。
 
-　　每个NALU单元由一个字节的 NALU头（NALU Header）和若干个字节的载荷数据（RBSP）组成。其中NALU 头的格式如图所示：
+**H.264 码流中每个帧的开头的3~4个字节是H.264 的start_code（起始码），0x00000001或者0x000001。3字节的0x000001只有一种场合下使用，就是一个完整的帧被编为多个slice（片）的时候，包含这些slice的NALU 使用3字节起始码。其余场合都是4字节0x00000001的。**
+
+每个NALU单元由一个字节的 NALU头（NALU Header）和若干个字节的载荷数据（RBSP）组成。其中NALU 头的格式如图所示：
 
 ![img](http://images2015.cnblogs.com/blog/719115/201509/719115-20150923173814084-917352993.png)
 
@@ -37,12 +39,11 @@ h264中NALU类型取值如下图(图片来至《新一代视频压缩编码标�
 
 ![nal单元类型图](http://my.csdn.net/uploads/201205/11/1336727471_3857.png)
 
-
-　　将 [2015-09-17 18:05:20.h264](https://github.com/depthlove/X264-Encode-for-iOS/blob/master/myRecordH264Vieo/2015-09-17%2018:05:20.h264) 文件用UITraEdit打开，效果如下图
+将 [2015-09-17 18:05:20.h264](https://github.com/depthlove/X264-Encode-for-iOS/blob/master/myRecordH264Vieo/2015-09-17%2018:05:20.h264) 文件用UITraEdit打开，效果如下图
 
 ![img](http://images2015.cnblogs.com/blog/719115/201509/719115-20150923160926115-439296052.png)
 
-　　由于数据量较大，我挑选了其中3段数据来分析。
+由于数据量较大，我挑选了其中3段数据来分析。
 
 ### **分析第一段数据：**
 
@@ -74,7 +75,7 @@ nal_unit_type     |  5         |   01000     |      8            | 图像参数�
 
 * ####  **00 00 03 00**
 
-　　H.264规定，当检测到0x000000时，也可以表征当前NAL的结束。那么NAL中数据出现0x000001或0x000000时怎么办？H.264引入了防止竞争机制，如果编码器检测到NAL数据存在0x000001或0x000000时，编码器会在最后个字节前插入一个新的字节0x03，这样：
+H.264规定，当检测到0x000000时，也可以表征当前NAL的结束。那么NAL中数据出现0x000001或0x000000时怎么办？H.264引入了防止竞争机制，如果编码器检测到NAL数据存在0x000001或0x000000时，编码器会在最后个字节前插入一个新的字节0x03，这样：
 
 0x000000－>0x00000300
 
@@ -84,7 +85,7 @@ nal_unit_type     |  5         |   01000     |      8            | 图像参数�
 
 0x000003－>0x00000303
 
-　　解码器检测到0x000003时，把03抛弃，恢复原始数据（脱壳操作）。解码器在解码时，首先逐个字节读取NAL的数据，统计NAL的长度，然后再开始解码。
+解码器检测到0x000003时，把03抛弃，恢复原始数据（脱壳操作）。解码器在解码时，首先逐个字节读取NAL的数据，统计NAL的长度，然后再开始解码。
 
 ### **分析第二段数据：**
 
@@ -105,7 +106,7 @@ nal_unit_type     |  5         |   00101     |      5            | IDR图像中�
 
 IDR图像中的片，即 I帧。
 
-　　我在用UITraEdit打开的[2015-09-17 18:05:20.h264](https://github.com/depthlove/X264-Encode-for-iOS/blob/master/myRecordH264Vieo/2015-09-17%2018:05:20.h264)文件中搜索 00 00 00 01 65，没有找到该标志。搜索 00 00 01 65，存在该标志，说明一个完整的帧被编为多个slice（片）。
+我在用UITraEdit打开的[2015-09-17 18:05:20.h264](https://github.com/depthlove/X264-Encode-for-iOS/blob/master/myRecordH264Vieo/2015-09-17%2018:05:20.h264)文件中搜索 00 00 00 01 65，没有找到该标志。搜索 00 00 01 65，存在该标志，说明一个完整的帧被编为多个slice（片）。
 
 ### **分析第三段数据：**
 
@@ -125,14 +126,10 @@ nal_unit_type     |  5         |   00001     |      1            | 不分区，�
 
 在baseline的档次中nal_unit_type表示的就是P帧，因为baseline没有B帧。
 
-　　以上，就是对H264的结构和机制的一些分析。
+以上，就是对H264的结构和机制的一些分析。
 
 * 扩展阅读：
 
 [H264--1--编码原理以及I帧B帧P帧 ](http://blog.csdn.net/yangzhongxuan/article/details/8003504)
  
 [ H264--2--语法及结构 ](http://blog.csdn.net/yangzhongxuan/article/details/8003494)
-
-
-
-

@@ -280,6 +280,3 @@ DynamicRTSPServer.hh   live555MediaServer.o    output.mkv
 第一步：安装 VLC 视频播放器。我使用的是 MacBook Pro 笔记本，在笔记本上下载并安装了 VLC 视频播放器。
 
 第二步：播放视频流。在 VLC 中打开视频流地址 **rtsp://111.11.111.111/output.mkv**，即可看到 live555 服务器推送出来的视频流。
-
-
-
