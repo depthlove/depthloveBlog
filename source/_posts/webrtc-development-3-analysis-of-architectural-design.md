@@ -29,7 +29,9 @@ WebRTC 的音频部分，包含设备、编解码(Opus/iLIBC/iSAC/G722/PCM16/RED
 
 利用音频设备，可以实现声音输出，音量控制等功能。
 
-## 声音文件
+## 声音文件 media_file
+
+源代码在 webrtc\modules\media_file 目录下。
 
 该功能是可以用本地文件作为音频源，支持的格式有 PCM 和 WAV。
 
