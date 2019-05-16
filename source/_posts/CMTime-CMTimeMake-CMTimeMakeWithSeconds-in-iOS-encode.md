@@ -4,6 +4,8 @@ date: 2016-03-15 16:39:35
 tags:
 - iOS
 - 音视频处理
+categories:
+- 直播
 ---
 
 在iOS平台上使用iOS8及以上系统的VideoToolbox进行硬编码，会涉及到CMTime，CMTimeMake，CMTimeMakeWithSeconds的使用。下面说下这几个结构体的作用。

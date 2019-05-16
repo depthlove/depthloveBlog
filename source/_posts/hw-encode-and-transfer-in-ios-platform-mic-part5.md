@@ -4,4 +4,8 @@ date: 2016-03-22 10:53:23
 tags:
 - 音视频处理
 - iOS
+categories:
+- 直播
 ---
+
+<!-- more -->

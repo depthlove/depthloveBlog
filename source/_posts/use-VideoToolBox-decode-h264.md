@@ -4,6 +4,8 @@ date: 2015-10-24 15:55:12
 tags:
 - iOS
 - 音视频处理
+categories:
+- 直播
 ---
 
 以下内容摘自我博客的[编译iOS平台上使用的X264库](https://depthlove.github.io/2015/09/16/build-X264-library-for-iOS-platform/)一文。

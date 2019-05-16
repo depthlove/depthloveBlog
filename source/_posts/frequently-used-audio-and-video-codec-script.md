@@ -3,6 +3,8 @@ title: 音视频编解码中常用的编译脚本
 date: 2015-10-29 10:21:47
 tags:
 - 音视频处理
+categories:
+- 直播
 ---
 
 ### FFmpeg

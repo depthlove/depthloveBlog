@@ -3,6 +3,8 @@ title: rtmp直播推流（一）－－flv格式解析与封装
 date: 2015-11-13 17:35:27
 tags:
 - 音视频处理
+categories:
+- 直播
 ---
 
 flv文件格式分析，可参看[RTMP中FLV流到标准h264、aac的转换](http://www.cnblogs.com/chef/archive/2012/07/18/2597279.html)，该文章写的很清晰。

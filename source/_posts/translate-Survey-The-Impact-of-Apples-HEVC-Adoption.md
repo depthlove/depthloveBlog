@@ -3,6 +3,8 @@ title: 【译】调查：苹果 HEVC 采用的影响
 date: 2018-02-26 13:23:44
 tags:
 - 译文
+categories:
+- 译文
 ---
 
 英语原文：[Survey: The Impact of Apple's HEVC Adoption](http://www.streamingmedia.com/Articles/Editorial/Featured-Articles/Survey-The-Impact-of-Apples-HEVC-Adoption-122654.aspx)

@@ -3,6 +3,8 @@ title: 采用工具软件分析h264文件
 date: 2015-09-23 15:04:21
 tags:
 - 音视频处理
+categories:
+- 直播
 ---
 
 通过文章[利用x264将iOS摄像头实时视频流编码为h264文件](https://depthlove.github.io/2015/09/17/use-x264-encode-iOS-camera-video-to-h264/) 和 [利用FFmpeg+x264将iOS摄像头实时视频流编码为h264文件](https://depthlove.github.io/2015/09/18/use-ffmpeg-and-x264-encode-iOS-camera-video-to-h264/)，实现了如何采集实时视频流并压缩为h264编码格式的文件。对于采集到h264文件，里面究竟有些什么，下面就通过工具软件来一探究竟。

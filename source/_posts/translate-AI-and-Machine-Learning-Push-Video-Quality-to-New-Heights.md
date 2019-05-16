@@ -3,6 +3,8 @@ title: 【译】人工智能和机器学习将视频质量推向新的高度
 date: 2018-02-25 11:30:39
 tags:
 - 译文
+categories:
+- 译文
 ---
 
 英语原文：[AI and Machine Learning Push Video Quality to New Heights](http://www.streamingmediaglobal.com/Articles/ReadArticle.aspx?ArticleID=123274)   
