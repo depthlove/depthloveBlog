@@ -55,7 +55,7 @@ WebRTC 还提供 NetEQ 功能 --- 抖动缓冲器及丢包补偿模块，能够�
 
 ## 声音加密 voice_engine_encryption
 
-和视频一样，WebRTC也提供声音加密功能。
+和视频一样，WebRTC 也提供声音加密功能。
 
 
 > # 二、视频模块
