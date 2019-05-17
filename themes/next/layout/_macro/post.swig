@@ -265,8 +265,6 @@
     {#################}
     <div class="post-body{% if theme.han %} han-init-context{% endif %}{% if post.direction && post.direction.toLowerCase() === 'rtl' %} rtl{% endif %}" itemprop="articleBody">
 
-      {% include '../_custom/google_adsense.swig' %}
-
       {# Gallery support #}
       {% if post.photos and post.photos.length %}
         <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
@@ -293,6 +291,9 @@
               </a>
             </div>
           {% endif %}
+
+          {% include '../_custom/google_adsense.swig' %}
+
           <!--/noindex-->
         {% elif post.excerpt %}
           {{ post.excerpt }}
