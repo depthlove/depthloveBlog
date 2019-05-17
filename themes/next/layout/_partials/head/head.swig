@@ -120,6 +120,14 @@
   };
 </script>
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-2304335236058241",
+          enable_page_level_ads: true
+     });
+</script>
+
 {% if theme.custom_file_path.head %}
   {% set custom_head = '../../../../../' + theme.custom_file_path.head %}
 {% else %}
