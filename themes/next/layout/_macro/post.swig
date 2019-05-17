@@ -327,6 +327,7 @@
         {% endif %}
       {% else %}
         {{ post.content }}
+        {% include '../_custom/google_adsense.swig' %}
       {% endif %}
     </div>
 
