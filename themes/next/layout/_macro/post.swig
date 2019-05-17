@@ -326,6 +326,7 @@
           {% endif %}
         {% endif %}
       {% else %}
+        {% include '../_custom/google_adsense_embedded_mode.swig' %}
         {{ post.content }}
         {% include '../_custom/google_adsense.swig' %}
       {% endif %}
