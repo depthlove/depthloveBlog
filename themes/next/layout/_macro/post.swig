@@ -316,6 +316,7 @@
                 {{ __('post.read_more') }} &raquo;
               </a>
             </div>
+            {% include '../_custom/google_adsense.swig' %}
           {% endif %}
           <!--/noindex-->
         {% else %}
