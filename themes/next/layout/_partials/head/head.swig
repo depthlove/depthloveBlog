@@ -120,6 +120,13 @@
   };
 </script>
 
+{% if theme.custom_file_path.head %}
+  {% set custom_head = '../../../../../' + theme.custom_file_path.head %}
+{% else %}
+  {% set custom_head = '../../_custom/head.swig' %}
+{% endif %}
+{% include custom_head %}
+
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({
@@ -127,10 +134,3 @@
           enable_page_level_ads: true
      });
 </script>
-
-{% if theme.custom_file_path.head %}
-  {% set custom_head = '../../../../../' + theme.custom_file_path.head %}
-{% else %}
-  {% set custom_head = '../../_custom/head.swig' %}
-{% endif %}
-{% include custom_head %}
