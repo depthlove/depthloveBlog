@@ -263,9 +263,6 @@
     {#################}
     {### POST BODY ###}
     {#################}
-
-    {% include '../_custom/google_adsense.swig' %}
-
     <div class="post-body{% if theme.han %} han-init-context{% endif %}{% if post.direction && post.direction.toLowerCase() === 'rtl' %} rtl{% endif %}" itemprop="articleBody">
 
       {# Gallery support #}
