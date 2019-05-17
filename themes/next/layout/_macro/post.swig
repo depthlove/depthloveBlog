@@ -257,9 +257,6 @@
           {% endif %}
 
         </div>
-
-      {% include '../_custom/google_adsense.swig' %}
-
       </header>
     {% endif %}
 
@@ -267,6 +264,8 @@
     {### POST BODY ###}
     {#################}
     <div class="post-body{% if theme.han %} han-init-context{% endif %}{% if post.direction && post.direction.toLowerCase() === 'rtl' %} rtl{% endif %}" itemprop="articleBody">
+
+      {% include '../_custom/google_adsense.swig' %}
 
       {# Gallery support #}
       {% if post.photos and post.photos.length %}
