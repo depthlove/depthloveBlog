@@ -1,5 +1,7 @@
 {% if page.comments %}
 
+  {% include '../_custom/google_adsense.swig' %}
+
   {% if theme.facebook_sdk.enable and theme.facebook_comments_plugin.enable %}
     <div class="comments" id="comments">
       <div class="fb-comments"
@@ -53,5 +55,7 @@
     </div>
 
   {% endif %}
+
+  {% include '../_custom/google_adsense.swig' %}
 
 {% endif %}
