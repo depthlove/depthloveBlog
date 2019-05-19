@@ -1,6 +1,8 @@
+> # 新建广告模版
+
 新建 ~/depthloveBlog/themes/next/layout/_custom/google_adsense.swig 文件，加入广告代码
 
-
+```
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- BlogAd -->
 <ins class="adsbygoogle"
@@ -12,16 +14,16 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+```
 
 
+> # 插入广告
 
-************************************************************************************
-1. 自动广告
-************************************************************************************
+## 博客顶部广告
 
-往 ~/depthloveBlog/themes/next/layout/_partials/head/head.swig 加入广告代码
+往 ~/depthloveBlog/themes/next/layout/_partials/head/head.swig 引入 google_adsense.swig 文件，引入方式为 {% include '../_custom/google_adsense.swig' %}
 
-
+```
 {# Export some HEXO Configurations to Front-End #}
 <script id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -54,26 +56,47 @@
 {% endif %}
 {% include custom_head %}
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- BlogAd -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2304335236058241"
-     data-ad-slot="8084137562"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+{% include '../_custom/google_adsense.swig' %}
+```
 
+## 博客底部广告
 
-************************************************************************************
-2.侧边栏广告 
-************************************************************************************
+往 ~/depthloveBlog/themes/next/layout/_partials/footer.swig 引入 google_adsense.swig 文件，引入方式为 {% include '../_custom/google_adsense.swig' %}
+
+```
+{% include '../_custom/google_adsense.swig' %}
+
+<div class="copyright">{#
+#}{% set current = date(Date.now(), "YYYY") %}{#
+#}{% if theme.footer.beian.enable %}{#
+#}  {{ next_url('http://www.beian.miit.gov.cn', theme.footer.beian.icp + ' ') }}{#
+#}{% endif %}{#
+#}&copy; {% if theme.footer.since and theme.footer.since != current %}{{ theme.footer.since }} – {% endif %}{#
+#}<span itemprop="copyrightYear">{{ current }}</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-{{ theme.footer.icon.name }}"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">{{ theme.footer.copyright || author }}</span>
+
+  {% if config.symbols_count_time.total_symbols %}
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    {% if theme.symbols_count_time.item_text_total %}
+      <span class="post-meta-item-text">{{ __('symbols_count_time.count_total') + __('symbol.colon') }}</span>
+    {% endif %}
+    <span title="{{ __('symbols_count_time.count_total') }}">{#
+    #}{{ symbolsCountTotal(site) }}{#
+  #}</span>
+  {% endif %}
+```
+
+## 侧边栏广告 
 
 往 ~/depthloveBlog/themes/next/layout/_macro/sidebar.swig 引入 google_adsense.swig 文件，引入方式为 {% include '../_custom/google_adsense.swig' %}
 
-     
+```     
       {% if theme.back2top.enable and theme.back2top.sidebar %}
         <div class="back-to-top">
           <i class="fa fa-arrow-up"></i>
@@ -91,15 +114,13 @@
     <div id="sidebar-dimmer"></div>
   {% endif %}
 {% endmacro %}
+```
 
-
-************************************************************************************
-3.文章中广告
-************************************************************************************
+## 文章广告
 
 往 ~/depthloveBlog/themes/next/layout/_macro/post.swig 引入 google_adsense.swig 文件，引入方式为 {% include '../_custom/google_adsense.swig' %}
 
-        
+```        
       {% if not is_index and (post.prev or post.next) %}
         {% include '../_custom/google_adsense.swig' %}
         <div class="post-nav">
@@ -135,42 +156,7 @@
   </article>
 
 {% endmacro %}
-
-
-************************************************************************************
-博客底部广告
-************************************************************************************
-
-往 ~/depthloveBlog/themes/next/layout/_partials/footer.swig 引入 google_adsense.swig 文件，引入方式为 {% include '../_custom/google_adsense.swig' %}
-
-
-{% include '../_custom/google_adsense.swig' %}
-
-<div class="copyright">{#
-#}{% set current = date(Date.now(), "YYYY") %}{#
-#}{% if theme.footer.beian.enable %}{#
-#}  {{ next_url('http://www.beian.miit.gov.cn', theme.footer.beian.icp + ' ') }}{#
-#}{% endif %}{#
-#}&copy; {% if theme.footer.since and theme.footer.since != current %}{{ theme.footer.since }} – {% endif %}{#
-#}<span itemprop="copyrightYear">{{ current }}</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-{{ theme.footer.icon.name }}"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">{{ theme.footer.copyright || author }}</span>
-
-  {% if config.symbols_count_time.total_symbols %}
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    {% if theme.symbols_count_time.item_text_total %}
-      <span class="post-meta-item-text">{{ __('symbols_count_time.count_total') + __('symbol.colon') }}</span>
-    {% endif %}
-    <span title="{{ __('symbols_count_time.count_total') }}">{#
-    #}{{ symbolsCountTotal(site) }}{#
-  #}</span>
-  {% endif %}
-
+```
 
 
 
