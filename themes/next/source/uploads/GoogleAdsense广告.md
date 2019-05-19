@@ -158,6 +158,30 @@
 {% endmacro %}
 ```
 
+```
+          <!--/noindex-->
+        {% else %}
+          {% if post.type === 'picture' %}
+            <a href="{{ url_for(post.path) }}">{{ post.content }}</a>
+          {% else %}
+            {{ post.content }}
+          {% endif %}
+        {% endif %}
+      {% else %}
+        {% include '../_custom/google_adsense.swig' %}
+        {{ post.content }}
+      {% endif %}
+    </div>
+
+    {% if theme.related_posts.enable and (theme.related_posts.display_in_home or not is_index) %}
+      {% include '../_partials/post/post-related.swig' with { post: post } %}
+    {% endif %}
+
+    {#####################}
+    {### END POST BODY ###}
+    {#####################}
+```
+
 ## 评论区广告
 
 往 ~/depthloveBlog/themes/next/layout/_partials/comments.swig 文件，引入方式为 {% include '../_custom/google_adsense.swig' %}
