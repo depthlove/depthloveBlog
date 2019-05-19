@@ -319,15 +319,14 @@
           {% endif %}
           <!--/noindex-->
         {% else %}
-          {% include '../_custom/google_adsense.swig' %}
           {% if post.type === 'picture' %}
             <a href="{{ url_for(post.path) }}">{{ post.content }}</a>
           {% else %}
             {{ post.content }}
           {% endif %}
-          {% include '../_custom/google_adsense.swig' %}
         {% endif %}
       {% else %}
+        {% include '../_custom/google_adsense.swig' %}
         {{ post.content }}
       {% endif %}
     </div>
