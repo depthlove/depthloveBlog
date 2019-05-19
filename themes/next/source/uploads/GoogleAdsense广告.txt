@@ -1,0 +1,175 @@
+
+************************************************************************************
+1. 自动广告
+************************************************************************************
+
+往 ~/depthloveBlog/themes/next/layout/_partials/head/head.swig 加入广告代码
+
+
+{# Export some HEXO Configurations to Front-End #}
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '{{ theme.root }}',
+    scheme: '{{ theme.scheme }}',
+    version: '{{ version }}',
+    sidebar: {{ theme.sidebar | json_encode }},
+    back2top: {{ theme.back2top.enable }},
+    back2top_sidebar: {{ theme.back2top.sidebar }},
+    fancybox: {{ theme.fancybox }},
+    fastclick: {{ theme.fastclick }},
+    lazyload: {{ theme.lazyload }},
+    tabs: {{ theme.tabs.enable }},
+    motion: {{ theme.motion | json_encode }},
+    algolia: {
+      applicationID: '{{ theme.algolia.applicationID }}',
+      apiKey: '{{ theme.algolia.apiKey }}',
+      indexName: '{{ theme.algolia.indexName }}',
+      hits: {{ theme.algolia_search.hits | json_encode }},
+      labels: {{ theme.algolia_search.labels | json_encode }}
+    }
+  };
+</script>
+
+{% if theme.custom_file_path.head %}
+  {% set custom_head = '../../../../../' + theme.custom_file_path.head %}
+{% else %}
+  {% set custom_head = '../../_custom/head.swig' %}
+{% endif %}
+{% include custom_head %}
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- BlogAd -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2304335236058241"
+     data-ad-slot="8084137562"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+************************************************************************************
+2.侧边栏广告 
+************************************************************************************
+
+往 ~/depthloveBlog/themes/next/layout/_macro/sidebar.swig 加入广告代码
+
+
+      {% if theme.back2top.enable and theme.back2top.sidebar %}
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          {% if theme.back2top.scrollpercent %}
+            <span id="scrollpercent"><span>0</span>%</span>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- BlogAd -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2304335236058241"
+           data-ad-slot="8084137562"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      
+    </div>
+  </aside>
+  {% if theme.sidebar.dimmer %}
+    <div id="sidebar-dimmer"></div>
+  {% endif %}
+{% endmacro %}
+
+
+************************************************************************************
+3.文章中广告
+************************************************************************************
+
+新建 ~/depthloveBlog/themes/next/layout/_custom/google_adsense.swig 文件，加入广告代码
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- BlogAd -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2304335236058241"
+     data-ad-slot="8084137562"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+往 ~/depthloveBlog/themes/next/layout/_macro/post.swig 引入 google_adsense.swig 文件，引入方式为 {% include '../_custom/google_adsense.swig' %}
+
+
+        <!--noindex-->
+          {% if theme.read_more_btn %}
+            <div class="post-button text-center">
+              <a class="btn" href="{{ url_for(post.path) }}{% if theme.scroll_to_more %}#more{% endif %}" rel="contents">
+                {{ __('post.read_more') }} &raquo;
+              </a>
+            </div>
+          {% endif %}
+          <!--/noindex-->
+        {% else %}
+          {% if post.type === 'picture' %}
+            <a href="{{ url_for(post.path) }}">{{ post.content }}</a>
+          {% else %}
+            {{ post.content }}
+          {% endif %}
+        {% endif %}
+      {% else %}
+        {{ post.content }}
+        {% include '../_custom/google_adsense.swig' %}
+      {% endif %}
+    </div>
+
+    {% if theme.related_posts.enable and (theme.related_posts.display_in_home or not is_index) %}
+      {% include '../_partials/post/post-related.swig' with { post: post } %}
+    {% endif %}
+
+    {#####################}
+    {### END POST BODY ###}
+    {#####################}
+
+    {% if theme.wechat_subscriber.enable and not is_index %}
+      {% include '../_partials/post/wechat-subscriber.swig' %}
+    {% endif %}
+
+    {% if page.reward === undefined and theme.reward_settings.enable %}
+      {% set reward_able = true %}
+    {% else %}
+      {% set reward_able = page.reward %}
+    {% endif %}
+    {% if reward_able and not is_index %}
+      <div>
+        {% include '../_partials/post/reward.swig' %}
+      </div>
+    {% endif %}
+
+    {% if theme.creative_commons.license and theme.creative_commons.post and not is_index %}
+      <div>
+        {% include '../_partials/post/post-copyright.swig' with { post: post } %}
+      </div>
+    {% endif %}
+
+    <footer class="post-footer">
+      {% if post.tags and post.tags.length and not is_index %}
+        <div class="post-tags">
+          {% for tag in post.tags %}
+            <a href="{{ url_for(tag.path) }}" rel="tag"># {{ tag.name }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+
+
+
