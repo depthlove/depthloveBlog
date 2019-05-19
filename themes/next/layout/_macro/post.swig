@@ -290,9 +290,7 @@
                 {{ __('post.read_more') }} &raquo;
               </a>
             </div>
-            {% include '../_custom/google_adsense.swig' %}
           {% endif %}
-          {% include '../_custom/google_adsense.swig' %}
           <!--/noindex-->
         {% elif post.excerpt %}
           {{ post.excerpt }}
@@ -321,11 +319,13 @@
           {% endif %}
           <!--/noindex-->
         {% else %}
+          {% include '../_custom/google_adsense.swig' %}
           {% if post.type === 'picture' %}
             <a href="{{ url_for(post.path) }}">{{ post.content }}</a>
           {% else %}
             {{ post.content }}
           {% endif %}
+          {% include '../_custom/google_adsense.swig' %}
         {% endif %}
       {% else %}
         {{ post.content }}
