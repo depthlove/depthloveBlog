@@ -290,7 +290,9 @@
                 {{ __('post.read_more') }} &raquo;
               </a>
             </div>
+            {% include '../_custom/google_adsense.swig' %}
           {% endif %}
+          {% include '../_custom/google_adsense.swig' %}
           <!--/noindex-->
         {% elif post.excerpt %}
           {{ post.excerpt }}
