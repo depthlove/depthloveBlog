@@ -327,7 +327,6 @@
         {% endif %}
       {% else %}
         {{ post.content }}
-        {% include '../_custom/google_adsense.swig' %}
       {% endif %}
     </div>
 
@@ -426,6 +425,7 @@
       {% endif %}
 
       {% if not is_index and (post.prev or post.next) %}
+        {% include '../_custom/google_adsense.swig' %}
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             {% if post.next %}
