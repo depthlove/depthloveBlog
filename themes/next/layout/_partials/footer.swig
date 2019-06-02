@@ -1,5 +1,3 @@
-{% include '../_custom/google_adsense.swig' %}
-
 <div class="copyright">{#
 #}{% set current = date(Date.now(), "YYYY") %}{#
 #}{% if theme.footer.beian.enable %}{#

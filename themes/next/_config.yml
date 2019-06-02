@@ -246,7 +246,7 @@ toc:
   wrap: false
   # If true, all level of TOC in a post will be displayed, rather than the activated part of it.
   expand_all: false
-  # Maximum heading depth of generated toc. You can set it in one post through `toc_max_depth` in Front Matter.
+  # Maximum heading depth of generated toc. You can set it in one post through `toc_max_depth` in Front-matter.
   max_depth: 6
 
 sidebar:
@@ -352,16 +352,16 @@ codeblock:
 # Wechat Subscriber
 wechat_subscriber:
   enable: true
-  qcode: /uploads/wechat-qcode.jpg # /path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg
-  description: 欢迎您扫一扫上面的微信公众号，订阅我的博客！ # e.g. subscribe to my blog by scanning my public wechat account
+  qcode: /uploads/wechat-qcode.jpg
+  description: 欢迎您扫一扫上面的微信公众号，订阅我的博客！
 
 # Reward (Donate)
 reward_settings:
   # If true, reward would be displayed in every article by default.
-  # You can show or hide reward in a specific article throuth `reward: true | false` in Front Matter.
+  # You can show or hide reward in a specific article throuth `reward: true | false` in Front-matter.
   enable: false
   animation: false
-  comment: 坚持原创思维分享 # Donate comment here
+  #comment: Donate comment here
 
 reward:
   #wechatpay: /images/wechatpay.png
@@ -500,14 +500,14 @@ math:
   enable: false
 
   # Default (true) will load mathjax / katex script on demand.
-  # That is it only render those page which has `mathjax: true` in Front Matter.
+  # That is it only render those page which has `mathjax: true` in Front-matter.
   # If you set it to false, it will load mathjax / katex srcipt EVERY PAGE.
   per_page: true
 
   engine: mathjax
   #engine: katex
 
-  # hexo-rendering-pandoc (or hexo-renderer-kramed) needed to full MathJax support.
+  # hexo-renderer-pandoc (or hexo-renderer-kramed) needed to full MathJax support.
   mathjax:
     cdn: //cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML
     #cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML
@@ -543,7 +543,7 @@ quicklink:
   enable: false
 
   # Quicklink (quicklink.umd.js script) is loaded on demand
-  # Add `quicklink: true` in Front Matter of the page or post you need
+  # Add `quicklink: true` in Front-matter of the page or post you need
   # Home page and archive page can be controlled through home and archive options below
   home: true
   archive: true
@@ -671,7 +671,7 @@ gitment:
 # Reference: https://asdfv1929.github.io/2018/01/20/gitalk/, https://liujunzhou.top/2018/8/10/gitalk-error/
 gitalk:
   enable: true
-  github_id:  depthlove # Github repo owner
+  github_id: depthlove # Github repo owner
   repo: depthlove.github.io # Repository name to store issues
   client_id: 023374e22942af4046f9 # Github Application Client ID
   client_secret: 5cedecd7c2b07700433ee7c72cac9ae1057a9092 # Github Application Client Secret

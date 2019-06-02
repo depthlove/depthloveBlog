@@ -228,7 +228,7 @@
                   <span class="post-meta-item-text">{{ __('symbols_count_time.count') + __('symbol.colon') }}</span>
                 {% endif %}
                 <span title="{{ __('symbols_count_time.count') }}">{#
-                #}{{ symbolsCount(post.content) }}{#
+                #}{{ symbolsCount(post) }}{#
               #}</span>
               {% endif %}
 
@@ -244,7 +244,7 @@
                   <span class="post-meta-item-text">{{ __('symbols_count_time.time') }} &asymp;</span>
                 {% endif %}
                 <span title="{{ __('symbols_count_time.time') }}">{#
-                #}{{ symbolsTime(post.content, theme.symbols_count_time.awl, theme.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}{#
+                #}{{ symbolsTime(post, theme.symbols_count_time.awl, theme.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}{#
               #}</span>
               {% endif %}
             </div>
@@ -326,7 +326,6 @@
           {% endif %}
         {% endif %}
       {% else %}
-        {% include '../_custom/google_adsense.swig' %}
         {{ post.content }}
       {% endif %}
     </div>
@@ -426,7 +425,6 @@
       {% endif %}
 
       {% if not is_index and (post.prev or post.next) %}
-        {% include '../_custom/google_adsense.swig' %}
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             {% if post.next %}
