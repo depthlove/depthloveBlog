@@ -3,6 +3,8 @@ title: 使用搬瓦工搭建 ShadowSocks 翻墙（VPN）
 date: 2019-03-29 13:41:45
 tags:
 - 工具
+categories:
+- 工具
 ---
 
 为了查询资料的便利性，大部分时候需要使用 Google 浏览器，但是国内除了高校能默认支持访问 Google 的服务外，基本所有人想使用 Google 的服务都需要借助 [虚拟专用网 VPN (Virtual Private Network) ]([https://zh.wikipedia.org/wiki/%E8%99%9B%E6%93%AC%E7%A7%81%E4%BA%BA%E7%B6%B2%E8%B7%AF](https://zh.wikipedia.org/wiki/%E8%99%9B%E6%93%AC%E7%A7%81%E4%BA%BA%E7%B6%B2%E8%B7%AF)
