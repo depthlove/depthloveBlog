@@ -64,7 +64,7 @@ ping baidu.com
 
 备注：个人建议使用 **付费换 IP** 的模式。**免费换 IP** 模式的网址为 [https://kiwivm.64clouds.com/main-exec.php?mode=blacklistcheck](https://kiwivm.64clouds.com/main-exec.php?mode=blacklistcheck)，我操作的时候，该网址提示 “This feature is disabled while we work on improving the accuracy of testing.” 说明无法使用免费换 IP 的服务。
 
-（3）费用完成后，等十几分钟会收到 IP 地址更换成功的邮件。访问[搬瓦工 (BandwagonHost)](https://bwh88.net) 主页，进入个人购买的 VPS 控制面板主页，就可以看到主机的 IP 地址被更换了。
+（3）费用支付完成后，等十几分钟会收到 IP 地址更换成功的邮件。访问[搬瓦工 (BandwagonHost)](https://bwh88.net) 主页，进入个人购买的 VPS 控制面板主页，就可以看到主机的 IP 地址被更换了。
 
 （4）按照[使用搬瓦工搭建 ShadowSocks 翻墙（VPN）](https://depthlove.github.io/2019/03/29/establish-vpn-server/)一文中提到的步骤，重新搭建 VPN 服务。
 
