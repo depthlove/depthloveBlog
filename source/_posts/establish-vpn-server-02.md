@@ -60,7 +60,7 @@ ping baidu.com
 
 （1）登陆[搬瓦工 (BandwagonHost)](https://bwh88.net) 主页
 
-（2）我用的 **付费换 IP** 的模式。访问 [https://bwh88.net/ipchange.php](https://bwh88.net/ipchange.php)，费用为 8.79 美金，邮箱会收到供应商的邮件，根据邮件中说明，点击付费连接，完成付费。付费方式支持支付宝、微信。
+（2）我用的 **付费换 IP** 的模式。访问 [https://bwh88.net/ipchange.php](https://bwh88.net/ipchange.php)，费用为 8.79 美金，邮箱会收到供应商的邮件，根据邮件中的说明，点击付费连接，完成付费。付费方式支持支付宝、微信。
 
 备注：个人建议使用 **付费换 IP** 的模式。**免费换 IP** 模式的网址为 [https://kiwivm.64clouds.com/main-exec.php?mode=blacklistcheck](https://kiwivm.64clouds.com/main-exec.php?mode=blacklistcheck)，我操作的时候，该网址提示 “This feature is disabled while we work on improving the accuracy of testing.” 说明无法使用免费换 IP 的服务。
 
