@@ -56,7 +56,7 @@
 {% endif %}
 {% include custom_head %}
 
-{% include '../_custom/google_adsense.swig' %}
+{% include '../../_custom/google_adsense.swig' %}
 ```
 
 ## 博客底部广告

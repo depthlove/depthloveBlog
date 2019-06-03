@@ -206,6 +206,7 @@
         </div>
       {% endif %}
 
+      {% include '../_custom/google_adsense.swig' %}
     </div>
   </aside>
   {% if theme.sidebar.dimmer %}

@@ -54,4 +54,6 @@
 
   {% endif %}
 
+  {% include '../_custom/google_adsense.swig' %}
+
 {% endif %}
