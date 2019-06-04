@@ -11,7 +11,8 @@ categories:
 
 (1) [搬瓦工搭建 ShadowSocks 翻墙（VPN）](https://depthlove.github.io/2019/03/29/establish-vpn-server/)  
 (2) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 IP 被墙](https://depthlove.github.io/2019/06/02/establish-vpn-server-02/)  
-(3) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 port 被封](https://depthlove.github.io/2019/06/03/establish-vpn-server-03/)
+(3) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 port 被封](https://depthlove.github.io/2019/06/03/establish-vpn-server-03/)  
+(4) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 更换密码](https://depthlove.github.io/2019/06/04/establish-vpn-server-04/)
 
 为了查询资料的便利性，大部分时候需要使用 Google 浏览器，但是国内除了高校能默认支持访问 Google 的服务外，基本所有人想使用 Google 的服务都需要借助 [虚拟专用网 VPN (Virtual Private Network) ]([https://zh.wikipedia.org/wiki/%E8%99%9B%E6%93%AC%E7%A7%81%E4%BA%BA%E7%B6%B2%E8%B7%AF](https://zh.wikipedia.org/wiki/%E8%99%9B%E6%93%AC%E7%A7%81%E4%BA%BA%E7%B6%B2%E8%B7%AF)
 ) 工具。以前使用过一些 VPN 服务提供商提供的服务，出现过用了一段时间就使用不了了、服务不稳定、连接后访问网络资源慢，还有的干脆就无法使用。比如我花了 79 美金买过 NordVPN 的服务，网上的口碑和排名很靠前的。事实上真是花钱买烦恼，99%的概率连不上 NordVPN 服务，即使碰运气连上去了，但网速差的让人吐血。为这个事，与 NordVPN 的技术支持来往过好多封英文邮件，最终还是没有解决连不上服务器的问题。在国内想使用 Google 服务查询资料真是痛苦。搞笑的是，2018年12月初去韩国济州岛玩，在济州岛使用 NordVPN 服务倒是 99%以上概率连上服务器，网速也还可以。泪崩，在 NordVPN 上花的钱彻底打水漂了。好在工作所在公司提供了 VPN 服务，就一直使用到现在。

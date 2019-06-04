@@ -11,8 +11,8 @@ categories:
 
 (1) [搬瓦工搭建 ShadowSocks 翻墙（VPN）](https://depthlove.github.io/2019/03/29/establish-vpn-server/)  
 (2) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 IP 被墙](https://depthlove.github.io/2019/06/02/establish-vpn-server-02/)  
-(3) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 port 被封](https://depthlove.github.io/2019/06/03/establish-vpn-server-03/)
-(4) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 更换密码]()
+(3) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 port 被封](https://depthlove.github.io/2019/06/03/establish-vpn-server-03/)  
+(4) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 更换密码](https://depthlove.github.io/2019/06/04/establish-vpn-server-04/)
 
 我没写一篇文章时，都要交待下写作的原因。交待下原因，透露出多的信息，会更好的发挥文章的价值。在 [搬瓦工搭建 ShadowSocks 翻墙（VPN）](https://depthlove.github.io/2019/03/29/establish-vpn-server/) 一文发布后不久，就收到了同学的留言“VPN 服务搭建完成后，想更换密码该怎么操作？”。请允许我过多的使用同学一词，因为我觉得这个叫法很亲切，谓之同学，乃共同进步之意。
 

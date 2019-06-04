@@ -11,7 +11,8 @@ categories:
 
 (1) [搬瓦工搭建 ShadowSocks 翻墙（VPN）](https://depthlove.github.io/2019/03/29/establish-vpn-server/)  
 (2) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 IP 被墙](https://depthlove.github.io/2019/06/02/establish-vpn-server-02/)  
-(3) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 port 被封](https://depthlove.github.io/2019/06/03/establish-vpn-server-03/)
+(3) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 port 被封](https://depthlove.github.io/2019/06/03/establish-vpn-server-03/)  
+(4) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 更换密码](https://depthlove.github.io/2019/06/04/establish-vpn-server-04/)
 
 [使用搬瓦工搭建 ShadowSocks 翻墙（VPN）](https://depthlove.github.io/2019/03/29/establish-vpn-server/) 一文中写了如何搭建 VPN 翻墙工具，但对于可能出现的问题没有提及。本文要说的是 VPN 服务所在的主机 IP 被墙后导致 VPN 服务无法使用的问题。
 
