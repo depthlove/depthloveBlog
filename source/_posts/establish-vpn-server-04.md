@@ -14,7 +14,7 @@ categories:
 (3) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 port 被封](https://depthlove.github.io/2019/06/03/establish-vpn-server-03/)  
 (4) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 更换密码](https://depthlove.github.io/2019/06/04/establish-vpn-server-04/)
 
-我没写一篇文章时，都要交待下写作的原因。交待下原因，透露出多的信息，会更好的发挥文章的价值。在 [搬瓦工搭建 ShadowSocks 翻墙（VPN）](https://depthlove.github.io/2019/03/29/establish-vpn-server/) 一文发布后不久，就收到了同学的留言“VPN 服务搭建完成后，想更换密码该怎么操作？”。请允许我过多的使用同学一词，因为我觉得这个叫法很亲切，谓之同学，乃共同进步之意。
+我写一篇文章时，都要交待下写作的原因。交待下原因，透露出多的信息，会更好的发挥文章的价值。在 [搬瓦工搭建 ShadowSocks 翻墙（VPN）](https://depthlove.github.io/2019/03/29/establish-vpn-server/) 一文发布后不久，就收到了同学的留言“VPN 服务搭建完成后，想更换密码该怎么操作？”。请允许我过多的使用同学一词，因为我觉得这个叫法很亲切，谓之同学，乃共同进步之意。
 
 刚开始看到这个留言的时候，我觉得这不是什么硬需求，毕竟密码设置这个东西在我们操作的时候肯定是在脑海中思考好了的。如果真的出现设置的密码不好记、密码太长、密码忘记了该怎么办呢？真的就需要重新再搭建一次 VPN 服务？有没有更好更简单的办法解决问题？
 
