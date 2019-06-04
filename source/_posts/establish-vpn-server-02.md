@@ -2,7 +2,7 @@
 title: 搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 IP 被墙
 date: 2019-06-02 15:22:41
 tags:
-- 工具
+- VPN
 categories:
 - 工具
 ---

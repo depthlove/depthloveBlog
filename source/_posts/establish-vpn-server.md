@@ -2,7 +2,7 @@
 title: 使用搬瓦工搭建 ShadowSocks 翻墙（VPN）
 date: 2019-03-29 13:41:45
 tags:
-- 工具
+- VPN
 categories:
 - 工具
 ---
