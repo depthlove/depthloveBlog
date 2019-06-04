@@ -69,7 +69,7 @@ vi /etc/shadowsocks-python/config.json
 }
 ```
 
-在看到 `password ` 后，我们可以试试修改 `password` 的值。编辑 `/etc/shadowsocks-python/config.json`，修改 `password` 的值为 12345678，保存退出。
+在看到 `password ` 后，说明我们可以试试修改 `password` 的值。编辑 `/etc/shadowsocks-python/config.json`，修改 `password` 的值为 12345678，保存退出。
 
 ## 第二步：重启 VPS 主机
 
