@@ -7,6 +7,12 @@ categories:
 - 工具
 ---
 
+《搬瓦工搭建 ShadowSocks 翻墙（VPN）系列》
+
+(1) [搬瓦工搭建 ShadowSocks 翻墙（VPN）](https://depthlove.github.io/2019/03/29/establish-vpn-server/)  
+(2) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 IP 被墙](https://depthlove.github.io/2019/06/02/establish-vpn-server-02/)  
+(3) [搬瓦工搭建 ShadowSocks 翻墙（VPN）- 解决 port 被封](https://depthlove.github.io/2019/06/03/establish-vpn-server-03/)
+
 [使用搬瓦工搭建 ShadowSocks 翻墙（VPN）](https://depthlove.github.io/2019/03/29/establish-vpn-server/) 一文中写了如何搭建 VPN 翻墙工具，但对于可能出现的问题没有提及。本文要说的是 VPN 服务所在的主机 IP 被墙后导致 VPN 服务无法使用的问题。
 
 事情经过是这样的，今天我想使用 VPN 服务访问 Google 的服务，发现 [google.com](google.com) 响应超时。有点想不通，因为前几天 VPN 服务可以正常使用。出现这种问题，那就需要排查问题所在了。
