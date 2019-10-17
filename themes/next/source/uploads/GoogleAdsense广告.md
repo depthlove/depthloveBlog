@@ -1,3 +1,8 @@
+> # 添加广告 ads.txt 文件
+
+添加 ~/depthloveBlog/themes/next/source/ads.txt 文件。该文件来至于 Google Adsense 网站下的个人账号。
+
+
 > # 新建广告模版
 
 新建 ~/depthloveBlog/themes/next/layout/_custom/google_adsense.swig 文件，加入广告代码
