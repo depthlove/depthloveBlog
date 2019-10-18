@@ -91,7 +91,7 @@ git branch
 
 git branch -r
 
-git checkout -b branch-heads/m78
+git checkout -b m78 refs/remotes/branch-heads/m78
 
 git branch
 
