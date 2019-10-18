@@ -35,6 +35,69 @@ Milestone  Chromium   Skia     V8       WebRTC  Pdfium
 
 > ### 源码下载与更新
 
+> #### 命令
+
+```
+# 代码下载
+
+cd /Users/suntongmian/Documents/workplace
+
+mkdir -p webrtc
+
+ls
+
+cd webrtc
+
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+
+ls
+
+pwd
+
+vi ~/.bashrc
+
+添加 "export PATH=$PATH:/Users/suntongmian/Documents/workplace/webrtc/depot_tools"
+
+cat ~/.bashrc
+
+source ~/.bashrc
+
+fetch --help
+
+fetch --nohooks webrtc
+
+gclient sync
+
+ls -l
+
+ls -a
+
+# 代码更新
+
+cd src
+
+git checkout master
+
+git pull origin master
+
+gclient sync
+
+git branch
+
+git branch -r
+
+git checkout -b branch-heads/m78
+
+git branch
+
+git status
+
+git log
+
+```
+
+> #### 命令执行过程
+
 ```
 Last login: Thu Oct 17 20:23:56 on ttys000
 
