@@ -57,6 +57,10 @@ ls examples/objc/AppRTCMobile
 
 gn gen out/mac --ide=xcode
 
+# 查看 ~/.bashrc 文件中是否配置有工具 depot_tools 的路径
+cat ~/.bashrc
+export PATH=$PATH:/Users/suntongmian/Documents/workplace/webrtc/depot_tools
+
 # 启动 gn 工具
 source ~/.bashrc
 
@@ -135,6 +139,10 @@ suntongmiandeMacBook-Pro:src suntongmian$
 suntongmiandeMacBook-Pro:src suntongmian$
 suntongmiandeMacBook-Pro:src suntongmian$ gn gen out/mac --ide=xcode
 -bash: gn: command not found
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ cat ~/.bashrc
+export PATH=$PATH:/Users/suntongmian/Documents/workplace/webrtc/depot_tools
 suntongmiandeMacBook-Pro:src suntongmian$ 
 suntongmiandeMacBook-Pro:src suntongmian$ 
 suntongmiandeMacBook-Pro:src suntongmian$ source ~/.bashrc
