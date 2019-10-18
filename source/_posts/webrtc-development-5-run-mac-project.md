@@ -174,6 +174,8 @@ suntongmiandeMacBook-Pro:src suntongmian$
 
 选择 target "AppRTCMobile"，执行 Run 操作，运行成功后就可以看到弹出的 Mac 端应用界面。
 
+![webrtc-mac-project](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/webrtc-development-5-run-mac-project/webrtc-mac-project.png)
+
 > ### 参考文献
 
 [1] [https://webrtc.org/native-code/ios/](https://webrtc.org/native-code/ios/)
