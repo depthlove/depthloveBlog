@@ -85,6 +85,8 @@ git pull origin master
 
 gclient sync
 
+# 拉取远程分支到本地
+
 git branch
 
 git branch -r
