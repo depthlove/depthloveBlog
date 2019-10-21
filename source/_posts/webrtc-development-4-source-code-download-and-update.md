@@ -28,11 +28,12 @@ WebRTC 是个庞大的项目，阅读项目的架构和每个版本的 release n
 Milestone  Chromium   Skia     V8       WebRTC  Pdfium
   78        3904       m78   7.8-lkgr    m78     3904
   77        3865       m77   7.7-lkgr    m77     3865
+  76        3809       m76   7.6-lkgr    m76     3809
 ```
 
-前面松松散散开了个头，接下来的内容就是实际操作 WebRTC 源码的下载、更新、代码分支的切换。最后将分支 `branch-heads/m78` 拉取到了本地，后续的文章将基于 m78 这个版本来做讲解和分析。
+前面松松散散开了个头，接下来的内容就是实际操作 WebRTC 源码的下载、更新、代码分支的切换。最后将分支 `branch-heads/m76` 拉取到了本地，后续的文章将基于 m76 这个版本来做讲解和分析。
 
-通过 `git branch -r ` 可以看到存在 `branch-heads/m79`，但是为什么不用 m79 呢？原因是 m78 在 Chromium 的正式版本中被使用了，稳定性可以得到保证。
+通过 `git branch -r ` 可以看到存在 `branch-heads/m79`，但是为什么不用 m79 呢？原因是 m76 是最新的 release 版本，稳定性和可调试性可以得到保证。
 
 <!-- more -->
 
@@ -91,11 +92,21 @@ git branch
 
 git branch -r
 
-git checkout -b m78 refs/remotes/branch-heads/m78
+git checkout -b m76 refs/remotes/branch-heads/m76
 
 git branch
 
 git log
+
+# 使用对应分支的工具
+
+cd ..
+
+ls
+
+# 9863f3d246e2da7a2e1f42bbc5757f6af5ec5682 为分支的最近一个 commit 提交
+
+gclient sync -r 9863f3d246e2da7a2e1f42bbc5757f6af5ec5682 --force
 
 ```
 
@@ -1087,73 +1098,309 @@ suntongmiandeMacBook-Pro:src suntongmian$ git branch -r
 suntongmiandeMacBook-Pro:src suntongmian$ 
 suntongmiandeMacBook-Pro:src suntongmian$
 suntongmiandeMacBook-Pro:src suntongmian$
-suntongmiandeMacBook-Pro:src suntongmian$ git checkout -b m78 refs/remotes/branch-heads/m78
-Branch 'm78' set up to track remote ref 'refs/branch-heads/m78'.
-Switched to a new branch 'm78'
-suntongmiandeMacBook-Pro:src suntongmian$
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ git checkout -b m76 refs/remotes/branch-heads/m76
+Switched to a new branch 'm76'
+suntongmiandeMacBook-Pro:src suntongmian$ 
 suntongmiandeMacBook-Pro:src suntongmian$ 
 suntongmiandeMacBook-Pro:src suntongmian$ git branch
-* m78
+* m76
   master
-suntongmiandeMacBook-Pro:src suntongmian$
+suntongmiandeMacBook-Pro:src suntongmian$ 
 suntongmiandeMacBook-Pro:src suntongmian$ 
 suntongmiandeMacBook-Pro:src suntongmian$ git log
-commit 0b2302e5e0418b6716fbc0b3927874fd3a842caf (HEAD -> m78, branch-heads/m78)
-Author: Ilya Nikolaevskiy <ilnik@webrtc.org>
-Date:   Thu Oct 10 13:32:28 2019 +0200
+commit 9863f3d246e2da7a2e1f42bbc5757f6af5ec5682 (HEAD -> m76, branch-heads/m76)
+Author: Qingsi Wang <qingsi@webrtc.org>
+Date:   Mon Jul 15 13:11:46 2019 -0700
 
-    Merge to M78: Count disabled due to low bw streams or layers as bw limited quality in GetStats
+    Merge to M76: Use the dummy address 0.0.0.0:9 in the c= and the m= lines if the default connection address is a hostname candidate.
     
-    Original Reviewed-on: https://webrtc-review.googlesource.com/c/src/+/155964
-    (cherry picked from commit 5963c7cf0a70e1abdf0e3f313c10cb8a161f6cdb)
+    Using a FQDN in the c= line has caused an inter-op issue with Firefox
+    when hostname candidates are the only candidates gathered when forming
+    the media sections. To address this issue, we use 0.0.0.0:9 when a
+    hostname candidate would be used to populate the c= and the m= lines.
     
-    Bug: webrtc:11015
-    Change-Id: I1ccd7f9fc875ecec2de45e0d8f668f887f8be06f
-    Reviewed-on: https://webrtc-review.googlesource.com/c/src/+/156306
-    Reviewed-by: Niels Moller <nisse@webrtc.org>
-    Reviewed-by: Henrik Boström <hbos@webrtc.org>
-    Commit-Queue: Ilya Nikolaevskiy <ilnik@webrtc.org>
-    Cr-Commit-Position: refs/branch-heads/m78@{#8}
-    Cr-Branched-From: 5b728cca77c46ed47ae589acba676485a957070b-refs/heads/master@{#29078}
-
-commit fd4a62ff802b23d4c5bfd78d8b90cb8f3123ed06
-Author: Per Åhgren <peah@webrtc.org>
-Date:   Thu Oct 10 09:57:42 2019 +0200
-
-    Merge to M78: ACM: Adding support for more than 2 channels in the sen...
+    The SDP grammar related to ICE candidates has been moved out of RFC8445,
+    and is currently defined in draft-ietf-mmusic-ice-sip-sdp. A FQDN
+    address must not be used in the connection address attribute per the
+    latest draft, if the ICE agent generates local candidates. Also, the
+    wildcard addresses  (0.0.0.0 or ::) with port 9 are given the exception
+    as the connection address that will not result in an ICE mismatch. We
+    thus adopt the aforementioned solution after combining these
+    considerations.
     
-    This CL adds support in the audio coding module for sending more than
-    2 channels to the encoder.
+    TBR=hta@webrtc.org
     
-    (cherry picked from commit 4f2e9406c97d68c314c2cab19f86ada568d9bd8c)
-    
-    Bug: webrtc:11007,chromium:1011551
-    Change-Id: I0909b5c37a54c9d2e1353b864e55008cda50ffae
-    Reviewed-on: https://webrtc-review.googlesource.com/c/src/+/155583
-    Reviewed-by: Henrik Andreassson <henrika@webrtc.org>
-    Reviewed-by: Alex Loiko <aleloi@webrtc.org>
-    Commit-Queue: Per Åhgren <peah@webrtc.org>
-    Cr-Original-Commit-Position: refs/heads/master@{#29385}
-    Reviewed-on: https://webrtc-review.googlesource.com/c/src/+/156301
-    Cr-Commit-Position: refs/branch-heads/m78@{#7}
-    Cr-Branched-From: 5b728cca77c46ed47ae589acba676485a957070b-refs/heads/master@{#29078}
-
-commit 3498a292ecfae6d0abaaa3d078670184710ce65b
-Author: Ilya Nikolaevskiy <ilnik@webrtc.org>
-Date:   Wed Oct 2 10:32:07 2019 +0200
-
-    Merge to m78: handle disabled vp9 layers correctly
-    
-    This is a cherrypick of these webrtc commits:
-    1) https://webrtc.googlesource.com/src.git/+/bc8049ef0bc692c1ed3cb3b665b8fa56f51492df
-    2) https://webrtc.googlesource.com/src.git/+/002b6f4f2383df28585932c9f83b4e1aed2025f6
-    
-    Bug: webrtc:10977,chromium:1009949
-    Change-Id: I3adbcc1e1f23baf1623f551c48b9d14361b9b69f
-    Reviewed-on: https://webrtc-review.googlesource.com/c/src/+/155320
-    Commit-Queue: Ilya Nikolaevskiy <ilnik@webrtc.org>
 suntongmiandeMacBook-Pro:src suntongmian$ 
-suntongmiandeMacBook-Pro:src suntongmian$
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ 
+suntongmiandeMacBook-Pro:src suntongmian$ cd ..
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:webrtc suntongmian$ ls
+depot_tools	src
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:webrtc suntongmian$ gclient sync -r 9863f3d246e2da7a2e1f42bbc5757f6af5ec5682 --force
+using /var/folders/9r/mhg2f0g93csc7txyq__57lf80000gp/T/goma_suntongmian as tmpdir
+INFO: creating cache dir (/var/folders/9r/mhg2f0g93csc7txyq__57lf80000gp/T/goma_suntongmian/goma_cache).
+Syncing projects: 100% (38/38), done.                                           
+
+________ running 'vpython src/build/landmines.py --landmine-scripts src/tools_webrtc/get_landmines.py --src-dir src' in '/Users/suntongmian/Documents/workplace/webrtc'
+Clobbering due to:
+--- old_landmines	Mon Oct 21 13:47:04 2019
++++ new_landmines	Mon Oct 21 15:30:40 2019
+@@ -8 +7,0 @@
+-Clobber to change neteq_rtpplay type to executable
+Running hooks:  45% (10/22) mac_toolchain                 
+________ running 'vpython src/build/mac_toolchain.py' in '/Users/suntongmian/Documents/workplace/webrtc'
+Skipping Mac toolchain installation for mac
+Running hooks:  54% (12/22) clang        
+________ running 'vpython src/tools/clang/scripts/update.py' in '/Users/suntongmian/Documents/workplace/webrtc'
+Downloading https://commondatastorage.googleapis.com/chromium-browser-clang/Mac/clang-361212-67510fac-3.tgz .......... Done.
+Running hooks: 100% (22/22)                     
+________ running 'download_from_google_storage --directory --recursive --num_threads=10 --no_auth --quiet --bucket chromium-webrtc-resources src/resources' in '/Users/suntongmian/Documents/workplace/webrtc'
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/60a92ea32e238bc2801ac2ca26827b8b10155978...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/sliced_download_TRACKER_920459e3ffabb5f50215fc0adf13efce50d67229.0.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/bb838d60f2a0454af4ca63735d573069858ec004...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_0c27fa3755b299cb8fbe90e2d18481c0f77619bb.0.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/7398e204d06b34fcd09533523ec418af9b5caf80...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_1074777fc1c8e560f0e257210ddb0ffbcbdb4ebd.t.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/5a1620516daf59870158a66230d7bafd9fe9afa1...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_4b1ba77e6496b7cb2113d44f4296fe8d8b49cb31.e.y4m__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/117c0301ed19d83f0e112ea3e831dd389db68570...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_3f82caf3ac5fd9762cd23f1fba209cf2cf5e3231.6.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/4a38b5629845646844350a4257a60554888509b9...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_86538f712f65c51bb0ed35e7be3567e763371524.4.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/d19fb2879d091324c699987ab280da82af200933...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_5e149c0ac6a7168a1c24a0375e67cafbf4bd4686.f.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/db8cc13114cfe550fefa264ea70427e1fa4f9bba...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_5164bfb83c4edeab462c23031dd784e447a0d888.f.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/04f9f47938efa99d0389672ff2d83c10f04a1752...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_c041251a70267aaf706ed08700e4fe75e21fd3d4.cdump__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/65717a7be6dc7ce5d88afedc73e46838aa0a3abc...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_320a50cf6d6dcaca6ef494258859ebf77aaf6d9c.2.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/315d8a7cc06fe15b68a6f2106d59d25b16270552...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_2754ccae3b287e688080bb499acf0cd8d6a14dc3.0.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/2d32cd78d75549a5d0795bb9fbe35a00663f949a...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_0395c5d0ac4a28beb557c1eaa703f47adf21fa35.nk.rx__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/ce229fea854fbce532fe430b5b5a8c9b5db65d94...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_b3cfcb4514d1797cfd8139c25c59a8d6097af730.t.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/07716dffe2905abde0ae7bec475106e476bc9b25...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_37b31cd784590ff7e0746051fbf28f10dbd2ea8b.nk.rx__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/f9cabbf3a9c5562cd6cdfd19aae1cb5ef8a7ad7d...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_a07d5225a34109e94c19b6c1caac3bfbba6dbeac.s.y4m__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/89f191b706f8028e52ffd64525de1921eacd772a...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_666d5fd2f31afc106645c9bbffcde73cdd29e731.z.pcm__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/3baa38557757bb770f7cbeaa390e3a8a1e0c254c...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/sliced_download_TRACKER_e27efab5db479a2a6f8aa969bd48f3b040ff430a.0.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/009a3ee778767c2402b1d2c920bc2449265f5a2c...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_60e1e232faa80653ea952318299c7e7c057d2e2a.z.pcm__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/77b123a152911b538951cadbee45007f9d1a370c...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_c88547f8ec6127e766f1e6c96e5d69b4a709b1d2.z.pcm__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/849f88896b1d00c2625c247e9e06a19d2ae0175c...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_74352293278f17333e6e3bf7fd9edcd9b6040a51.t.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+/Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/66b8430fe082093301c2307cd4482e80a0bd4fc5...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_62af38a226f97ec371fda107f472ad8c60a23898.y.wav__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+9> Downloading src/resources/ConferenceMotion_1280_720_50.yuv...
+5> Downloading src/resources/foreman_320x240.yuv...
+1> Downloading src/resources/paris_qcif.yuv...
+0> Downloading src/resources/foreman_cif.yuv...
+6> Downloading src/resources/reference_less_video_test_file.y4m...
+2> Downloading src/resources/foreman_cif_short.yuv...
+4> Downloading src/resources/foreman_480x272.yuv...
+3> Downloading src/resources/foreman_240x136.yuv...
+8> Downloading src/resources/foreman_176x144.yuv...
+7> Downloading src/resources/ref03.aecdump...
+9> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/60a92ea32e238bc2801ac2ca26827b8b10155978...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/sliced_download_TRACKER_920459e3ffabb5f50215fc0adf13efce50d67229.0.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+5> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/bb838d60f2a0454af4ca63735d573069858ec004...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_0c27fa3755b299cb8fbe90e2d18481c0f77619bb.0.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+2> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/7398e204d06b34fcd09533523ec418af9b5caf80...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_1074777fc1c8e560f0e257210ddb0ffbcbdb4ebd.t.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+6> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/5a1620516daf59870158a66230d7bafd9fe9afa1...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_4b1ba77e6496b7cb2113d44f4296fe8d8b49cb31.e.y4m__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+3> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/117c0301ed19d83f0e112ea3e831dd389db68570...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_3f82caf3ac5fd9762cd23f1fba209cf2cf5e3231.6.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+8> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/4a38b5629845646844350a4257a60554888509b9...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_86538f712f65c51bb0ed35e7be3567e763371524.4.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+1> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/d19fb2879d091324c699987ab280da82af200933...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_5e149c0ac6a7168a1c24a0375e67cafbf4bd4686.f.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+0> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/db8cc13114cfe550fefa264ea70427e1fa4f9bba...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_5164bfb83c4edeab462c23031dd784e447a0d888.f.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+7> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/04f9f47938efa99d0389672ff2d83c10f04a1752...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_c041251a70267aaf706ed08700e4fe75e21fd3d4.cdump__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+4> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/65717a7be6dc7ce5d88afedc73e46838aa0a3abc...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_320a50cf6d6dcaca6ef494258859ebf77aaf6d9c.2.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+5> Downloading src/resources/verizon4g-uplink.rx...
+9> Downloading src/resources/foreman_160x120.yuv...
+2> Downloading src/resources/foremanColorEnhanced_cif_short.yuv...
+1> Downloading src/resources/verizon4g-downlink.rx...
+8> Downloading src/resources/reference_video_640x360_30fps.y4m...
+6> Downloading src/resources/FourPeople_1280x720_30.yuv...
+0> Downloading src/resources/deflicker_before_cif_short.yuv...
+7> Downloading src/resources/audio_coding/speech_mono_32_48kHz.pcm...
+4> Downloading src/resources/audio_coding/music_stereo_48kHz.pcm...
+3> Downloading src/resources/audio_coding/speech_mono_16kHz.pcm...
+9> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/315d8a7cc06fe15b68a6f2106d59d25b16270552...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_2754ccae3b287e688080bb499acf0cd8d6a14dc3.0.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+5> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/2d32cd78d75549a5d0795bb9fbe35a00663f949a...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_0395c5d0ac4a28beb557c1eaa703f47adf21fa35.nk.rx__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+2> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/ce229fea854fbce532fe430b5b5a8c9b5db65d94...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_b3cfcb4514d1797cfd8139c25c59a8d6097af730.t.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+1> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/07716dffe2905abde0ae7bec475106e476bc9b25...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_37b31cd784590ff7e0746051fbf28f10dbd2ea8b.nk.rx__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+8> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/f9cabbf3a9c5562cd6cdfd19aae1cb5ef8a7ad7d...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_a07d5225a34109e94c19b6c1caac3bfbba6dbeac.s.y4m__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+3> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/89f191b706f8028e52ffd64525de1921eacd772a...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_666d5fd2f31afc106645c9bbffcde73cdd29e731.z.pcm__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+6> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/3baa38557757bb770f7cbeaa390e3a8a1e0c254c...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/sliced_download_TRACKER_e27efab5db479a2a6f8aa969bd48f3b040ff430a.0.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+7> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/009a3ee778767c2402b1d2c920bc2449265f5a2c...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_60e1e232faa80653ea952318299c7e7c057d2e2a.z.pcm__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+4> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/77b123a152911b538951cadbee45007f9d1a370c...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_c88547f8ec6127e766f1e6c96e5d69b4a709b1d2.z.pcm__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+0> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/849f88896b1d00c2625c247e9e06a19d2ae0175c...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_74352293278f17333e6e3bf7fd9edcd9b6040a51.t.yuv__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+9> Downloading src/resources/audio_processing/output_data_float.pb...
+5> Downloading src/resources/audio_processing/output_data_mac.pb...
+2> Downloading src/resources/audio_processing/output_data_fixed.pb...
+8> Downloading src/resources/audio_processing/test/py_quality_assessment/noise_tracks/city.wav...
+8> /Users/suntongmian/Documents/workplace/webrtc/depot_tools/external_bin/gsutil/gsutil_4.28/gsutil/third_party/boto/boto/pyami/config.py:69: UserWarning: Unable to load AWS_CREDENTIAL_FILE ()
+  warnings.warn('Unable to load AWS_CREDENTIAL_FILE (%s)' % full_path)
+Copying gs://chromium-webrtc-resources/66b8430fe082093301c2307cd4482e80a0bd4fc5...
+CommandException: Couldn't write tracker file (/Users/suntongmian/.gsutil/tracker-files/download_TRACKER_62af38a226f97ec371fda107f472ad8c60a23898.y.wav__JSON.etag): Permission denied. This can happen if gsutil is configured to save tracker files to an unwritable directory)
+
+Downloading 272 files took 29.680667 second(s)
+Error: Command 'download_from_google_storage --directory --recursive --num_threads=10 --no_auth --quiet --bucket chromium-webrtc-resources src/resources' returned non-zero exit status 1 in /Users/suntongmian/Documents/workplace/webrtc
+Hook 'download_from_google_storage --directory --recursive --num_threads=10 --no_auth --quiet --bucket chromium-webrtc-resources src/resources' took 33.28 secs
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:webrtc suntongmian$ 
+suntongmiandeMacBook-Pro:webrtc suntongmian$
 ```
 
 > ### 参考文献
