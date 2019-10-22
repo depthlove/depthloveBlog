@@ -26,6 +26,7 @@ WebRTC 是个庞大的项目，阅读项目的架构和每个版本的 release n
 
 ```
 Milestone  Chromium   Skia     V8       WebRTC  Pdfium
+  79        3945       m79   7.9-lkgr    m79     3945
   78        3904       m78   7.8-lkgr    m78     3904
   77        3865       m77   7.7-lkgr    m77     3865
   76        3809       m76   7.6-lkgr    m76     3809
