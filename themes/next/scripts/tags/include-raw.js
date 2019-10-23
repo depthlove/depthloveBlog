@@ -6,18 +6,18 @@
 
 'use strict';
 
-const path = require('path');
-const fs = require('hexo-fs');
+var pathFn = require('path');
+var fs = require('hexo-fs');
 
 function includeRaw(args) {
-  var file = path.join(hexo.source_dir, args[0]);
+  var path = pathFn.join(hexo.source_dir, args[0]);
 
-  return fs.exists(file).then(exist => {
+  return fs.exists(path).then(function(exist) {
     if (!exist) {
       hexo.log.error('Include file not found!');
       return;
     }
-    return fs.readFile(file).then(contents => {
+    return fs.readFile(path).then(function(contents) {
       if (!contents) {
         hexo.log.warn('Include file empty.');
         return;

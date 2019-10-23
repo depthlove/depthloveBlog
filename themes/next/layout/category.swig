@@ -9,17 +9,21 @@
   {######################}
   {### CATEGORY BLOCK ###}
   {######################}
-  <div class="post-block">
-    <div class="posts-collapse">
+  <div class="post-block category">
+
+    <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <{%- if theme.seo %}h2{% else %}h1{%- endif %} class="collection-header">
-          {{- page.category }}
-          <small>{{ __('title.category') }}</small>
-        </{%- if theme.seo %}h2{% else %}h1{%- endif %}>
+        <{% if theme.seo %}h2{% else %}h1{% endif %}>{#
+        #}{{ page.category }}{#
+        #}<small>{{ __('title.category') }}</small>
+        </{% if theme.seo %}h2{% else %}h1{% endif %}>
       </div>
 
-      {{ post_template.render(page.posts) }}
+      {% for post in page.posts %}
+        {{ post_template.render(post) }}
+      {% endfor %}
     </div>
+
   </div>
   {##########################}
   {### END CATEGORY BLOCK ###}

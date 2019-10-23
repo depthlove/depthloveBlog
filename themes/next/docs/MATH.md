@@ -2,11 +2,13 @@
 
 NexT provides two render engines for displaying Math Equations.
 
-If you choose to use this feature, you don't need to manually import any JS or CSS. You just need to turn on `enable` of `math` and choose a render engine for it (located in `next/_config.yml`):
+If you choose to use this feature, you don't need to manually import any JS or CSS. You just need to turn on `enable` of `math` and choose a render `engine` for it (located in `next/_config.yml`):
 
 ```yml
 math:
   enable: true
+  ...
+  engine: mathjax
 ```
 
 Notice: only turning on `enable` of `math` **cannot let you see the displayed equations correctly**, you need to install the **corresponding Hexo Renderer** to fully support the display of Math Equations. The corresponding Hexo Renderer per engine will be provided below.
@@ -22,18 +24,18 @@ If you use MathJax to render Math Equations, you need to use **only one of them*
 Firstly, you need to uninstall the original renderer `hexo-renderer-marked`, and install one of the renderer above:
 
 ```sh
-npm uninstall hexo-renderer-marked
-npm install hexo-renderer-pandoc # or hexo-renderer-kramed
+npm un hexo-renderer-marked --save
+npm i hexo-renderer-pandoc --save # or hexo-renderer-kramed
 ```
 
-Secondly, in `next/_config.yml`, turn on `enable` of `math` and choose `mathjax` as engine.
+Secondly, in `next/_config.yml`, turn on `enable` of `math` and choose `mathjax` as `engine`.
 
 ```yml
 math:
   enable: true
   ...
-  mathjax:
-    enable: true
+  engine: mathjax
+  #engine: katex
 ```
 
 Finally, run standard Hexo generate, deploy process or start the server:
@@ -101,7 +103,7 @@ Sometimes, you want to use more “exotic” style to refer your equation. You c
 $$x+1\over\sqrt{1-x^2} \tag{i}\label{eq_tag}$$
 ```
 
-For more information, you can visit the [official MathJax documentation on equation numbering](http://docs.mathjax.org/en/latest/tex.html#automatic-equation-numbering). You can also visit this [post](https://jdhao.github.io/2018/01/25/hexo-mathjax-equation-number/) for more details.
+For more information, you can visit the [official MathJax documentation on equation numbering](http://docs.mathjax.org/en/latest/tex.html#automatic-equation-numbering). You can also visit this [post](https://jdhao.github.io/2018/01/25/hexo-mathjax-equation-number/) for more details. 
 
 ### Katex
 
@@ -114,19 +116,19 @@ If you use Katex to render Math Equations, you need to use **only one of those r
 Firstly, you need to uninstall the original renderer `hexo-renderer-marked`, and **install one of selected above**.
 
 ```sh
-npm uninstall hexo-renderer-marked
-npm install hexo-renderer-markdown-it-plus
+npm un hexo-renderer-marked --save
+npm i hexo-renderer-markdown-it-plus --save
 # or hexo-renderer-markdown-it
 ```
 
-Secondly, in `next/_config.yml`, turn on `enable` option of `math` and choose `katex` as render engine.
+Secondly, in `next/_config.yml`, turn on `enable` option of `math` and choose `katex` as render `engine`.
 
 ```yml
 math:
   enable: true
   ...
-  katex:
-    enable: true
+  #engine: mathjax
+  engine: katex
 ```
 
 Finally, run the standard Hexo generate, deploy process or start the server:
@@ -141,7 +143,7 @@ hexo clean && hexo g -d
 If you use `hexo-renderer-markdown-it`，you also need to add `markdown-it-katex` as its plugin：
 
 ```
-npm install markdown-it-katex
+npm i markdown-it-katex --save
 ```
 
 And then in `hexo/_config.yml` you need to add `markdown-it-katex` as a plugin for `hexo-renderer-markdown-it`:
@@ -191,35 +193,41 @@ Currently, all NexT config use **2 spaces indents**.
 If your content of config is put just directly after the config name, then a space is needed between the colon and the config content (i.e. `enable: true`)
 
 ```yml
-# Math Formulas Render Support
+# Math Equations Render Support
 math:
-  enable: true
+  enable: false
 
-  # Default (true) will load mathjax / katex script on demand.
-  # That is it only render those page which has `mathjax: true` in Front-matter.
-  # If you set it to false, it will load mathjax / katex srcipt EVERY PAGE.
+  # Default(true) will load mathjax/katex script on demand
+  # That is it only render those page who has 'mathjax: true' in Front-matter.
+  # If you set it to false, it will load mathjax/katex srcipt EVERY PAGE.
   per_page: true
 
-  # hexo-renderer-pandoc (or hexo-renderer-kramed) required for full MathJax support.
-  mathjax:
-    enable: true
-    # See: https://mhchem.github.io/MathJax-mhchem/
-    mhchem: false
+  engine: mathjax
+  #engine: katex
 
-  # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required for full Katex support.
+  # hexo-renderer-pandoc (or hexo-renderer-kramed) needed to full MathJax support.
+  mathjax:
+    # For newMathJax CDN (cdnjs.cloudflare.com) with fallback to oldMathJax (cdn.mathjax.org).
+    cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    # For direct link to MathJax.js with CloudFlare CDN (cdnjs.cloudflare.com).
+    #cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML
+
+  # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin)
+  # needed to full Katex support.
   katex:
-    enable: false
-    # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex
-    copy_tex: false
+    # Use Katex 0.7.1 as default
+    cdn: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css
+    # If you want to try the latest version of Katex, use one below instead
+    #cdn: //cdn.jsdelivr.net/katex/latest/katex.min.css
 ```
 
-### `enable`
+### enable
 
 `true` or `false`, default is `false`.
 
 `true` to turn on render of Math Equations, `false` to turn off it.
 
-### `per_page`
+### per_page
 
 `true` or `false`, default is `true`.
 
@@ -258,3 +266,21 @@ title: 'Not Render Math Either'
 ```
 
 When you set it to `false`, the math will be rendered on **EVERY PAGE**.
+
+### cdn
+
+Both MathJax and Katex provide a config `cdn`, if you don't know what is `cdn`, **do not touch it**.
+
+Firstly, both MathJax and Katex use the [jsDelivr](https://www.jsdelivr.com/) as the default CDN.
+
+The reason that jsDelivr is chosen is because it is fast everywhere, and jsDelivr has the valid ICP license issued by the Chinese government, it can be accessed in China pretty well.
+
+And we also provide other optional CDNs, including the famous [CDNJS](https://cdnjs.com/).
+
+For MathJax, we are currently using version 2.7.1.
+
+For Katex, due to the problem described above, we are now using version 0.7.1.
+
+If you want to try the other CDNs not included in the optional list, you must use the corresponding version.
+
+Particularly, if you are a Chinese blogger or most of your visits come from China, please note that **the CDNJS is blocked in some parts of China**, don't use it as your CDN.

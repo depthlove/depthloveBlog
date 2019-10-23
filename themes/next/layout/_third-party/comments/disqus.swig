@@ -1,61 +1,44 @@
-{%- if theme.disqus.count %}
+{% if theme.disqus.count %}
+  <script id="dsq-count-scr" src="https://{{ theme.disqus.shortname }}.disqus.com/count.js" async></script>
+{% endif %}
+{% if page.comments %}
 <script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://{{ theme.disqus.shortname }}.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-{%- endif %}
-{%- if page.comments %}
-<script>
-  function disqus_config() {
+  var disqus_config = function() {
     this.page.url = {{ page.permalink | json }};
     this.page.identifier = {{ page.path | json }};
     this.page.title = '{{ page.title | addslashes }}';
-    {%- if __('disqus') !== 'disqus' %}
+    {% if __('disqus') !== 'disqus' -%}
       this.language = '{{ __('disqus') }}';
-    {%- endif %}
-  }
+    {% endif -%}
+  };
   function loadComments() {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: disqus_config
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://{{ theme.disqus.shortname }}.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
+    var d = document, s = d.createElement('script');
+    s.src = 'https://{{ theme.disqus.shortname }}.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
   }
-  {%- if theme.disqus.lazyload %}
-    (function() {
-      var offsetTop = document.getElementById('comments').offsetTop - window.innerHeight;
+  {% if theme.disqus.lazyload %}
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
       if (offsetTop <= 0) {
         // load directly when there's no a scrollbar
-        window.addEventListener('load', loadComments, false);
+        loadComments();
       } else {
-        var disqus_scroll = () => {
+        $(window).on('scroll.disqus_scroll', function() {
           // offsetTop may changes because of manually resizing browser window or lazy loading images.
-          var offsetTop = document.getElementById('comments').offsetTop - window.innerHeight;
-          var scrollTop = window.scrollY;
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
 
           // pre-load comments a bit? (margin or anything else)
           if (offsetTop - scrollTop < 60) {
-            window.removeEventListener('scroll', disqus_scroll);
+            $(window).off('.disqus_scroll');
             loadComments();
           }
-        };
-        window.addEventListener('scroll', disqus_scroll);
+        });
       }
-    })();
+    });
   {% else %}
-    window.addEventListener('load', loadComments, false);
-  {%- endif %}
+    loadComments();
+  {% endif %}
 </script>
-{%- endif %}
+{% endif %}

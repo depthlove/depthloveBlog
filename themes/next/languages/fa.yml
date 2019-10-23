@@ -28,7 +28,9 @@ post:
   read_more: ادامه مطلب
   untitled: بدون عنوان
   sticky: چسبنده
+  toc_empty: این پست فهرست مطالب را ندارد
   views: بازدیدها
+  comments_count: نظرات
   related_posts: پست های مرتبط
   copy_button: کپی
   copy_success: کپی شد
@@ -83,6 +85,7 @@ reward:
   wechatpay: پرداخت WeChat
   alipay: AliPay
   bitcoin: بیت کوین
+gitmentbutton: نمایش نظرات از Gitment
 accessibility:
   nav_toggle: تغییر ناوبری
   prev_page: صفحه قبلی

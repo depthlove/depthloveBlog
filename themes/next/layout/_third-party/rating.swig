@@ -1,6 +1,5 @@
-{%- if theme.rating.enable %}
-  <script{{ pjax }}>
-  if (CONFIG.page.isPost) {
+{% if theme.rating.enable and (not is_home() and is_post()) %}
+  <script>
     wpac_init = window.wpac_init || [];
     wpac_init.push({
       widget: 'Rating',
@@ -17,6 +16,5 @@
       mc.src = '//embed.widgetpack.com/widget.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
     })();
-  }
   </script>
-{%- endif %}
+{% endif %}

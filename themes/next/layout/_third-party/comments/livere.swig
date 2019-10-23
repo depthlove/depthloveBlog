@@ -1,7 +1,6 @@
-{%- if page.comments %}
 <script>
   window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+    refer: '{{ page.path }}'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
@@ -12,4 +11,3 @@
     e.parentNode.insertBefore(j, e);
   })(document, 'script');
 </script>
-{%- endif %}
