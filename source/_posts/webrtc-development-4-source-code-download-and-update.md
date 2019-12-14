@@ -8,7 +8,9 @@ categories:
 - WebRTC
 ---
 
-有五个多月没更新音视频相关的文章了。至于是哪些因素影响了，我会在后续的随笔中写写。回归正题，在这五个多月里，WebRTC 更新了一些版本，我们可以通过 [https://webrtc.org/release-notes/](https://webrtc.org/release-notes/) 看下2019年1月到现在，Google 的 WebRTC 的进展。
+前文 [WebRTC 开发（二）源码下载与编译](https://depthlove.github.io/2019/05/02/webrtc-development-2-source-code-download-and-build/) 提到了 WebRTC 的下载和编译，但没有提及切换到某个 release 分支去做编译。
+
+看了下博客的文章归档记录，有五个多月没更新音视频相关的文章了。至于是哪些因素影响了，我会在后续的随笔中写写。回归正题，在这五个多月里，WebRTC 更新了一些版本，我们可以通过 [https://webrtc.org/release-notes/](https://webrtc.org/release-notes/) 看下2019年1月到现在，Google 的 WebRTC 的进展。
 
 [M76 Release Notes](https://groups.google.com/forum/#!msg/discuss-webrtc/Y7TIuNbgP8M/UoXP-RuxAwAJ), 2019年7月1日  
  
