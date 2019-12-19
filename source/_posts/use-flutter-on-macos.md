@@ -112,7 +112,7 @@ sudo gem install cocoapods -v 1.7.5
 pod setup
 ```
 
-执行完上面的操作后，再次执行命令 `flutter doctor` 检测是否有其它插件安装警告。
+执行完上面的操作后，再次执行命令 `flutter doctor` 检测是否有其它插件的安装警告。
 
 
 # 新建 Flutter 项目
