@@ -12,7 +12,7 @@ categories:
 
 > ### 渲染的代码位置
 
-代码位置：webrtc/src/sdk/objc/components/renderer
+代码位置：[webrtc/src/sdk/objc/components/renderer](https://chromium.googlesource.com/external/webrtc/+/9863f3d246e2da7a2e1f42bbc5757f6af5ec5682/sdk/objc/components/renderer/)
 
 ```
 # opengl

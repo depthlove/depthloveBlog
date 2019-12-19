@@ -29,7 +29,7 @@ categories:
 
 > ### 摄像头采集
 
-代码位置：webrtc/src/sdk/objc/components/capturer
+代码位置：[webrtc/src/sdk/objc/components/capturer](https://chromium.googlesource.com/external/webrtc/+/9863f3d246e2da7a2e1f42bbc5757f6af5ec5682/sdk/objc/components/capturer/)
 
 ```
 RTCCameraVideoCapturer.h   RTCCameraVideoCapturer.m
@@ -38,7 +38,7 @@ RTCFileVideoCapturer.h     RTCFileVideoCapturer.m
 
 > ### 视频渲染
 
-代码位置：webrtc/src/sdk/objc/components/renderer
+代码位置：[webrtc/src/sdk/objc/components/renderer](https://chromium.googlesource.com/external/webrtc/+/9863f3d246e2da7a2e1f42bbc5757f6af5ec5682/sdk/objc/components/renderer/)
 
 ```
 # metal
@@ -81,7 +81,7 @@ RTCDisplayLinkTimer.h       RTCDisplayLinkTimer.m
 
 当硬件设备支持 Metal 时，工程 AppRTCMobile 启用的是 Metal，但是我们想使用 OpenGL 来渲染视频，该怎么设置呢？
 
-代码位置：webrtc/src/examples/objc/AppRTCMobile/mac
+代码位置：[webrtc/src/examples/objc/AppRTCMobile/mac](https://chromium.googlesource.com/external/webrtc/+/9863f3d246e2da7a2e1f42bbc5757f6af5ec5682/examples/objc/AppRTCMobile/mac/)
 
 ```
 APPRTCAppDelegate.h          APPRTCAppDelegate.m
