@@ -12,7 +12,7 @@ categories:
 
 > ### 代码位置
 
-代码位置：webrtc/src/modules/audio_device/mac
+代码位置：[webrtc/src/modules/audio_device/mac](https://chromium.googlesource.com/external/webrtc/+/9863f3d246e2da7a2e1f42bbc5757f6af5ec5682/modules/audio_device/mac/)
 
 ```
 audio_device_mac.h                    
@@ -26,7 +26,7 @@ audio_mixer_manager_mac.cc
 
 > ### 浏览头文件
 
-预览 `webrtc/src/modules/audio_device/mac/audio_device_mac.h`，可以看到音频采集和渲染的很多信息。
+预览 [webrtc/src/modules/audio_device/mac/audio_device_mac.h](https://chromium.googlesource.com/external/webrtc/+/9863f3d246e2da7a2e1f42bbc5757f6af5ec5682/modules/audio_device/mac/audio_device_mac.h)，可以看到音频采集和渲染的很多信息。
 
 ```
 采集的采样率：const uint32_t N_REC_SAMPLES_PER_SEC = 48000;
@@ -64,6 +64,8 @@ audioDescription.mBytesPerPacket = audioDescription.mFramesPerPacket * audioDesc
 WebRTC 的代码因为是跨平台的，为了兼容各个平台，API 接口写的有些繁琐。如果想快速看出代码的执行逻辑，最快最实用的就是加断点，单步调试。如果对各个系统（iOS，Mac，Android）的系统音视频 API 比较熟悉的话，那是可以直接通过读代码来梳理逻辑的。
 
 下面列举下音视频采集和渲染中很关键的点：**音频采集回调**，**音频渲染回调**，**音频路由切换监听事件**。
+
+预览 [webrtc/src/modules/audio_device/mac/audio_device_mac.cc](https://chromium.googlesource.com/external/webrtc/+/9863f3d246e2da7a2e1f42bbc5757f6af5ec5682/modules/audio_device/mac/audio_device_mac.cc)
 
 音频采集的回调：
 
