@@ -67,7 +67,7 @@ export PATH=$flutter_sdk_path/bin:$PATH
 执行下面的命令让配置生效
 
 ```
-source ~/. zshrc
+source ~/.zshrc
 ```
 
 # 执行命令 flutter precache
