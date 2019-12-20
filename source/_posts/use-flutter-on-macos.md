@@ -80,7 +80,7 @@ cd flutter
 flutter precache
 ```
 
-# 执行命令 flutter precache
+# 执行命令 flutter doctor
 
 在终端继续执行命令：
 
@@ -113,6 +113,16 @@ pod setup
 ```
 
 执行完上面的操作后，再次执行命令 `flutter doctor` 检测是否有其它插件的安装警告。
+
+# 检测默认使用的 Flutter 版本
+
+在终端执行命令：
+
+```
+which flutter
+```
+
+执行结果为：**/Users/suntongmian/Documents/workplace/flutter/bin/flutter**，符合预期。
 
 
 # 新建 Flutter 项目
