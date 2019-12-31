@@ -1406,7 +1406,62 @@ suntongmiandeMacBook-Pro:webrtc suntongmian$
 suntongmiandeMacBook-Pro:webrtc suntongmian$
 ```
 
+> ### 后续
+
+上面所述的步骤，针对正常的情形是没有任何问题的。为什么这么说？因为我在我的一台有大半年没有使用的 MacBook Pro 上操作源码更新时，想拉取 M76 分支，执行命令 **git branch -r** 只能看到 branch-heads/m75 为最新的分支，没有显示 branch-heads/m76， branch-heads/m77 ，branch-heads/m78，branch-heads/m79 分支。出现这样的情况，并不是本地源码没有同步到最新。参考文章 [Media/WebRTC/Updating Process](https://wiki.mozilla.org/Media/WebRTC/Updating_Process) 即可解决这个问题。
+
+> #### 修改文件 .git/config
+
+需要修改本地文件 /webrtc/src/.git/config，向该文件中添加：
+
+```
+fetch = +refs/branch-heads/*:refs/remotes/branch-heads/*
+```
+
+修改之后，该文件的内容为：
+
+```
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = https://webrtc.googlesource.com/src.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	fetch = +refs/branch-heads/*:refs/remotes/branch-heads/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[diff]
+	ignoreSubmodules = all
+[branch "m76"]
+	remote = origin
+	merge = refs/branch-heads/m76
+```
+
+> #### 执行 git fetch
+
+修改并保存 /webrtc/src/.git/config 后，在终端执行命令：
+
+```
+git fetch
+```
+
+> #### 执行 git branch -r
+
+到这一步，执行命令：
+
+```
+git branch -r
+```
+
+此时，在终端上可以看到最新的所有分支信息了，就可以通过 **git checkout -b m76 refs/remotes/branch-heads/m76** 将 M76 分支 checkout 出来了。
+
 > ### 参考文献
 
 [1] [https://webrtc.org/native-code/development/](https://webrtc.org/native-code/development/)
 
+[2] [Media/WebRTC/Updating Process](https://wiki.mozilla.org/Media/WebRTC/Updating_Process)
