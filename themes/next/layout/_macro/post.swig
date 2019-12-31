@@ -256,6 +256,12 @@
             #}</div>
           {% endif %}
 
+           {% if post.top %}
+            <i class="fa fa-thumb-tack"></i>
+            <font color=green>置顶</font>
+            <span class="post-meta-divider">|</span>
+          {% endif %}
+
         </div>
       </header>
     {% endif %}
