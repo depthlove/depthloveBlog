@@ -10,6 +10,8 @@
   </div>
 {%- endif %}
 
+{% include '../_custom/google_adsense.swig' %}
+
 <div class="copyright">
   {% set copyright_year = date(null, 'YYYY') %}
   &copy; {% if theme.footer.since and theme.footer.since != copyright_year %}{{ theme.footer.since }} – {% endif %}
