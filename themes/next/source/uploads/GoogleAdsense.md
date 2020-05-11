@@ -21,13 +21,9 @@
 </script>
 ```
 
-新建 ~/depthloveBlog/themes/next/layout/_custom/head.swig 空白文件
-
-新建 ~/depthloveBlog/themes/next/layout/_custom/header.swig 空白文件
-
 新建 ~/depthloveBlog/themes/next/layout/_custom/sidebar.swig 空白文件
 
-备注：不新建 head.swig，header.swig，sidebar.swig 这3个空白文档，在执行 hexo g 命令时会报错。
+备注：不新建 sidebar.swig 这3个空白文档，在执行 hexo g 命令时会报错。
 
 > # 插入广告
 
