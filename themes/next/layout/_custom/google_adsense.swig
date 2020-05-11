@@ -1,5 +1,5 @@
+<!-- Google Ads -->
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- BlogAd -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-2304335236058241"

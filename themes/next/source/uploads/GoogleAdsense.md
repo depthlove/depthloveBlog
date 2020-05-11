@@ -1,3 +1,37 @@
+> # 前提
+
+下面所有的用 {% include '../_custom/google_adsense.swig' %} 的地方，都用广告代码的替换，避免 `hexo g` 报错，即使用
+
+```
+<!-- Google Ads -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2304335236058241"
+     data-ad-slot="8084137562"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+```
+
+或者广告的内嵌模式代码
+
+```
+<!-- Google Ads Embed -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-2304335236058241"
+     data-ad-slot="8930971915"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+```
+
 > # 添加广告 ads.txt 文件
 
 添加 ~/depthloveBlog/themes/next/source/ads.txt 文件。该文件来至于 Google Adsense 网站下的个人账号。
