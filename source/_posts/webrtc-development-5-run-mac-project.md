@@ -8,7 +8,7 @@ categories:
 - WebRTC
 ---
 
-在 [WebRTC 开发（四）源码下载与更新](http://depthlove.github.io/2019/10/18/webrtc-development-4-source-code-download-and-update/) 一文中，我们获取到了可以在 iOS，macOS 平台运行的 WebRTC 源码。其中，在执行命令 `fetch --nohooks webrtc_ios` 时，我们可以明确看到代码支持的平台 **ios, mac**。
+在 [WebRTC 开发（四）源码下载与更新](https://depthlove.github.io/2019/10/18/webrtc-development-4-source-code-download-and-update/) 一文中，我们获取到了可以在 iOS，macOS 平台运行的 WebRTC 源码。其中，在执行命令 `fetch --nohooks webrtc_ios` 时，我们可以明确看到代码支持的平台 **ios, mac**。
 
 ```
 suntongmiandeMacBook-Pro:webrtc suntongmian$ fetch --nohooks webrtc_ios
