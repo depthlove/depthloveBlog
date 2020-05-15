@@ -105,9 +105,11 @@ open -a Xcode.app out/ios/all.xcworkspace
 
 工程编译时间长短跟 Mac 设备性能有关系，性能强的 Mac 设备编译速度快很多，如果你的设备耗时 10分钟以上了，说明你要换 Mac 设备了。
 
-<center class="half">
-    <img src="https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/webrtc-development-10-run-ios-project/ios-app-home.png" width="300"/>
-    <img src="https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/webrtc-development-10-run-ios-project/ios-app-meeting.png" width="300"/>
+<center>
+<figure>
+<img src="https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/webrtc-development-10-run-ios-project/ios-app-home.png" width="300"/>
+<img src="https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/webrtc-development-10-run-ios-project/ios-app-meeting.png" width="300"/>
+</figure>
 </center>
 
 > ### 参考文献
