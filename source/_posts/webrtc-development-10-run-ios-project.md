@@ -45,6 +45,8 @@ vi examples/objc/AppRTCMobile/ios/Info.plist
 <string>com.tms.AppRTCMobile</string>
 ```
 
+<!-- more -->
+
 ![modify-info-plist.png](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/webrtc-development-10-run-ios-project/modify-info-plist.png)
 
 > #### 配置 depot_tools 工具的路径
