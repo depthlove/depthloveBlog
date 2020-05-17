@@ -12,40 +12,46 @@ categories:
 
 <!-- more -->
 
-> # 整体架构图
+> ### 整体架构图
 
 ![WebRTC 整体架构图](https://raw.githubusercontent.com/depthlove/depthloveBlog/8c991266c4350b1b66dc277d7576903824013017/source/images/webrtc-development-3-analysis-of-architectural-design/webrtc-architecture.png)
 
-> # 组件介绍
+> ### 组件介绍
 
-## (1) Your Web App
+#### (1) Your Web App
 
-## (2) Web API
+#### (2) Web API
 
-## (3) WebRTC Native C++ API
+#### (3) WebRTC Native C++ API
 
-## (4) Transport / Session
+#### (4) Transport / Session
 
 - **RTP Stack**
 - **STUN / ICE**
 - **Session Management**
 
-## (5) VoiceEngine
+#### (5) VoiceEngine
 
 - **iSAC / iLBC / Opus**
 - **NetEQ for Voice**
 - **Acoustic Echo Canceler (AEC)**
 - **Noise Reduction (NR)**
 
-## (6) VideoEngine
+#### (6) VideoEngine
 
 - **VP8**
 - **Video Jitter Buffer**
 - **Image enhancements**
 
-> # 功能模块
+> ### 代码结构
 
-## (1) 音频模块
+webrtc/src 目录下的代码结构如下：
+
+[src-code-structure.txt]()
+
+> ### 功能模块
+
+#### (1) 音频模块
 
 WebRTC 的音频部分，包含设备、编解码(Opus/iLIBC/iSAC/G722/PCM16/RED/AVT、NetEQ)、加密、声音文件、声音处理、声音输出、音量控制、音视频同步、网络传输与流控(RTP/RTCP)等功能。
 
@@ -69,7 +75,7 @@ WebRTC 的音频部分，包含设备、编解码(Opus/iLIBC/iSAC/G722/PCM16/RED
 
 WebRTC 采用 CNG/G711/G722/iLBC/iSAC/Opus/PCM16b/Red 编解码技术。
 
-webrtc/src/modules/audio_coding/NetEQ 还提供 neteq 功能 --- 抖动缓冲器及丢包补偿模块，能够提高音质，并把延迟减至最小。
+webrtc/src/modules/audio_coding/neteq 还提供 NetEQ 功能 --- 抖动缓冲器及丢包补偿模块，能够提高音质，并把延迟减至最小。
 
 另外一个核心功能是基于语音会议的混音处理。
 
@@ -78,7 +84,7 @@ webrtc/src/modules/audio_coding/NetEQ 还提供 neteq 功能 --- 抖动缓冲器
 和视频一样，WebRTC 也提供声音加密功能。
 
 
-## (2) 视频模块
+#### (2) 视频模块
 
 - **视频采集 video_capture**
 
@@ -115,14 +121,14 @@ WebRTC 采用 I420/VP8 编解码技术。VP8 是 google 收购 ON2 后的开源�
 视频加密的数据源可能是原始的数据流，也可能是编码后的数据流。估计是编码后的数据流，这样加密代价会小一些。
 
 
-## (3) 传输模块
+#### (3) 传输模块
 
 - **网络传输与流控**
 
 对于网络音视频，数据的传输与控制是核心价值。WebRTC 采用的是成熟的 RTP/RTCP 协议来传输音视频数据。
 
 
-> # 参考文献
+> ### 参考文献
 
 [WebRTC Architecture](https://webrtc.org/architecture/)
 
