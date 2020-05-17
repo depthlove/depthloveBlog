@@ -14,7 +14,7 @@ categories:
 
 > ### 整体架构图
 
-![WebRTC 整体架构图](https://raw.githubusercontent.com/depthlove/depthloveBlog/8c991266c4350b1b66dc277d7576903824013017/source/images/webrtc-development-3-analysis-of-architectural-design/webrtc-architecture.png)
+![WebRTC 整体架构图](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/webrtc-development-3-analysis-of-architectural-design/webrtc-architecture.png)
 
 > ### 组件介绍
 
@@ -47,7 +47,7 @@ categories:
 
 webrtc/src 目录下的代码结构如下：
 
-[src-code-structure.txt]()
+[src-code-structure](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/webrtc-development-3-analysis-of-architectural-design/src-code-structure.txt)
 
 > ### 功能模块
 
