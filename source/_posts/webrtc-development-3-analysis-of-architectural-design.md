@@ -51,19 +51,11 @@ WebRTC 的音频部分，包含设备、编解码(Opus/iLIBC/iSAC/G722/PCM16/RED
 
 - **音频设备 audio_device**
 
-源代码在 webrtc\modules\audio_device\main 目录下，包含接口和各个平台的源代码。
+源代码在 webrtc/src/modules/audio_device 目录下，包含接口和各个平台的源代码。
 
 在 Windows 平台上，WebRTC 采用的是 Windows Core Audio 和 Windows Wave 技术来管理音频设备，还提供了一个混音管理器。
 
 利用音频设备，可以实现声音输出，音量控制等功能。
-
-- **声音文件 media_file**
-
-源代码在 webrtc\modules\media_file 目录下。
-
-该功能是可以用本地文件作为音频源，支持的格式有 PCM 和 WAV。
-
-同样，WebRTC 也可以录制音频到本地文件。
 
 - **声音处理 audio_processing**
 
@@ -73,11 +65,11 @@ WebRTC 的音频部分，包含设备、编解码(Opus/iLIBC/iSAC/G722/PCM16/RED
 
 - **音频编解码 audio_coding**
 
-源代码在 webrtc\modules\audio_coding 目录下。
+源代码在 webrtc/src/modules/audio_coding 目录下。
 
-WebRTC 采用 Opus/iLIBC/iSAC/G722/PCM16/RED/AVT 编解码技术。
+WebRTC 采用 CNG/G711/G722/iLBC/iSAC/Opus/PCM16b/Red 编解码技术。
 
-WebRTC 还提供 NetEQ 功能 --- 抖动缓冲器及丢包补偿模块，能够提高音质，并把延迟减至最小。
+webrtc/src/modules/audio_coding/NetEQ 还提供 neteq 功能 --- 抖动缓冲器及丢包补偿模块，能够提高音质，并把延迟减至最小。
 
 另外一个核心功能是基于语音会议的混音处理。
 
@@ -90,35 +82,27 @@ WebRTC 还提供 NetEQ 功能 --- 抖动缓冲器及丢包补偿模块，能够�
 
 - **视频采集 video_capture**
 
-源代码在 webrtc\modules\video_capture\main 目录下，包含接口和各个平台的源代码。
+源代码在 webrtc/src/modules/video_capture 目录下，包含接口和各个平台的源代码。
 
 在 Windows 平台上，WebRTC 采用的是 dshow 技术，来实现枚举视频的设备信息和视频数据的采集，这意味着可以支持大多数的视频采集设备。对那些需要单独驱动程序的视频采集卡（比如海康高清卡）就无能为力了。
 
 视频采集支持多种媒体类型，比如 I420、YUY2、RGB、UYUY 等，并可以进行帧大小和帧率控制。
 
-- **视频媒体文件 media_file**
-
-源代码在 webrtc\modules\media_file 目录下。
-
-该功能是可以用本地文件作为视频源，有点类似虚拟摄像头的功能；支持的格式有 AVI。
-
-另外，WebRTC 还可以录制音视频到本地文件，比较实用的功能。
-
 - **视频图像处理 video_processing**
 
-源代码在 webrtc\modules\video_processing 目录下。
+源代码在 webrtc/src/modules/video_processing 目录下。
 
 视频图像处理针对每一帧的图像进行处理，包括明暗度检测、颜色增强、降噪处理等功能，用来提升视频质量。
 
 - **视频显示 video_render**
 
-源代码在 webrtc\modules\video_render 目录下。
+源代码在 /webrtc/src/sdk 目录下。
 
-在 Windows 平台，WebRTC 采用 direct3d9 和 directdraw 的方式来显示视频，只能这样，必须这样。
+在 Windows 平台，WebRTC 采用 direct3d9 和 directdraw 的方式来显示视频。
 
 - **视频编解码 video_coding**
 
-源代码在 webrtc\modules\video_coding 目录下。
+源代码在 webrtc/src/modules/video_coding 目录下。
 
 WebRTC 采用 I420/VP8 编解码技术。VP8 是 google 收购 ON2 后的开源实现，并且也用在 WebM 项目中。VP8 能以更少的数据提供更高质量的视频，特别适合视频会议这样的需求。
 
