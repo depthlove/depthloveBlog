@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Depth Love Blog
+title: Depth.Love Blog
 # subtitle: Passionate Love
 subtitle: 计算机硕士，音视频方向。GitHub：https://github.com/depthlove
 description: 
-author: Depth Love
+author: Depth.Love
 # language: default 
 language: zh-CN
 timezone:
