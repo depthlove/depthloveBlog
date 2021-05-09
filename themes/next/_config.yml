@@ -125,7 +125,6 @@ menu:
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
-  top: /top/ || signal # 阅读最多
 
 # Enable / Disable menu icons / item badges.
 menu_settings:
@@ -691,15 +690,15 @@ cnzz_siteid:
 # AppID and AppKey are recommended to be the same as valine's for counter compatibility.
 # Do not enable both `valine.visitor` and `leancloud_visitors`.
 leancloud_visitors:
-  enable: true
-  app_id: I0MNwNavGR4emmV0Vq9IRTeE-gzGzoHsz # <your app id>
-  app_key: jukR11B6qIiKA7bRYTXBe8bd # <your app key>
+  enable: false
+  app_id: # <your app id>
+  app_key: # <your app key>
   # Required for apps from CN region
   server_url: # <your server url>
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
-  security: false
+  security: true
 
 # Another tool to show number of visitors to each article.
 # Visit https://console.firebase.google.com/u/0/ to get apiKey and projectId.
