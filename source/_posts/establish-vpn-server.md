@@ -17,17 +17,17 @@ categories:
 为了查询资料的便利性，大部分时候需要使用 Google 浏览器，但是国内除了高校能默认支持访问 Google 的服务外，基本所有人想使用 Google 的服务都需要借助 [虚拟专用网 VPN (Virtual Private Network) ]([https://zh.wikipedia.org/wiki/%E8%99%9B%E6%93%AC%E7%A7%81%E4%BA%BA%E7%B6%B2%E8%B7%AF](https://zh.wikipedia.org/wiki/%E8%99%9B%E6%93%AC%E7%A7%81%E4%BA%BA%E7%B6%B2%E8%B7%AF)
 ) 工具。以前使用过一些 VPN 服务提供商提供的服务，出现过用了一段时间就使用不了了、服务不稳定、连接后访问网络资源慢，还有的干脆就无法使用。比如我花了 79 美金买过 NordVPN 的服务，网上的口碑和排名很靠前的。事实上真是花钱买烦恼，99%的概率连不上 NordVPN 服务，即使碰运气连上去了，但网速差的让人吐血。为这个事，与 NordVPN 的技术支持来往过好多封英文邮件，最终还是没有解决连不上服务器的问题。在国内想使用 Google 服务查询资料真是痛苦。搞笑的是，2018年12月初去韩国济州岛玩，在济州岛使用 NordVPN 服务倒是 99%以上概率连上服务器，网速也还可以。泪崩，在 NordVPN 上花的钱彻底打水漂了。好在工作所在公司提供了 VPN 服务，就一直使用到现在。
 
-为能正常使用 Google 的资源以及考虑到数据访问的私密性，就开始考虑搭建一个私人的 VPN 服务。查询了一些资料，找到了 [搬瓦工 (BandwagonHost)](https://bwh88.net) 。以下是搭建的流程：
+为能正常使用 Google 的资源以及考虑到数据访问的私密性，就开始考虑搭建一个私人的 VPN 服务。查询了一些资料，找到了 [搬瓦工 (BandwagonHost)](https://www.bwgyhw.cn) 。以下是搭建的流程：
 
 <!-- more -->
 
 ####  一、购买主机服务 VPS
 ##### 参考该文的购买流程
-[搬瓦工(BandwagonHost) 一键搭建ShadowSocks翻墙教程](https://www.iqiqi.org/banwagong-vps-setup-shadowsocks)
+[搬瓦工(BandwagonHost) 注册与购买教程](https://www.bwgyhw.cn/bandwagonhost-deploy-new/)
 
 #### 二、登陆 VPS
 ##### 参考该文的登陆搬瓦工的 VPS 的流程
-[Windows/Mac/Linux如何SSH远程连接/登陆搬瓦工](https://www.bwgyhw.cn/bandwagonhost-ssh-login/?utm_source=textarea.com&utm_medium=textarea.com&utm_campaign=article)
+[Windows/Mac/Linux如何SSH远程连接/登陆搬瓦工](https://www.bwgyhw.cn/bandwagonhost-ssh-login/)
 
 我使用的 MacBook Pro，以下为 Mac 系统上的 VPS 登陆流程：
 
