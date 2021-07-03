@@ -20,7 +20,7 @@ categories:
 
 # 一、排查问题
 
-（1）访问 [搬瓦工 (BandwagonHost)](https://bwh88.net) 主页，登录之后，查看主机的运行状态。
+（1）访问 [搬瓦工 (BandwagonHost)](https://yhgo.wang/bwg) 主页，登录之后，查看主机的运行状态。
 
 结果：主机处在正常运行中。
 
@@ -56,7 +56,7 @@ ping baidu.com
 
 # 二、检测 IP 地址被墙
 
-访问网址 [http://ping.chinaz.com](http://ping.chinaz.com)，输入要检测的 IP 地址。
+访问网址 [IP检测工具](https://www.toolsdaquan.com/ipcheck/)，输入要检测的 IP 地址。
 
 （1）如果国内、国外监测点都超时，那么该 IP 地址被墙的可能性较小，可以试试开机或者重启 VPS，或联系 VPS 供应商的客服。 
 
@@ -65,20 +65,22 @@ ping baidu.com
 
 # 三、解决 IP 地址被墙
 
-（1）登陆[搬瓦工 (BandwagonHost)](https://bwh88.net) 主页
+参考教程：[搬瓦工更换IP教程](https://www.bwgyhw.cn/bandwagonhost-change-ip/)
 
-（2）我用的 **付费换 IP** 的模式。访问 [https://bwh88.net/ipchange.php](https://bwh88.net/ipchange.php)，费用为 8.79 美金，邮箱会收到供应商的邮件，根据邮件中的说明，点击付费连接，完成付费。付费方式支持支付宝、微信。
+（1）登陆[搬瓦工 (BandwagonHost)](https://yhgo.wang/bwg) 主页
+
+（2）我用的 **付费换 IP** 的模式。访问 [https://bwh81.net/ipchange.php](https://bwh81.net/ipchange.php)，费用为 8.79 美金，邮箱会收到供应商的邮件，根据邮件中的说明，点击付费连接，完成付费。付费方式支持支付宝、微信。
 
 备注：个人建议使用 **付费换 IP** 的模式。**免费换 IP** 模式的网址为 [https://kiwivm.64clouds.com/main-exec.php?mode=blacklistcheck](https://kiwivm.64clouds.com/main-exec.php?mode=blacklistcheck)，我操作的时候，该网址提示 “This feature is disabled while we work on improving the accuracy of testing.” 说明无法使用免费换 IP 的服务。
 
-（3）费用支付完成后，等十几分钟会收到 IP 地址更换成功的邮件。访问[搬瓦工 (BandwagonHost)](https://bwh88.net) 主页，进入个人购买的 VPS 控制面板主页，就可以看到主机的 IP 地址被更换了。
+（3）费用支付完成后，等十几分钟会收到 IP 地址更换成功的邮件。访问[搬瓦工 (BandwagonHost)](https://yhgo.wang/bwg) 主页，进入个人购买的 VPS 控制面板主页，就可以看到主机的 IP 地址被更换了。
 
 （4）按照[使用搬瓦工搭建 ShadowSocks 翻墙（VPN）](https://depthlove.github.io/2019/03/29/establish-vpn-server/)一文中提到的步骤，重新搭建 VPN 服务。
 
 # 参考文献
 
-[VPS能Ping但是SSH无法连接](https://server.zzidc.com/fwqcjwt/2579.html)  
-[怎样检查搬瓦工IP被墙](https://www.banwago.com/1265.html)  
-[#教程# 判断 IP 是否被墙及 VPS 无法连接的解决办法](https://www.vultrcn.com/4.html)  
-[消息：搬瓦工VPS，IP被zzz，免费更换IP和收费更换IP](https://www.zhujiceping.com/30098.html)
+[搬瓦工VPS能Ping但是SSH无法连接](https://www.bwgyhw.cn/ssh-forbidden/)  
+[怎样检查搬瓦工IP被墙](https://www.bwgyhw.cn/2019-bandwagonhost-ip-check/)  
+[搬瓦工IP被封了的解决办法](https://www.bwgyhw.cn/bandwagonhost-how-to-deal-with-ip-blocked/)  
+[搬瓦工IP被封连不上后，如何自助更换更换IP](https://www.bwgyhw.cn/bandwagonhost-change-ip/)
 
