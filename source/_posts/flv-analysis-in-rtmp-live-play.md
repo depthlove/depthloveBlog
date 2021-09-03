@@ -24,8 +24,8 @@ flv文件封装，可参看[将h.264视频流封装成flv格式文件（一.flv�
 
 图一为 FLV Format with AVC Video Tag （H.264）
 
-![flv video](https://raw.githubusercontent.com/depthlove/depthloveBlog/cd5e12823ac4e243a62893f9c942fad766a6c908/source/images/flv-analysis-in-rtmp-live-play/flv-analysis-in-rtmp-live-play-00.png)
+![flv video](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/flv-analysis-in-rtmp-live-play/flv-analysis-in-rtmp-live-play-00.png)
 
 图二为 FLV Format with AAC Audio Tag (AAC)
 
-![flv audio](https://raw.githubusercontent.com/depthlove/depthloveBlog/cd5e12823ac4e243a62893f9c942fad766a6c908/source/images/flv-analysis-in-rtmp-live-play/flv-analysis-in-rtmp-live-play-01.png)
+![flv audio](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/flv-analysis-in-rtmp-live-play/flv-analysis-in-rtmp-live-play-01.png)

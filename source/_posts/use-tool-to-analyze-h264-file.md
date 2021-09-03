@@ -23,7 +23,7 @@ H.264 的基本流由一系列NALU （Network Abstraction Layer Unit ）组成�
 
 每个NALU单元由一个字节的 NALU头（NALU Header）和若干个字节的载荷数据（RBSP）组成。其中NALU 头的格式如图所示：
 
-![img](../images/use-tool-to-analyze-h264-file/nalu-header.png)
+![img](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/use-tool-to-analyze-h264-file/nalu-type.png)
 
  **NALU头结构**
 
@@ -39,17 +39,17 @@ forbidden_bit(1bit) + nal_reference_bit(2bit) + nal_unit_type(5bit)
 
 h264中NALU类型取值如下图(图片来至《新一代视频压缩编码标准H.264》)
 
-![nal单元类型图](../images/use-tool-to-analyze-h264-file/nalu-type.png)
+![nal单元类型图](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/use-tool-to-analyze-h264-file/nalu-type.png)
 
 将 [2015-09-17 18:05:20.h264](https://github.com/depthlove/X264-Encode-for-iOS/blob/master/myRecordH264Vieo/2015-09-17%2018:05:20.h264) 文件用UITraEdit打开，效果如下图
 
-![img](../images/use-tool-to-analyze-h264-file/test-h264-stream.png)
+![img](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/use-tool-to-analyze-h264-file/test-h264-stream.png)
 
 由于数据量较大，我挑选了其中3段数据来分析。
 
 ### **分析第一段数据：**
 
-![img](../images/use-tool-to-analyze-h264-file/nalu-sps-pps.png)
+![img](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/use-tool-to-analyze-h264-file/nalu-sps-pps.png)
 
 * #### **00 00 00 01 67**
 
@@ -91,7 +91,7 @@ H.264规定，当检测到0x000000时，也可以表征当前NAL的结束。那�
 
 ### **分析第二段数据：**
 
-![img](../images/use-tool-to-analyze-h264-file/nalu-i-frame.png)
+![img](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/use-tool-to-analyze-h264-file/nalu-i-frame.png)
 
 * #### **00 00 00 01 65** 或 **00 00 01 65**
 
@@ -111,7 +111,7 @@ IDR图像中的片，即 I帧。
 
 ### **分析第三段数据：**
 
-![img](../images/use-tool-to-analyze-h264-file/nalu-p-frame.png)
+![img](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/use-tool-to-analyze-h264-file/nalu-p-frame.png)
 
 * #### **00 00 00 01 41**
 
