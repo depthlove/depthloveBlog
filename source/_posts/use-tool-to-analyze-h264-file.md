@@ -23,7 +23,7 @@ H.264 的基本流由一系列NALU （Network Abstraction Layer Unit ）组成�
 
 每个NALU单元由一个字节的 NALU头（NALU Header）和若干个字节的载荷数据（RBSP）组成。其中NALU 头的格式如图所示：
 
-![img](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/use-tool-to-analyze-h264-file/nalu-type.png)
+![img](https://raw.githubusercontent.com/depthlove/depthloveBlog/master/source/images/use-tool-to-analyze-h264-file/nalu-header.png)
 
  **NALU头结构**
 
